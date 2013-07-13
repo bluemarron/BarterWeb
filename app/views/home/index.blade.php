@@ -2,7 +2,7 @@
 
 @section('content')
 	<script>
-		location.href = "/barter/member/login_regist_form";
+		location.href = "/www_barter/member/login_regist_form";
 	</script>
   <div class="well">
 
