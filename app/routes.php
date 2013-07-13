@@ -16,6 +16,10 @@
 // 	return View::make('hello');
 // });
 
-Route::get('/', 'MemberController@loginAndRegist');
+Route::get('/', 'HomeController@index');
 
-Route::get('member/login_regist', 'MemberController@loginAndRegist');
+Route::get('/home/index', 'HomeController@index');
+
+Route::get('/member/login_regist_form', 'MemberController@loginAndRegistForm');
+
+Route::get('/member/login', 'MemberController@login');

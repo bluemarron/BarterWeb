@@ -49,7 +49,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="./">물물교환</a>
+          <a class="brand" href="../home/index">물물교환</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <!--Logged in as <a href="#" class="navbar-link">Username</a>-->
@@ -60,13 +60,13 @@
               <li <?if(!strncmp($path, 'board/', strlen('board/'))){?>class="active"<?}?>><a href="./board">Board</a></li>
               <li <?if(!strncmp($path, 'about/', strlen('about/'))){?>class="active"<?}?>><a href="./about">About</a></li>
               -->
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="./#">상품등록</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="./#">거래진행</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="./#">거래완료</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="./#">거래취소</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="./#">마이페이지</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="./#">게시판</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="./#">로그인</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">상품등록</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">거래진행</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">거래완료</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">거래취소</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">마이페이지</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">게시판</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../member/login_regist_form">로그인</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
