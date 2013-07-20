@@ -11,6 +11,9 @@ class BaseController extends Controller {
 	{
 		if ( ! is_null($this->layout))
 		{
+			$member_id = Session::get('member_id');
+
+			View::share('member_id', $member_id);
 			$this->layout = View::make($this->layout);
 		}
 	}

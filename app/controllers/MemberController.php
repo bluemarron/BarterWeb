@@ -1,11 +1,10 @@
 <?php
 
 class MemberController extends BaseController {
-  
-  protected $layout = 'layouts.master';
-
+  	protected $layout = 'layouts.master';
+	
 	public function loginAndRegistForm() {
-		$path = 'member/login_regist_form';
+		$path = '../member/login_regist_form';
 
 		$this->layout->path = $path;
 		$this->layout->content = View::make($path, array('path' => $path, 'message' => ''));
@@ -15,19 +14,49 @@ class MemberController extends BaseController {
  		$member_id = Input::get('member_id');
  		$passwd = Input::get('passwd');
 
-		$member = DB::select("select * from members where member_id = '$member_id'");
+		$member = DB::table('members')->select('passwd')->where('member_id', $member_id)->first();
 
-		if($member == null || Hash::check($passwd, $member->passwd) == false) {
-			$path = './member/login_regist_form';
+		//$member = DB::select("SELECT * FROM members WHERE member_id = '$member_id'");
+		// Error: Trying to get property of non-object
+		//if($member[0] == null || Hash::check($passwd, $member[0]->passwd) == false) {
+		
+		if($member != null && Hash::check($passwd, $member->passwd)) {
+			Session::put('member_id', $member_id);
 
-			$this->layout->path = $path;
-			$this->layout->content = View::make($path, array('path' => $path, 'message' => '가입되지 않은 아이디거나 패스워드가 일치하지 않습니다.'));
-		} else {
-			$path = './';
+			$path = '../home/index';
 
 			$this->layout->path = $path;
 			$this->layout->content = View::make($path, array('path' => $path));
+		} else {
+			$path = '../member/login_regist_form';
+
+			$this->layout->path = $path;
+			$this->layout->content = View::make($path, array('path' => $path, 'message' => '가입되지 않은 아이디거나 패스워드가 일치하지 않습니다.'));
 		}
+	} 
+
+	public function logout() {
+		Session::flush();
+
+		$path = '../home/index';
+
+		$this->layout->path = $path;
+		$this->layout->content = View::make($path, array('path' => $path));
 	}
 
+ 	public function regist() {
+ 		$member_id = Input::get('member_id');
+ 		$passwd = Input::get('passwd');
+		
+		$member = new Member;
+
+		$member->member_id = $member_id;
+		$member->passwd = Hash::make($passwd);
+		$member->save();
+
+		$path = '../home/index';
+
+		$this->layout->path = $path;
+		$this->layout->content = View::make($path, array('path' => $path));
+	}
 }

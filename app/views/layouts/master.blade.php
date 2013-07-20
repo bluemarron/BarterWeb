@@ -66,7 +66,18 @@
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">거래취소</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">마이페이지</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">게시판</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../member/login_regist_form">로그인</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>>
+                <?if($member_id != ''){?>
+                   <a href="../member/logout">로그아웃</a>
+                <?} else {?>
+                  <a href="../member/login_regist_form">로그인</a>
+                <?}?>    
+              </li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>>
+                <?if($member_id != ''){?>
+                   <a><span style="color:yellow;"><?=$member_id?></span> <span style="color:cyan;font-weight:normal;">님 환영합니다!</span></a>
+                <?}?>    
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

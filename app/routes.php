@@ -22,4 +22,10 @@ Route::get('/home/index', 'HomeController@index');
 
 Route::get('/member/login_regist_form', 'MemberController@loginAndRegistForm');
 
-Route::get('/member/login', 'MemberController@login');
+Route::post('/member/login', 'MemberController@login');
+
+Route::get('/member/logout', 'MemberController@logout');
+
+Route::post('/member/regist', 'MemberController@regist');
+
+Route::post('/member/find_passwd', 'MemberController@findPasswd');
