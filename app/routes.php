@@ -29,3 +29,5 @@ Route::get('/member/logout', 'MemberController@logout');
 Route::post('/member/regist', 'MemberController@regist');
 
 Route::post('/member/find_passwd', 'MemberController@findPasswd');
+
+Route::get('/item/regist_form', 'ItemController@registForm');

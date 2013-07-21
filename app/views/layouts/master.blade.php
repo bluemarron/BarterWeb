@@ -43,7 +43,7 @@
   <body onload="prettyPrint()">
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-top:6px;">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -60,23 +60,29 @@
               <li <?if(!strncmp($path, 'board/', strlen('board/'))){?>class="active"<?}?>><a href="./board">Board</a></li>
               <li <?if(!strncmp($path, 'about/', strlen('about/'))){?>class="active"<?}?>><a href="./about">About</a></li>
               -->
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">상품등록</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">거래진행</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">거래완료</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">거래취소</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">마이페이지</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>><a href="../home/index">게시판</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>>
+              <li <?if(!strncmp($path, 'item', strlen('item'))){?>class="active"<?}?>><a href="../item/regist_form">상품등록</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="_active"<?}?>><a href="../home/index">거래진행</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="_active"<?}?>><a href="../home/index">거래완료</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="_active"<?}?>><a href="../home/index">거래취소</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="_active"<?}?>><a href="../home/index">마이페이지</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="_active"<?}?>><a href="../home/index">게시판</a></li>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="_active"<?}?>>
                 <?if($member_id != ''){?>
                    <a href="../member/logout">로그아웃</a>
                 <?} else {?>
                   <a href="../member/login_regist_form">로그인</a>
                 <?}?>    
               </li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="active"<?}?>>
+              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class="_active"<?}?>>
                 <?if($member_id != ''){?>
                    <a><span style="color:yellow;"><?=$member_id?></span> <span style="color:cyan;font-weight:normal;">님 환영합니다!</span></a>
                 <?}?>    
+              </li>
+              <li style="padding-top:4px;">
+                <div class="input-append">
+                  <input id="appendedInputButton" type="text" name="search_keyword" id="search_keyword" style="width:80px;" placeholder="검색어 입력">
+                  <button class="btn" type="button" onclick="alert('서비스 준비중입니다.');">검색</button>
+                </div>
               </li>
             </ul>
           </div><!--/.nav-collapse -->
