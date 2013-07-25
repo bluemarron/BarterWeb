@@ -2,7 +2,7 @@
 <html lang='en'>
   <head>
     <meta charset='utf-8'>
-    <title>다사다 물물교환</title>
+    <title>다사다 물물교환 - 관리자</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta name='description' content=''>
     <meta name='author' content=''>
@@ -49,7 +49,7 @@
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
           </button>
-          <a class='brand' href='../home/index'>물물교환</a>
+          <a class='brand' href='../../admin/index'>물물교환 - 관리자</a>
           <div class='nav-collapse collapse'>
             <p class='navbar-text pull-right'>
               <!--Logged in as <a href='#' class='navbar-link'>Username</a>-->
@@ -60,33 +60,22 @@
               <li <?if(!strncmp($path, 'board/', strlen('board/'))){?>class='active'<?}?>><a href='./board'>Board</a></li>
               <li <?if(!strncmp($path, 'about/', strlen('about/'))){?>class='active'<?}?>><a href='./about'>About</a></li>
               -->
-              <li <?if(!strncmp($path, 'item', strlen('item'))){?>class='active'<?}?>><a href='../item/regist_form'>상품등록</a></li>
+              <li <?if(!strncmp($path, 'item', strlen('item'))){?>class='active'<?}?>><a href='../../admin/category/list_form'>카테고리 관리</a></li>
+              <!--
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래진행</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래완료</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래취소</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>마이페이지</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>게시판</a></li>
+              -->
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>>
                 <?if($member_id != ''){?>
-                   <a href='../member/logout'>로그아웃</a>
-                <?} else {?>
-                  <a href='../member/login_regist_form'>로그인</a>
-                <?}?>    
-              </li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>>
-                <?if($member_id != ''){?>
-                  <a <?if($is_admin == 1){?>href='../admin/category/list_form' target='_blank'<?}?>><span style='color:yellow;'><?=$member_id?></span> 
+                  <a><span style='color:yellow;'><?=$member_id?></span> 
                   <?if($is_admin == 1){?>
                     <span style='color:#FFA500;font-weight:normal;'>[관리자]</span>
                   <?}?>
                   <span style='color:#AAAAFF;font-weight:normal;'>님 환영합니다!</span></a>
                 <?}?>    
-              </li>
-              <li style='padding-top:4px;'>
-                <div class='input-append'>
-                  <input id='appendedInputButton' type='text' name='search_keyword' id='search_keyword' style='width:80px;' placeholder='검색어 입력'>
-                  <button class='btn' type='button' onclick='alert('서비스 준비중입니다.');'>검색</button>
-                </div>
               </li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -96,48 +85,11 @@
 
     <div class='container-fluid' style='height:500px;'>
       <div class='row-fluid' style='height:100%;'>
-        <!-- left side -->
-        <div class='span2' style='height:100%;'>
-          <div class='well sidebar-nav' style='height:100%;'>
-            <ul class='nav nav-list'>
-							<?if(!strncmp($path, 'php/', strlen('php/'))){?>
-                <!--
-	              <li class='nav-header'>PHP</li>
-								<li <?if($path=='php/install'){?>class='active'<?}?>><a href='/php/install'>설치</a></li>
-	              <li <?if($path=='php/simple_example'){?>class='active'<?}?>><a href='/php/simple_example'>간단한 예제</a></li>
-                <li <?if($path=='php/basic_variable'){?>class='active'<?}?>><a href='/php/basic_variable'>기본 변수</a></li>
-                <li <?if($path=='php/array_variable'){?>class='active'<?}?>><a href='/php/array_variable'>배열 변수</a></li>
-                <li <?if($path=='php/global_variable'){?>class='active'<?}?>><a href='/php/global_variable'>전역 변수</a></li>
-                <li <?if($path=='php/static_variable'){?>class='active'<?}?>><a href='/php/static_variable'>정적 변수</a></li>
-                -->
-              <?}?>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
 
         <!-- body -->
-        <div class='span8'>
+        <div class='span12'>
  					@yield('content')
 				</div><!--/span-->
-
-        <!-- right side -->
-        <div class='span2'>
-          <div class='well sidebar-nav' style='height:500px'>
-            <ul class='nav nav-list'>
-              <?if(!strncmp($path, 'php/', strlen('php/'))){?>
-                <!--
-                <li class='nav-header'>PHP</li>
-                <li <?if($path=='php/install'){?>class='active'<?}?>><a href='/php/install'>설치</a></li>
-                <li <?if($path=='php/simple_example'){?>class='active'<?}?>><a href='/php/simple_example'>간단한 예제</a></li>
-                <li <?if($path=='php/basic_variable'){?>class='active'<?}?>><a href='/php/basic_variable'>기본 변수</a></li>
-                <li <?if($path=='php/array_variable'){?>class='active'<?}?>><a href='/php/array_variable'>배열 변수</a></li>
-                <li <?if($path=='php/global_variable'){?>class='active'<?}?>><a href='/php/global_variable'>전역 변수</a></li>
-                <li <?if($path=='php/static_variable'){?>class='active'<?}?>><a href='/php/static_variable'>정적 변수</a></li>
-                -->
-              <?}?>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
 
       </div><!--/row-->
 
@@ -152,6 +104,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <?
 		echo HTML::script('assets/js/jquery.js');
+    echo HTML::script('assets/js/jquery.tmpl.min.js');
 		echo HTML::script('assets/js/bootstrap-transition.js');
 		echo HTML::script('assets/js/bootstrap-alert.js');
 		echo HTML::script('assets/js/bootstrap-modal.js');

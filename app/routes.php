@@ -16,6 +16,8 @@
 // 	return View::make('hello');
 // });
 
+// Users Routes
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/home/index', 'HomeController@index');
@@ -31,3 +33,10 @@ Route::post('/member/regist', 'MemberController@regist');
 Route::post('/member/find_passwd', 'MemberController@findPasswd');
 
 Route::get('/item/regist_form', 'ItemController@registForm');
+
+// Admin Routes
+
+Route::get('/admin/index', 'AdminController@index');
+
+Route::get('/admin/category/list_form', 'AdminCategoryController@listForm');
+

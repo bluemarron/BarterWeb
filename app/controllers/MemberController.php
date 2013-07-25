@@ -14,7 +14,7 @@ class MemberController extends BaseController {
  		$member_id = Input::get('member_id');
  		$passwd = Input::get('passwd');
 
-		$member = DB::table('members')->select('passwd')->where('member_id', $member_id)->first();
+		$member = DB::table('members')->select('passwd', 'level', 'is_admin')->where('member_id', $member_id)->first();
 
 		//$member = DB::select("SELECT * FROM members WHERE member_id = '$member_id'");
 		// Error: Trying to get property of non-object
@@ -22,6 +22,8 @@ class MemberController extends BaseController {
 		
 		if($member != null && Hash::check($passwd, $member->passwd)) {
 			Session::put('member_id', $member_id);
+			Session::put('level', $member->level);
+			Session::put('is_admin', $member->is_admin);
 
 			$path = '../home/index';
 
