@@ -18,8 +18,6 @@
 					return;
 				}
 			}
-
-			alert('OK');
 			
 			$.ajax({
 				type: 'POST',
