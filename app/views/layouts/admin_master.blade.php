@@ -8,7 +8,20 @@
     <meta name='author' content=''>
     <?
 		echo HTML::style('assets/css/bootstrap.css');
+    echo HTML::style('assets/css/bootstrap-responsive.css');
+    echo HTML::style('assets/css/prettify.css');
+
+    echo HTML::script('assets/js/jquery.js');
+    echo HTML::script('assets/js/jquery.tmpl.min.js');
+    echo HTML::script('assets/js/prettify.js');
+    echo HTML::script('assets/js/google_analytics.js');
 		?>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <?
+    echo HTML::script('assets/js/html5shiv.js');
+    ?>
+    <![endif]-->    
     <style type='text/css'> 
       body {
         padding-top: 60px;
@@ -27,18 +40,6 @@
         }
       }
     </style>
-    <?
-		echo HTML::style('assets/css/bootstrap-responsive.css');
-		echo HTML::style('assets/css/prettify.css');
-		echo HTML::script('assets/js/prettify.js');
-    echo HTML::script('assets/js/google_analytics.js');
-		?>
-		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <?
-		echo HTML::script('assets/js/html5shiv.js');
-		?>
-    <![endif]-->
   </head>
   <body onload='prettyPrint()'>
     <div class='navbar navbar-inverse navbar-fixed-top'>
@@ -103,8 +104,6 @@
 
     <!-- Placed at the end of the document so the pages load faster -->
     <?
-		echo HTML::script('assets/js/jquery.js');
-    echo HTML::script('assets/js/jquery.tmpl.min.js');
 		echo HTML::script('assets/js/bootstrap-transition.js');
 		echo HTML::script('assets/js/bootstrap-alert.js');
 		echo HTML::script('assets/js/bootstrap-modal.js');
