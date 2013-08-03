@@ -2,7 +2,7 @@
 
 @section('content')
 	<script>
-		// renderCategory (<- viewChild)
+		// renderCategories (<- viewChild)
 		function renderCategories(code, toggle_yn) { 	
 			var $child_category = $('#' + code + '_child');
   			var $folder_ico_img = $('#img_' + code);
@@ -46,11 +46,53 @@
 					alert('일시적인 시스템 오류가 발생하였습니다.');					
 				}
 			});
-  		}		
+  		}	
+
+		function addCategory(code) { 
+			var label = $('#label_' + code).val();
+			var position= $('#position_' + code).val();
+
+			if(label == '') {
+				alert('카테고리명을 입력하세요.');
+				$('#label_' + code).focus();
+				return;
+			}
+
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '../../admin/category/add',
+				data: {'code':code, 'label':label, 'position':position},
+				cache: false,
+				async: true,
+				success: function(response) {
+					renderCategories(response['parent_code'], 'N');				
+
+					$('#folder_icon_' + response['parent_code']).html($('#folder_icon_minus_template').tmpl(response));
+											
+					if(response['parent_code'] == '')
+						location.href = '../../admin/category/list_form';
+				}, failure: function(response) {
+					alert('일시적인 시스템 오류가 발생하였습니다.');						
+				}
+			});	
+		}
+
+		function enterKeyForAdd(code) {
+			if(event.keyCode == 13) {
+				addCategory(code);
+			}	
+		}
+ 
+  		function enterKeyForUpdate(code) {
+			if(event.keyCode == 13)	{
+				updateCategory(code);
+			}	
+		}  		
 	</script>
 
 	<script id='category_has_child_template' type='text/x-jquery-tmpl'>
-		<div style='margin-top:4px;margin-left:${code.length + 10}px;'>
+		<li style='margin-left:${code.length + 10}px;'>
 			<span id='folder_icon_${code}'>
 				<a href='javascript:renderCategories("${code}", "Y");'><img id='img_${code}' src='../../images/folder_plus.gif' border='0' align='absmiddle'></a> 
 			</span>
@@ -61,13 +103,13 @@
 			<a href='javascript:updateCategory("${code}");'><img src='../../images/save.png' border='0' align='absmiddle'></a> 
 			<a href='javascript:deleteCategory("${code}");'><img src='../../images/delete.png' border='0' align='absmiddle'></a> 
 			<a href='javascript:renderCategories("${code}", "Y");'><img src='../../images/add_child.png' border='0' width='18' align='absmiddle'></a>
-		</div>
-		<div id="${code}_child">
-		</div>
+		</li>
+		<li id="${code}_child">
+		</li>
 	</script>
 
 	<script id='category_no_child_template' type='text/x-jquery-tmpl'>
-		<div style='margin-top:4px;margin-left:${code.length + 10}px;'>
+		<li style='margin-left:${code.length + 10}px;'>
 			<span id='folder_icon_${code}'>
 				<!--<img src='../../images/white_box.gif' border='0' align='absmiddle'>-->
 				&nbsp;&nbsp;
@@ -79,22 +121,26 @@
 			<a href='javascript:updateCategory("${code}");'><img src='../../images/save.png' border='0' align='absmiddle'></a> 
 			<a href='javascript:deleteCategory("${code}");'><img src='../../images/delete.png' border='0' align='absmiddle'></a> 
 			<a href='javascript:renderCategories("${code}", "Y");'><img src='../../images/add_child.png' border='0' width='18' align='absmiddle'></a>
-		</div>
-		<div id="${code}_child">
-		</div>
+		</li>
+		<li id="${code}_child">
+		</li>
 	</script>
 
+	<script id='folder_icon_minus_template' type='text/x-jquery-tmpl'>
+		<a href='#' onclick='viewChild('${parent_code}', 'N', 'Y');'><img id='img_${parent_code}' src='../../images/folder_minus.gif' border='0' align='absmiddle'></a>
+	</script>	
+
 	<script id='new_category_template' type='text/x-jquery-tmpl'>
-		<div style='margin-top:4px;margin-left:${code.length + 10}px;'>
+		<li style='margin-left:${code.length + 10}px;'>
 			<span id='folder_icon_${code}'>
 				<!--<img src='../../images/white_box.gif' border='0' align='absmiddle'>-->
 				&nbsp;&nbsp;
 			</span>	
-			<input type='text' id='label_${code}' name='label_${code}' value='' style='width:120px;background-color:#ffffff' onKeyUp='enterKeyForAdd('${code}');'>
-			<input type='text' id='position_${code}' name='position_${code}' value='${position}' style='width:14px;text-align:right;background-color:#ffff96' onKeyUp='enterKeyForAdd('${code}');'>					
+			<input type='text' id='label_${code}' name='label_${code}' value='' style='width:120px;background-color:#ffffff' onKeyUp='enterKeyForAdd("${code}");'>
+			<input type='text' id='position_${code}' name='position_${code}' value='${position}' style='width:14px;text-align:right;background-color:#ffff96' onKeyUp='enterKeyForAdd("${code}");'>					
 			(${short_code})
 			<a href='javascript:addCategory("${code}");'><img src='../../images/add.png' border='0' align='absmiddle'></a> 
-		<div>
+		<li>
 	</script>	
 
 	<script id='folder_icon_white_box_template' type='text/x-jquery-tmpl'>
@@ -110,7 +156,7 @@
 		fieldset li{
 			clear:both;
 			list-style:none;
-			padding-bottom:10px;
+			padding-bottom:0px;
 		}
 
 		fieldset input{
@@ -127,10 +173,10 @@
 	    <p>
 			<fieldset>
 				<legend>카테고리 관리</legend>
-				<form name='form' id='form' method='post'>
-					<div id='_child'></div>
-
-				</form>
+				
+				<ul>
+					<li id='_child'></li>
+				</ul>
 			</fieldset>
 		<p>
   	</div>

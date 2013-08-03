@@ -6,6 +6,27 @@ class AdminCategoryController extends BaseController {
 	private $CODE_LENGTH = 3;
 	private $BG_COLORS = array('#00BFFF', '#3CFBFF', '#B4B4FF', '#9BFA73');
 
+	private function getFullLabel($code) {			
+		$full_label = '';
+
+		for($category_level = 1; $category_level <= strlen($code) / $this->CODE_LENGTH; $category_level++) {
+			$label = '';
+			$each_code = substr($code, 0, $category_level * $this->CODE_LENGTH);
+
+			$category = DB::table('categories')->select('code', 'label')->where('code', $each_code)->whereNull('deleted_at')->first();
+			
+			if($category != null)
+				$label = $category->label;
+
+			$full_label .= $label . ' >> '; 
+		}
+		
+		if(strlen($full_label) > 0)
+			$full_label = substr($full_label, 0, strlen($full_label) - 3);	
+			
+		return $full_label;
+	}
+
 	public function listForm() {
 		$path = '../admin/category/list_form';
 
@@ -18,7 +39,7 @@ class AdminCategoryController extends BaseController {
 	 		$last_position = 0;
 
 	 		$response = array();	
-
+	 		
 			$code = Input::get('code');
 
 			$query  = "SELECT code, label, position FROM categories						";  
@@ -35,7 +56,7 @@ class AdminCategoryController extends BaseController {
 				$map['position'] = $categories[$i]->position;
 
 				$last_position = $map['position'];
-			
+		
 				$query  = "SELECT code AS sub_code, label AS sub_label FROM categories			";  
 				$query .= "WHERE code LIKE '" . $map['code'] . "%' 								";
 				$query .= "AND LENGTH(code) = " . (strlen($code) + $this->CODE_LENGTH * 2) . "	";
@@ -48,18 +69,18 @@ class AdminCategoryController extends BaseController {
 				else
 					$map['has_child'] = false;    
 
-
 				$bgcolor_idx = (strlen($code) / $this->CODE_LENGTH) % 4;
-				$map["bgcolor"] = $BG_COLORS[$bgcolor_idx];    
 
-				$short_code = $map["code"];
+				$map['bgcolor'] = $this->BG_COLORS[$bgcolor_idx];    
+
+				$short_code = $map['code'];
 					
-				if(strlen($map["code"]) > 6)
-					$short_code = substr($map["code"], 1, 6) . "..";
+				if(strlen($map['code']) > 6)
+					$short_code = substr($map['code'], 1, 6) . '..';
 		
-				$map["short_code"] = $short_code;
+				$map['short_code'] = $short_code;
 
-				array_push($response, $map);  
+				array_push($response, $map);
 			}
 
 			$query  = "SELECT MAX(IFNULL(code, 0)) AS max_code FROM categories			";  
@@ -89,12 +110,53 @@ class AdminCategoryController extends BaseController {
 				break;
 			}
 
-	 	// 	$map['code'] = '1';      
-			// $map['label'] = 'test-1';
-			// $map['position'] = 1;    
+			return Response::json($response);
+		}
+	}
 
-			// array_push($response, $map);  
-		
+	public function add() {
+	 	if(Request::ajax()) {
+			$code = Input::get('code');
+			$label = Input::get('label');
+			$position = Input::get('position');
+
+			if(strlen($code) > 0) {
+				$new_code = $code;
+			} else {
+				$new_code = DB::table('categories')->max('code');
+
+				if(strlen($new_code) > 0) {
+					$new_code = (int)($new_code) + 1;
+					$new_code = sprintf("%0" . $this->CODE_LENGTH . "d", $new_code);
+				} else {
+					$new_code = sprintf("%0" . $this->CODE_LENGTH . "d", 1);
+				}
+			}
+				
+			$category = new Category;
+
+			$category->code = $new_code;
+			$category->label = $label;
+			$category->position = $position;
+			$category->save();
+
+			$query  = "SELECT code FROM categories				";  
+			$query .= "WHERE code LIKE '" . $new_code . "%' 	";
+			$query .= "AND deleted_at IS NULL					";
+			$query .= "ORDER BY position ASC, updated_at DESC	";
+
+			$categories = DB::select($query);
+
+			for($i = 0; $i < sizeof($categories); $i++) {
+				$full_label = $this->getFullLabel($categories[$i]->code);
+
+				DB::table('categories')
+		        	->where('code', $categories[$i]->code)
+		            	->update(array('full_label' => $full_label));
+			}
+
+			$response['parent_code'] = substr($new_code, 0, strlen($new_code) - $this->CODE_LENGTH);
+
 			return Response::json($response);
 		}
 	}
