@@ -43,3 +43,7 @@ Route::get('/admin/category/list_form', 'AdminCategoryController@listForm');
 Route::post('/admin/category/get_child', 'AdminCategoryController@getChild');
 
 Route::post('/admin/category/add', 'AdminCategoryController@add');
+
+Route::post('/admin/category/remove', 'AdminCategoryController@remove');
+
+Route::post('/admin/category/modify', 'AdminCategoryController@modify');

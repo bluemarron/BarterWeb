@@ -160,4 +160,68 @@ class AdminCategoryController extends BaseController {
 			return Response::json($response);
 		}
 	}
+
+	public function modify() {
+	 	if(Request::ajax()) {
+			$code = Input::get('code');
+			$label = Input::get('label');
+			$position = Input::get('position');
+
+			DB::table('categories')
+	        	->where('code', $code)
+	            	->update(array('label' => $label, 'position' => $position));
+
+			// re-arrange position
+			$parent_code = substr($code, 0, strlen($code) - $this->CODE_LENGTH );
+
+			$query  = "SELECT code FROM categories											  ";  
+			$query .= "WHERE code LIKE '" . $parent_code . "%' 								  ";
+			$query .= "AND LENGTH(code) = " . (strlen($parent_code) + $this->CODE_LENGTH) . " ";
+			$query .= "AND deleted_at IS NULL												  ";
+			$query .= "ORDER BY position ASC, updated_at DESC								  ";
+
+			$categories = DB::select($query);
+
+			for($i = 0; $i < sizeof($categories); $i++) {
+				$full_label = $this->getFullLabel($categories[$i]->code);
+
+				DB::table('categories')
+		        	->where('code', $categories[$i]->code)
+		            	->update(array('position' => ($i + 1)));
+			}
+
+			$query  = "SELECT code FROM categories				";  
+			$query .= "WHERE code LIKE '" . $code . "%' 		";
+			$query .= "AND deleted_at IS NULL					";
+			$query .= "ORDER BY position ASC, updated_at DESC	";
+
+			$categories = DB::select($query);
+
+			for($i = 0; $i < sizeof($categories); $i++) {
+				$full_label = $this->getFullLabel($categories[$i]->code);
+
+				DB::table('categories')
+		        	->where('code', $categories[$i]->code)
+		            	->update(array('full_label' => $full_label));
+			}
+
+			$response['parent_code'] = substr($code, 0, strlen($code) - $this->CODE_LENGTH);
+
+			return Response::json($response);
+		}
+	}
+
+	public function remove() {
+	 	if(Request::ajax()) {
+			$code = Input::get('code');
+	
+			DB::table('categories')
+	        	->where('code', $code)
+	            	->update(array('deleted_at' => date('Y-m-d H:i:s')));
+
+			$response['parent_code'] = substr($code, 0, strlen($code) - $this->CODE_LENGTH);
+
+			return Response::json($response);
+		}
+	}
 }
