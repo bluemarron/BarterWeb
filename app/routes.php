@@ -34,6 +34,10 @@ Route::post('/member/find_passwd', 'MemberController@findPasswd');
 
 Route::get('/item/regist_form', 'ItemController@registForm');
 
+Route::post('/category/get_child', 'CategoryController@getChild');
+
+Route::post('/category/get_full_label', 'CategoryController@getFullLabel');
+
 // Admin Routes
 
 Route::get('/admin/index', 'AdminController@index');
