@@ -153,6 +153,46 @@
 				$('#selected_category_template').tmpl(selected_category).appendTo('#selected_categories');
 			}
 		}
+
+		function regist() {
+			if(regist_form.name.value == '') {
+				alert('상품명을 입력하세요.');
+				regist_form.name.focus();
+				return;
+			}
+
+			if(regist_form.address.value == '') {
+				alert('주소를 입력하세요.');
+				regist_form.address.focus();
+				return;
+			}
+
+			alert('서비스 준비중입니다.');
+			
+			//find_passwd_form.submit();
+		}
+
+		$(document).ready(function() {
+			var defaultDescription = '* 상품상세설명 : 예) 동작 정상입니다. 깔끔합니다.' + '\r\n';
+			defaultDescription += '* 원하는상품은 : 예) 아세아 관리기 또는 경운기입니다.' + '\r\n';
+			defaultDescription += '* 생 산 년 도 : 예) 2000년 6월' + '\r\n';
+			defaultDescription += '* 배 송 방 법 : 예) 착불배송/선불배송/오셔서 확인 후 거래 조건입니다.' + '\r\n\r\n';
+
+			defaultDescription += '>> 위 내용은 예를 들어 설명한 것이며 필요 없을 시 삭제하셔도 됩니다.' + '\r\n';
+			defaultDescription += '또한 개인 상세주소나 개인정보를 과다노출할 경우 범죄의 표적이 될 수 있으니 거래성사 후 알려주는 것이 안전합니다.' + '\r\n';
+			defaultDescription += '명심하세요.';
+
+
+			$("textarea#description").val(defaultDescription);
+
+			$('input[id=file_1]').change(function() {
+				$('#file_name_1').val($(this).val());
+			});
+
+			$('input[id=file_2]').change(function() {
+				$('#file_name_2').val($(this).val());
+			});
+		});
 	</script>
 
 	<script id='selected_category_template' class='template' type='text/x-jquery-tmpl'>
@@ -183,7 +223,7 @@
 	    -->
    	</style>
 
-	<form name='login_form' id='login_form' action='../member/login' method='post'>
+	<form name='regist_form' id='regist_form' action='../item/regist' method='post'>
 	<input type='hidden' id='selected_category_code' name='selected_category_code'>
 
   	<div class='well'>
@@ -211,26 +251,6 @@
 						<a href='javascript:appendCategory();'><img src='../images/add.png' border='0' align='absmiddle' style='margin-left:4px;margin-bottom:10px;'></a> 
 					</li>
 				</ul>		
-
-				<!-- <form name='login_form' id='login_form' action='../member/login' method='post'>
-				<ul>
-					<li> 
-						<label><i class='icon-ok'></i> 아이디</label>
-						<input type='text' name='member_id' id='member_id' class='input-small' placeholder='아이디 입력' />
-						<span style='padding-left:8px;'>(회원가입시 등록하신 핸드폰 번호 숫자를 입력하세요.)</span>
-					</li>
-					<li> 
-						<label><i class='icon-ok'></i> 비밀번호</label>
-						<input type='password' name='passwd' id='passwd' class='input-small' placeholder='비밀번호 입력' />
-						<span style='padding-left:8px;'></span>
-					</li>
-					<li>
-						<label></label>
-						<a href='javascript:login();' class='btn btn-primary' style='width:78px;'>로그인</a>
-						<span style='padding-left:8px;color:red;'></span>
-					</li>
-				<ul>
-				</form> -->
 			</fieldset>
 		<p>
   	</div>
@@ -238,31 +258,68 @@
 	    <p>
 			<fieldset>
 				<legend>상품 기본정보</legend>
-<!-- 				<form name='regist_form' id='regist_form' action='../member/regist' method='post'>
 				<ul>
 					<li> 
-						<label><i class='icon-ok'></i> 아이디</label>
-						<input type='text' name='member_id' id='member_id' class='input-small' placeholder='아이디 입력' />
-						<span style='padding-left:8px;'>(핸드폰 번호 숫자만 입력하세요. 거래할때 사용되는 연락처이므로 중요합니다.)</span>
+						<label><i class='icon-ok'></i> 상품명</label>
+						<input type='text' name='name' id='name' class='input-xlarge' placeholder='상품명 입력' />
+						<span style='padding-left:8px;'>(12자 이내로 입력하세요.)</span>
 					</li>
 					<li> 
-						<label><i class='icon-ok'></i> 비밀번호</label>
-						<input type='password' name='passwd' id='passwd' class='input-small' placeholder='비밀번호 입력' />
-						<span style='padding-left:8px;'>(4자~15자 이내로 입력하세요.)</span>
+						<label><i class='icon-ok'></i> 주소</label>
+						<input type='text' name='address' id='address' class='input-xlarge' placeholder='주소 입력' />
+						<span style='padding-left:8px;'>(5자 이내로 이내로 입력하세요.)</span>
 					</li>
 					<li> 
-						<label><i class='icon-ok'></i> 비밀번호 확인</label>
-						<input type='text' name='re_passwd' id='re_passwd' class='input-small' placeholder='비밀번호 입력' />
-						<span style='padding-left:8px;'>(비밀번호 분실시 SMS 충전건수가 있을 경우에만 발송됩니다.</span>
-					</li>
+						<label><i class='icon-ok'></i> 사진</label>
+						<p>
+								<a href='#'>[등록]</a>
+								<a href='#'>[등록]</a>
+								<a href='#'>[등록]</a>
+								<a href='#'>[등록]</a>
+								<a href='#'>[등록]</a>
+								<a href='#'>[등록]</a>
+								<a href='#'>[등록]</a>
+								<a href='#'>[등록]</a>
+						<p>
+<!-- 						<input type='text' name='address' id='address' class='input-xlarge' placeholder='주소 입력' />
+						<span style='padding-left:8px;'>(5자 이내로 이내로 입력하세요.)</span>
+ -->					</li>
+ 					<li> 
+						<label><i class='icon-ok'></i> 첨부파일</label>
 
-					<li>
-						<label></label>
-						<a href='javascript:regist();' class='btn btn-primary' style='width:78px;'>가입 완료</a>
-						<span style='padding-left:8px;color:red;'>* 가입 완료 클릭시 아이디 중복검사 후 가입이 승인됩니다.</span>
+						<table>
+							<tr>
+								<td>
+									<input type='text' name='file_description_1' id='file_description_1' class='input-xlarge' placeholder='파일설명' /> 
+									&nbsp;
+			 						<input type='file' name='file_1' id='file_1' style='display:none;' />
+
+			 						<div class='input-append'>
+										<input type='text' name='file_name_1' id='file_name_1' class='input-xlarge' />
+										<a class='btn' onclick='$("input[id=file_1]").click();'>파일찾기</a>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type='text' name='file_description_2' id='file_description_2' class='input-xlarge' placeholder='파일설명' /> 
+									&nbsp;
+			 						<input type='file' name='file_2' id='file_2' style='display:none;' />
+
+			 						<div class='input-append'>
+										<input type='text' name='file_name_2' id='file_name_2' class='input-xlarge' />
+										<a class='btn' onclick='$("input[id=file_2]").click();'>파일찾기</a>
+									</div>
+								</td>
+							</tr>	
+						</table>	
+					</li>
+ 					<li> 
+						<label><i class='icon-ok'></i> 검색단어</label>
+						<input type='text' name='search_keyword' id='search_keyword' class='input-xlarge' placeholder='검색단어 입력' />
+						<span style='padding-left:8px;'>(콤마로 구분하여 입력하세요.)</span>
 					</li>
 				<ul>
-				</form> -->
 			</fieldset>
 		<p>
   	</div>
@@ -270,23 +327,20 @@
    		<p>
 			<fieldset>
 				<legend>상품 상세정보</legend>
-<!-- 				<form name='find_passwd_form' id='find_passwd_form' action='../member/find_passwd' method='post'>
 				<ul>
 					<li> 
-						<label><i class='icon-ok'></i> 아이디</label>
-						<input type='text' name='member_id' id='member_id' class='input-small' placeholder='아이디 입력' />
+					    <textarea rows='12' id='description' name='description' class='span12' placeholder='설명을 입력하세요.'></textarea>
 						<span style='padding-left:8px;'></span>
 					</li>
-					<li>
-						<label></label>
-						<a href='javascript:find_passwd();' class='btn btn-primary' style='width:78px;'>SMS 발송</a>
-						<span style='padding-left:8px;color:red;'>* 비밀번호 SMS 발송은 24시간 주기로 한번만 발송되오니 주의하세요.</span>
-					</li>
 				<ul>
-				</form> -->
 			</fieldset>
 		<p>
   	</div>  
+
+  	<div align='center'>
+   		<a href='javascript:regist();' class='btn btn-primary' style='width:78px;'>상품 등록</a>
+	</div>  
+
 
   	</form> 
 @stop      

@@ -52,8 +52,7 @@
 			regist_form.submit();
 		}
 
-
-		function find_passwd() {
+		function findPassword() {
 			if(find_passwd_form.member_id.value == '') {
 				alert('아이디를 입력하세요.');
 				find_passwd_form.member_id.focus();
@@ -174,7 +173,7 @@
 					</li>
 					<li>
 						<label></label>
-						<a href='javascript:find_passwd();' class='btn btn-primary' style='width:78px;'>SMS 발송</a>
+						<a href='javascript:findPassword();' class='btn btn-primary' style='width:78px;'>SMS 발송</a>
 						<span style='padding-left:8px;color:red;'>* 비밀번호 SMS 발송은 24시간 주기로 한번만 발송되오니 주의하세요.</span>
 					</li>
 				<ul>
