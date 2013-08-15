@@ -167,9 +167,7 @@
 				return;
 			}
 
-			alert('서비스 준비중입니다.');
-			
-			//find_passwd_form.submit();
+			regist_form.submit();
 		}
 
 		$(document).ready(function() {
@@ -185,6 +183,10 @@
 
 			$("textarea#description").val(defaultDescription);
 
+
+
+		});
+
 			$('input[id=file_1]').change(function() {
 				$('#file_name_1').val($(this).val());
 			});
@@ -192,7 +194,19 @@
 			$('input[id=file_2]').change(function() {
 				$('#file_name_2').val($(this).val());
 			});
-		});
+
+			function previewImage(input, seq) {
+				 if (input.files && input.files[0]) {
+			        var reader = new FileReader();
+
+			        reader.onload = function (e) {
+			            $('#image_preview_' + seq).attr('src', e.target.result);
+						$('#image_preview_' + seq).attr('style', 'opacity:');
+			        }
+
+			        reader.readAsDataURL(input.files[0]);
+			    }
+			}
 	</script>
 
 	<script id='selected_category_template' class='template' type='text/x-jquery-tmpl'>
@@ -223,7 +237,7 @@
 	    -->
    	</style>
 
-	<form name='regist_form' id='regist_form' action='../item/regist' method='post'>
+	<form name='regist_form' id='regist_form' action='../item/regist' method='post' enctype='multipart/form-data'>
 	<input type='hidden' id='selected_category_code' name='selected_category_code'>
 
   	<div class='well'>
@@ -272,18 +286,28 @@
 					<li> 
 						<label><i class='icon-ok'></i> 사진</label>
 						<p>
-								<a href='#'>[등록]</a>
-								<a href='#'>[등록]</a>
-								<a href='#'>[등록]</a>
-								<a href='#'>[등록]</a>
-								<a href='#'>[등록]</a>
-								<a href='#'>[등록]</a>
-								<a href='#'>[등록]</a>
-								<a href='#'>[등록]</a>
+							<table>
+								<tr align='center'>
+									<td><img id='image_preview_1' src='../images/camera.png' border='0' align='absmiddle' width='200' style='opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td><img id='image_preview_2' src='../images/camera.png' border='0' align='absmiddle' width='200' style='opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td><img id='image_preview_3' src='../images/camera.png' border='0' align='absmiddle' width='200' style='opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td><img id='image_preview_4' src='../images/camera.png' border='0' align='absmiddle' width='200' style='opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td><img id='image_preview_5' src='../images/camera.png' border='0' align='absmiddle' width='200' style='opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td><img id='image_preview_6' src='../images/camera.png' border='0' align='absmiddle' width='200' style='opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td><img id='image_preview_7' src='../images/camera.png' border='0' align='absmiddle' width='200' style='opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td><img id='image_preview_8' src='../images/camera.png' border='0' align='absmiddle' width='200' style='opacity:0.4;filter:alpha(opacity=40);' /></td>
+								</tr>
+								<tr align='center'>
+									<?for($i = 1; $i <= 8; $i++){?>
+										<td>
+											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='display:none;' onchange='previewImage(this, <?=$i?>);' />
+											<a class='btn btn-info' onclick='$("input[id=image_<?=$i?>]").click();'>등록</a>
+										</td>
+									<?}?>	
+								</tr>
+							</table>
 						<p>
-<!-- 						<input type='text' name='address' id='address' class='input-xlarge' placeholder='주소 입력' />
-						<span style='padding-left:8px;'>(5자 이내로 이내로 입력하세요.)</span>
- -->					</li>
+					</li>
  					<li> 
 						<label><i class='icon-ok'></i> 첨부파일</label>
 
