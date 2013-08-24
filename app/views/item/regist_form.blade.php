@@ -180,12 +180,7 @@
 			defaultDescription += '또한 개인 상세주소나 개인정보를 과다노출할 경우 범죄의 표적이 될 수 있으니 거래성사 후 알려주는 것이 안전합니다.' + '\r\n';
 			defaultDescription += '명심하세요.';
 
-
 			$("textarea#description").val(defaultDescription);
-
-
-
-		});
 
 			$('input[id=file_1]').change(function() {
 				$('#file_name_1').val($(this).val());
@@ -194,19 +189,20 @@
 			$('input[id=file_2]').change(function() {
 				$('#file_name_2').val($(this).val());
 			});
+		});
 
-			function previewImage(input, seq) {
-				 if (input.files && input.files[0]) {
-			        var reader = new FileReader();
+		function previewImage(input, seq) {
+			 if (input.files && input.files[0]) {
+		        var reader = new FileReader();
 
-			        reader.onload = function (e) {
-			            $('#image_preview_' + seq).attr('src', e.target.result);
-						$('#image_preview_' + seq).attr('style', 'opacity:');
-			        }
+		        reader.onload = function (e) {
+		            $('#image_preview_' + seq).attr('src', e.target.result);
+					$('#image_preview_' + seq).attr('style', 'opacity:');
+		        }
 
-			        reader.readAsDataURL(input.files[0]);
-			    }
-			}
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		}
 	</script>
 
 	<script id='selected_category_template' class='template' type='text/x-jquery-tmpl'>
