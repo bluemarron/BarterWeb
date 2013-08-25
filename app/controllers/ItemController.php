@@ -41,13 +41,18 @@ class ItemController extends BaseController {
 
  		$name = Input::get('name');
  		$address = Input::get('address');
-		$category_codes = Input::get('selected_category_codes');
+ 		$search_keyword = Input::get('search_keyword');
+ 		$description = Input::get('description');
 
 		$item = new Item;
 		$item->member_id = $member_id;
 		$item->name = $name;
 		$item->address = $address;
+		$item->search_keyword = $search_keyword;
+		$item->description = $description;
 		$item->save();
+
+		$category_codes = Input::get('selected_category_codes');
 
 		for($i = 0; $i < count($category_codes); $i++) {
 			$item_category = new ItemCategory;
