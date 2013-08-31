@@ -18,7 +18,9 @@
 
 // Users Routes
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function() {
+ 	return View::make('index');
+});
 
 Route::get('/home/index', 'HomeController@index');
 

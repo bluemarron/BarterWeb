@@ -33,12 +33,23 @@
 		<?if(sizeof($categories) > 0) {?>		
 	    <p>
 			<i class='icon-plus'></i> 현재위치 : 
-			<a>Home</a> >> 
+			<a href='../home/index/'>Home</a>
 			<?for($i = 0; $i < sizeof($categories); $i++) {?>
-				<a><a><?=$categories[0]['code']?></a></a>
+				>> <a href='../home/index?category_code=<?=$categories[$i]["code"]?>'><?=$categories[$i]['label']?></a>
 			<?}?>
 		<p>
 		<?}?>
+		<?if(sizeof($child_categories) > 0) {?>		
+	    <p>
+			<?for($i = 0; $i < sizeof($child_categories); $i++) {?>
+				<i class='icon-th'></i>
+				<a href='../home/index?category_code=<?=$child_categories[$i]->code?>'><?=$child_categories[$i]->label?></a></a>
+			<?}?>
+		<p>
+		<?}?>		
+
+
+
   	</div>
 	<div class='well'>
 	    <p>

@@ -32,31 +32,32 @@ class HomeController extends BaseController {
 
 			$child_categories = DB::select($query);			
 
+			if(sizeof($child_categories) == 0 && strlen($category_code) > $this->CODE_LENGTH) {
+				$parent_category_code = substr($category_code, 0, strlen($category_code) - $this->CODE_LENGTH);
+				$child_code_length = strlen($parent_category_code) + $this->CODE_LENGTH;
+
+				$query  = "SELECT code, label FROM categories				";
+				$query .= "WHERE code LIKE '" . $parent_category_code . "%'	";
+				$query .= "AND LENGTH(code) = " . $child_code_length . "	";
+				$query .= "AND deleted_at IS NULL							";
+				$query .= "ORDER BY position ASC, code ASC				  	";
+
+				$child_categories = DB::select($query);	
+			}
+
 			$category = DB::table('categories')->select('full_label')->where('code', $category_code)->first();
 			$category_full_labels = explode('>>', $category->full_label);
 
-			$idx = 0;
+			for($i = 0; $i < sizeof($category_full_labels); $i++) {
+				$code = substr($category_code, 0, $this->CODE_LENGTH * ($i + 1));
+				$category = array('code' => $code, 'label' => $category_full_labels[$i]);
+				array_push($categories, $category);
+			}
 
-			// for($i = 0; $i < sizeof($category_full_labels); $i++) {
-			// 	$code = substr($category_code, 1, $this->CODE_LENGTH * ($i + 1));
 
-			$category = array('code' => '111', 'label' => '222');
 
-			// 	$map['code'] = '111';    
-
-			array_push($categories, $category);
-
-			// 	//$categories[$idx] = array('code' => $code, 'label' => $category_full_labels[$i]);
-			// 	//$categories[$idx] = array('code' => '111', 'label' => '222');
-			// 	//$idx++;
-			// }
-
-			//$categories[] = array('code' => '111', 'label' => '222');
 
 		}
-
-		// $map['code'] = '111';    
-		// array_push($categories, array('code' => '111'));
 
 		$this->layout->path = $path;
 		$this->layout->root_categories = $root_categories;
