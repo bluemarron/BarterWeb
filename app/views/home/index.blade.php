@@ -55,7 +55,7 @@
 			    	<?for($j = 0; $j < sizeof($items); $j++) {?>
 						<td align='center' width='170'>
 							<a href='#'>
-								<img src='../<?=$items[$j]->upload_path?><?=$items[$j]->physical_image_name?>' border='0' align='absmiddle' width='150' />
+								<img src='../<?=$items[$j]->upload_path?><?=$items[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:150px;height:150px;' />
 								<br/>
 								<?=$items[$j]->name?>
 							</a>
