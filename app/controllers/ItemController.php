@@ -84,7 +84,7 @@ class ItemController extends BaseController {
 				$item_image->upload_path = $upload_image_path;
 
 				$item_image->save();
-			}
+			} 
 		}
 
 		$upload_file_path = $this->UPLOAD_FILE_DEFAULT_PATH . date("Ym",time()) . "/";
@@ -115,9 +115,6 @@ class ItemController extends BaseController {
 			}
 		}
 
-		$path = '../home/index';
-
-		$this->layout->path = $path;
-		$this->layout->content = View::make($path, array('path' => $path));
+		return Redirect::to('/');
 	}
 }

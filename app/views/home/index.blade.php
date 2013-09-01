@@ -46,14 +46,23 @@
 				<a href='../home/index?category_code=<?=$child_categories[$i]->code?>'><?=$child_categories[$i]->label?></a></a>
 			<?}?>
 		<p>
-		<?}?>		
-
-
-
+		<?}?>
   	</div>
 	<div class='well'>
 	    <p>
-			
+	    	<table>
+	    		<tr>
+			    	<?for($j = 0; $j < sizeof($items); $j++) {?>
+						<td align='center'>
+							<a href='#'>
+								<img src='../<?=$items[$j]->upload_path?><?=$items[$j]->physical_image_name?>' border='0' align='absmiddle' width='150' />
+								<br/>
+								<?=$items[$j]->name?>
+							</a>
+						</td>
+					<?}?>
+				</tr>
+			</table>
 		<p>
   	</div>
 	

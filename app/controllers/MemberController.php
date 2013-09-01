@@ -25,10 +25,7 @@ class MemberController extends BaseController {
 			Session::put('level', $member->level);
 			Session::put('is_admin', $member->is_admin);
 
-			$path = '../home/index';
-
-			$this->layout->path = $path;
-			$this->layout->content = View::make($path, array('path' => $path));
+			return Redirect::to('/');
 		} else {
 			$path = '../member/login_regist_form';
 
@@ -40,10 +37,7 @@ class MemberController extends BaseController {
 	public function logout() {
 		Session::flush();
 
-		$path = '../home/index';
-
-		$this->layout->path = $path;
-		$this->layout->content = View::make($path, array('path' => $path));
+		return Redirect::to('/');
 	}
 
  	public function regist() {
