@@ -53,7 +53,7 @@
 	    	<table>
 	    		<tr>
 			    	<?for($j = 0; $j < sizeof($items); $j++) {?>
-						<td align='center'>
+						<td align='center' width='170'>
 							<a href='#'>
 								<img src='../<?=$items[$j]->upload_path?><?=$items[$j]->physical_image_name?>' border='0' align='absmiddle' width='150' />
 								<br/>
