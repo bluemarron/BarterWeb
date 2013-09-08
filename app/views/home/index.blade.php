@@ -49,19 +49,44 @@
 		<?}?>
   	</div>
 	<div class='well'>
-	    <p>
-	    	<table>
+		<p>
+			<table width='100%'>
 	    		<tr>
-			    	<?for($j = 0; $j < sizeof($items); $j++) {?>
-						<td align='center' width='170'>
-							<a href='#'>
-								<img src='../<?=$items[$j]->upload_path?><?=$items[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:150px;height:150px;' />
-								<br/>
-								<?=$items[$j]->name?>
-							</a>
-						</td>
-					<?}?>
+	    			<td>
+						<i class='icon-ok'></i> 총 <strong><?=sizeof($items)?></strong>개의 상품이 진열되어 있습니다.
+					</td>
+					<td align='right'>
+						<i class='icon-calendar'></i> <a>등록순</a>
+						<i class='icon-star-empty'></i> <a>인기순</a>
+					</td>
 				</tr>
+			</table>			
+		</p>
+	    <p>
+	    	<table align='center'>
+		    	<?for($j = 0; $j < sizeof($items); $j++) {?>
+		    		<?if($j % 4 == 0){?><tr><?}?>
+					<td align='center'>
+						<table>
+							<tr>
+								<td align='center' width='180' height='200'>
+									<a href='../item/view?item_id=<?=$items[$j]->id?>&category_code=<?=$category_code?>'>
+									<img src='../<?=$items[$j]->upload_path?><?=$items[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td align='center'>
+									<a href='../item/view?item_id=<?=$items[$j]->id?>&category_code=<?=$category_code?>'>
+									<?=$items[$j]->name?>
+									</a>
+									<br/><?=$items[$j]->address?>
+								</td>
+							</tr>	
+						</table>	
+					</td>
+		    		<?if($j % 4 == 3){?></tr><?}?>
+				<?}?>
 			</table>
 		<p>
   	</div>

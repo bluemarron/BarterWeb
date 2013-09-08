@@ -55,7 +55,7 @@ class HomeController extends BaseController {
 				array_push($categories, $category);
 			}
 
-			$query  = "SELECT i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
 			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
 			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 			$query .= "WHERE c.category_code LIKE '" . $category_code . "%'		";
@@ -65,7 +65,7 @@ class HomeController extends BaseController {
 
 			$items = DB::select($query);
 		} else {
-			$query  = "SELECT i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
 			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
 			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 			$query .= "WHERE i.deleted_at IS NULL								";

@@ -117,4 +117,54 @@ class ItemController extends BaseController {
 
 		return Redirect::to('/');
 	}
+
+	public function view() {
+		$member_id = Session::get('member_id');
+	 	$item_id = Input::get('item_id');
+
+		$path = '../item/view';
+
+		$query  = "SELECT code, label FROM categories				";
+		$query .= "WHERE LENGTH(code) = " . $this->CODE_LENGTH . "	";
+		$query .= "AND deleted_at IS NULL							";
+		$query .= "ORDER BY position ASC, code ASC				  	";
+
+		$root_categories = DB::select($query);
+		$categories = array();
+		$child_categories = array();
+		$items = array();
+
+		$category_code = Input::get('category_code');
+		$category_full_label = '';
+
+		if($category_code != '') {
+			$category = DB::table('categories')->select('full_label')->where('code', $category_code)->first();
+			$category_full_labels = explode('>>', $category->full_label);
+
+			for($i = 0; $i < sizeof($category_full_labels); $i++) {
+				$code = substr($category_code, 0, $this->CODE_LENGTH * ($i + 1));
+				$category = array('code' => $code, 'label' => $category_full_labels[$i]);
+				array_push($categories, $category);
+			}
+		}
+
+		$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name, i.created_at FROM items AS i	";
+		$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
+		$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
+		$query .= "WHERE i.id = " . $item_id . "							";
+		$query .= "LIMIT 1		 									  		";
+
+		$items = DB::select($query);
+		$item = $items[0];
+
+		$this->layout->path = $path;
+		$this->layout->root_categories = $root_categories;
+		$this->layout->categories = $categories;
+		$this->layout->child_categories = $child_categories;
+
+		$this->layout->category_code = $category_code;
+
+		$this->layout->content = View::make($path, array('path' => $path, 'root_categories' => $root_categories, 'categories' => $categories, 
+			'item' => $item, 'category_code' => $category_code));
+	}
 }
