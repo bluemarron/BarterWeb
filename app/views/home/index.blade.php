@@ -63,7 +63,7 @@
 			</table>			
 		</p>
 	    <p>
-	    	<table align='center'>
+	    	<table>
 		    	<?for($j = 0; $j < sizeof($items); $j++) {?>
 		    		<?if($j % 4 == 0){?><tr><?}?>
 					<td align='center'>

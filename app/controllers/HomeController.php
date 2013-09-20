@@ -60,6 +60,7 @@ class HomeController extends BaseController {
 			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 			$query .= "WHERE c.category_code LIKE '" . $category_code . "%'		";
 			$query .= "AND i.deleted_at IS NULL									";
+			$query .= "GROUP BY i.id											";
 			$query .= "ORDER BY i.id DESC 									  	";
 			$query .= "LIMIT 100		 									  	";
 
@@ -69,6 +70,7 @@ class HomeController extends BaseController {
 			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
 			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 			$query .= "WHERE i.deleted_at IS NULL								";
+			$query .= "GROUP BY i.id											";
 			$query .= "ORDER BY i.id DESC 									  	";
 			$query .= "LIMIT 100		 									  	";
 

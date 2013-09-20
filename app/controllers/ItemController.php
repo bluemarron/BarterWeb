@@ -148,7 +148,8 @@ class ItemController extends BaseController {
 			}
 		}
 
-		$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name, i.created_at FROM items AS i	";
+		$query  = "SELECT i.id, i.member_id, i.address, i.name, i.description, m.upload_path, m.physical_image_name, i.created_at ";
+		$query .= "FROM items AS i											";
 		$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
 		$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 		$query .= "WHERE i.id = " . $item_id . "							";
@@ -156,6 +157,28 @@ class ItemController extends BaseController {
 
 		$items = DB::select($query);
 		$item = $items[0];
+
+		$query  = "SELECT upload_path, physical_image_name	";
+		$query .= "FROM item_images 						";
+		$query .= "WHERE item_id = " . $item_id . "			";
+
+		$item_images = DB::select($query);
+
+		$my_items = array();
+
+		if($item->member_id != $member_id && $member_id != '') {
+			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name ";
+			$query .= " FROM items AS i											";
+			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
+			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
+			$query .= "WHERE i.member_id = '" . $member_id . "' 				";
+			$query .= "  AND i.deleted_at IS NULL								";
+			$query .= "GROUP BY i.id											";
+			$query .= "ORDER BY i.id DESC 									  	";
+			$query .= "LIMIT 100		 									  	";
+
+			$my_items = DB::select($query);
+		}
 
 		$this->layout->path = $path;
 		$this->layout->root_categories = $root_categories;
@@ -165,6 +188,6 @@ class ItemController extends BaseController {
 		$this->layout->category_code = $category_code;
 
 		$this->layout->content = View::make($path, array('path' => $path, 'root_categories' => $root_categories, 'categories' => $categories, 
-			'item' => $item, 'category_code' => $category_code));
+			'item' => $item, 'item_images' => $item_images, 'my_items' => $my_items, 'category_code' => $category_code));
 	}
 }
