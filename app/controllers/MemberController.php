@@ -50,9 +50,6 @@ class MemberController extends BaseController {
 		$member->passwd = Hash::make($passwd);
 		$member->save();
 
-		$path = '../home/index';
-
-		$this->layout->path = $path;
-		$this->layout->content = View::make($path, array('path' => $path));
+		return Redirect::to('/');
 	}
 }

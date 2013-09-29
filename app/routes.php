@@ -44,6 +44,10 @@ Route::post('/category/get_child', 'CategoryController@getChild');
 
 Route::post('/category/get_full_label', 'CategoryController@getFullLabel');
 
+Route::post('/trade/create', 'TradeController@create');
+
+Route::get('/trade/ongoing', 'TradeController@onGoing');
+
 // Admin Routes
 
 Route::get('/admin/index', 'AdminController@index');

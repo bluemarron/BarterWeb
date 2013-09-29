@@ -1,7 +1,26 @@
 @extends('layouts.master')
 
 @section('content')
-	
+
+	<script>
+		function requestTrade(target_member_id, request_item_id, target_item_id) { 
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '../trade/create',
+				data: {'target_member_id':target_member_id, 'request_item_id':request_item_id, 'target_item_id':target_item_id},
+				cache: false,
+				async: true,
+				success: function(response) {
+					alert('거래를 신청하였습니다.');
+				}, failure: function(response) {
+					alert('일시적인 시스템 오류가 발생하였습니다.');
+				}
+			});	
+		}
+
+	</script>
+
 	<style> 
 	    <!--
 		fieldset ul, fieldset li{
@@ -160,10 +179,9 @@
 										<br/><?=$my_items[$j]->address?>
 									</td>
 								</tr>
-			
 								<tr>
 									<td align='center' colspan='2'>
-										<a href='#' class='btn btn-primary' style='width:78px;'>선택</a>
+										<a href='#' onclick="requestTrade('<?=$item->member_id?>', '<?=$my_items[$j]->id?>', '<?=$item->id?>');" class='btn btn-primary' style='width:78px;'>선택</a>
 									</td>	
 								</tr>	
 							</table>	

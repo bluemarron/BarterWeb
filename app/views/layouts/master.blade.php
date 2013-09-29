@@ -63,7 +63,7 @@
               <li <?if(!strncmp($path, 'about/', strlen('about/'))){?>class='active'<?}?>><a href='./about'>About</a></li>
               -->
               <li <?if(!strncmp($path, 'item', strlen('item'))){?>class='active'<?}?>><a href='../item/regist_form'>상품등록</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래진행</a></li>
+              <li <?if(!strncmp($path, 'trade', strlen('trade'))){?>class='_active'<?}?>><a href='../trade/ongoing'>거래진행</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래완료</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래취소</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>마이페이지</a></li>
