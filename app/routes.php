@@ -46,7 +46,11 @@ Route::post('/category/get_full_label', 'CategoryController@getFullLabel');
 
 Route::post('/trade/create', 'TradeController@create');
 
-Route::get('/trade/ongoing', 'TradeController@onGoing');
+Route::post('/trade/complete', 'TradeController@complete');
+
+Route::get('/trade/ongoing_list', 'TradeController@onGoingList');
+
+Route::get('/trade/completion_list', 'TradeController@completionList');
 
 // Admin Routes
 

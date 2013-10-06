@@ -1,7 +1,26 @@
 @extends('layouts.master')
 
 @section('content')
-	
+
+	<script>
+		function completeTrade(trade_id) { 
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '../trade/complete',
+				data: {'trade_id':trade_id},
+				cache: false,
+				async: true,
+				success: function(response) {
+					alert('거래가 완료되었습니다.');
+				}, failure: function(response) {
+					alert('일시적인 시스템 오류가 발생하였습니다.');
+				}
+			});	
+		}
+
+	</script>
+
 	<style> 
 	    <!--
 		fieldset ul, fieldset li{
@@ -142,7 +161,7 @@
 							<tr><td height='5' colspan='2'></td></tr>
 							<tr>
 								<td align='center' colspan='2'>
-									<a href='#' class='btn btn-primary' style='width:78px;'>거래완료</a>
+									<a href='#' onclick="completeTrade('<?=$trades[$j]->id?>');" class='btn btn-primary' style='width:78px;'>거래완료</a>
 									<a href='#' class='btn btn-danger' style='width:78px;'>거래취소</a>
 								</td>
 							</tr>				
