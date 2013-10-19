@@ -48,9 +48,14 @@ Route::post('/trade/create', 'TradeController@create');
 
 Route::post('/trade/complete', 'TradeController@complete');
 
+Route::post('/trade/cancel', 'TradeController@cancel');
+
 Route::get('/trade/ongoing_list', 'TradeController@onGoingList');
 
 Route::get('/trade/completion_list', 'TradeController@completionList');
+
+Route::get('/trade/cancellation_list', 'TradeController@cancellationList');
+
 
 // Admin Routes
 

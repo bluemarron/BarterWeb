@@ -2,40 +2,6 @@
 
 @section('content')
 
-	<script>
-		function completeTrade(trade_id) { 
-			$.ajax({
-				type: 'POST',
-				dataType: 'json',
-				url: '../trade/complete',
-				data: {'trade_id':trade_id},
-				cache: false,
-				async: true,
-				success: function(response) {
-					alert('거래가 완료되었습니다.');
-				}, failure: function(response) {
-					alert('일시적인 시스템 오류가 발생하였습니다.');
-				}
-			});	
-		}
-
-		function cancelTrade(trade_id) { 
-			$.ajax({
-				type: 'POST',
-				dataType: 'json',
-				url: '../trade/cancel',
-				data: {'trade_id':trade_id},
-				cache: false,
-				async: true,
-				success: function(response) {
-					alert('거래가 취소되었습니다.');
-				}, failure: function(response) {
-					alert('일시적인 시스템 오류가 발생하였습니다.');
-				}
-			});	
-		}
-	</script>
-
 	<style> 
 	    <!--
 		fieldset ul, fieldset li{
@@ -87,10 +53,10 @@
 	    	<table>
 		    	<?for($j = 0; $j < sizeof($trades); $j++) {?>
 		    		<?if($j % 2 == 0){?><tr><?}?>
-					<td align='center'>
+					<td align='center'> 
 						<table>
 							<tr>
-								<td align='center' colspan='2'>거래진행 #<?=$j+1?></td>
+								<td align='center' colspan='2'>거래취소 #<?=$j+1?></td>
 							</tr>
 							<tr>
 								<?if($member_id == $trades[$j]->request_member_id){?>
@@ -173,13 +139,7 @@
 									</td>
 								<?}?>						
 							</tr>
-							<tr><td height='5' colspan='2'></td></tr>
-							<tr>
-								<td align='center' colspan='2'>
-									<a href='#' onclick="completeTrade('<?=$trades[$j]->id?>');" class='btn btn-primary' style='width:78px;'>거래완료</a>
-									<a href='#' onclick="cancelTrade('<?=$trades[$j]->id?>');" class='btn btn-danger' style='width:78px;'>거래취소</a>
-								</td>
-							</tr>				
+							
 						</table>	
 					</td>
 		    		<?if($j % 2 == 1){?></tr><?}?>
