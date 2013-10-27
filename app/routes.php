@@ -56,6 +56,7 @@ Route::get('/trade/completion_list', 'TradeController@completionList');
 
 Route::get('/trade/cancellation_list', 'TradeController@cancellationList');
 
+Route::get('/mypage/index', 'MyPageController@index');
 
 // Admin Routes
 

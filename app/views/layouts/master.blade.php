@@ -66,7 +66,7 @@
               <li <?if(!strncmp($path, 'trade', strlen('trade'))){?>class='_active'<?}?>><a href='../trade/ongoing_list'>거래진행</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../trade/completion_list'>거래완료</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../trade/cancellation_list'>거래취소</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>마이페이지</a></li>
+              <li <?if(!strncmp($path, 'mypage', strlen('#/'))){?>class='_active'<?}?>><a href='../mypage/index'>마이페이지</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>게시판</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>>
                 <?if($member_id != ''){?>
