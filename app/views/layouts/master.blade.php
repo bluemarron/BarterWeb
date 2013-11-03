@@ -67,7 +67,7 @@
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../trade/completion_list'>거래완료</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../trade/cancellation_list'>거래취소</a></li>
               <li <?if(!strncmp($path, 'mypage', strlen('#/'))){?>class='_active'<?}?>><a href='../mypage/index'>마이페이지</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>게시판</a></li>
+              <li <?if(!strncmp($path, 'board', strlen('#/'))){?>class='_active'<?}?>><a href='../board/posting_list'>게시판</a></li>
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>>
                 <?if($member_id != ''){?>
                    <a href='../member/logout'>로그아웃</a>

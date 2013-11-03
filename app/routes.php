@@ -58,6 +58,10 @@ Route::get('/trade/cancellation_list', 'TradeController@cancellationList');
 
 Route::get('/mypage/index', 'MyPageController@index');
 
+Route::get('/board/posting_list', 'BoardController@postingList');
+
+Route::get('/board/regist_form', 'BoardController@registForm');
+
 // Admin Routes
 
 Route::get('/admin/index', 'AdminController@index');
