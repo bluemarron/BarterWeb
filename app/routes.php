@@ -62,6 +62,8 @@ Route::get('/board/posting_list', 'BoardController@postingList');
 
 Route::get('/board/regist_form', 'BoardController@registForm');
 
+Route::post('/board/regist', 'BoardController@regist');
+
 // Admin Routes
 
 Route::get('/admin/index', 'AdminController@index');

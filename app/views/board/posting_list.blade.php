@@ -39,9 +39,9 @@
 	  			<thead>
 					<tr>
 				      <th style="width:40px;text-align:center;">번호</th>
-				      <th>제목</th>
-				      <th>작성자</th>
-				      <th>작성일</th>
+				      <th style="text-align:center;">제목</th>
+				      <th style="width:40px;text-align:center;">작성자</th>
+				      <th style="width:140px;text-align:center;">작성일</th>
 			    	</tr>
 				 </thead>
 				<tbody>
@@ -66,9 +66,9 @@
 						?>	
 						<tr>
 							<td style="text-align:center;"><?=$num?></td>
-							<td style="text-align:left;"><a href="/board/free_posting_view?id=<?=$free_postings[$idx]->id?>"><?=$free_postings[$idx]->subject?></a></td>
-							<td style="text-align:center;"></td>
-							<td style="text-align:center;"></td>
+							<td style="text-align:left;"><a href="../board/posting_view?id=<?=$free_postings[$idx]->id?>"><?=$free_postings[$idx]->subject?></a></td>
+							<td style="text-align:center;"><?=$free_postings[$idx]->member_id?></td>
+							<td style="text-align:center;"><?=$free_postings[$idx]->created_at?></td>
 						</tr>
 					<?
 					}	
