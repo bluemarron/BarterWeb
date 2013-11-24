@@ -64,6 +64,15 @@ Route::get('/board/regist_form', 'BoardController@registForm');
 
 Route::post('/board/regist', 'BoardController@regist');
 
+Route::get('/board/view', 'BoardController@view');
+
+Route::get('/board/posting_modify_form', 'BoardController@postingModifyForm');
+
+Route::post('/board/modify', 'BoardController@modify');
+
+Route::get('/board/delete', 'BoardController@delete');
+
+
 // Admin Routes
 
 Route::get('/admin/index', 'AdminController@index');
@@ -77,3 +86,6 @@ Route::post('/admin/category/add', 'AdminCategoryController@add');
 Route::post('/admin/category/remove', 'AdminCategoryController@remove');
 
 Route::post('/admin/category/modify', 'AdminCategoryController@modify');
+
+Route::get('/admin/item/list_form', 'AdminItemController@listForm');
+

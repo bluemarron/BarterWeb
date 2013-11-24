@@ -56,4 +56,70 @@ class BoardController extends BaseController {
 
 		return Redirect::to('./board/posting_list');
 	}
+
+	public function view() {
+		$id = Input::get('id');
+
+		$free_posting = FreePosting::find($id);
+
+		$path = 'board/view';
+
+		$this->layout->path = $path;
+		$this->layout->content = View::make($path, array('path' => $path, 'free_posting' => $free_posting, 'message' => ''));
+	}
+
+	public function postingModifyForm() {
+		$id = Input::get('id');
+
+		$free_posting = FreePosting::find($id);
+
+		$path = 'board/posting_modify_form'; 
+
+		$this->layout->path = $path;
+		$this->layout->content = View::make($path, array('path' => $path, 'free_posting' => $free_posting));
+	}
+
+	public function modify() {
+		$member_id = Session::get('member_id');
+
+		if($member_id == '') {
+			$path = '../member/login_regist_form';
+
+			$this->layout->path = $path;
+			$this->layout->content = View::make($path, array('path' => $path, 'message' => '게시판 글 수정을 위해 로그인이 필요합니다.'));
+			return;
+		} 
+
+		$id = Input::get('id');
+ 		$subject = Input::get('subject');
+		$content = Input::get('content');
+
+		$free_posting = FreePosting::find($id);
+
+		$free_posting->subject = $subject;
+		$free_posting->content = $content;
+		$free_posting->save();
+
+		return Redirect::to('./board/posting_list');
+	}
+
+
+ 	public function delete() {
+		$member_id = Session::get('member_id');
+
+		if($member_id == '') {
+			$path = '../member/login_regist_form';
+
+			$this->layout->path = $path;
+			$this->layout->content = View::make($path, array('path' => $path, 'message' => '게시판 글 삭제를 위해 로그인이 필요합니다.'));
+			return;
+		} 
+
+ 		$id = Input::get('id');
+
+		$free_posting = FreePosting::find($id);
+		$free_posting->delete();
+
+		return Redirect::to('./board/posting_list');
+	}
 }

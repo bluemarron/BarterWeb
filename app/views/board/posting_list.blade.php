@@ -66,7 +66,7 @@
 						?>	
 						<tr>
 							<td style="text-align:center;"><?=$num?></td>
-							<td style="text-align:left;"><a href="../board/posting_view?id=<?=$free_postings[$idx]->id?>"><?=$free_postings[$idx]->subject?></a></td>
+							<td style="text-align:left;"><a href="../board/view?id=<?=$free_postings[$idx]->id?>"><?=$free_postings[$idx]->subject?></a></td>
 							<td style="text-align:center;"><?=$free_postings[$idx]->member_id?></td>
 							<td style="text-align:center;"><?=$free_postings[$idx]->created_at?></td>
 						</tr>

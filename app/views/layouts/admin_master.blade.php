@@ -56,19 +56,9 @@
               <!--Logged in as <a href='#' class='navbar-link'>Username</a>-->
             </p>
             <ul class='nav'>
-              <!--
-              <li <?if(!strncmp($path, 'php/', strlen('php/'))){?>class='active'<?}?>><a href='./php'>PHP</a></li>
-              <li <?if(!strncmp($path, 'board/', strlen('board/'))){?>class='active'<?}?>><a href='./board'>Board</a></li>
-              <li <?if(!strncmp($path, 'about/', strlen('about/'))){?>class='active'<?}?>><a href='./about'>About</a></li>
-              -->
-              <li <?if(!strncmp($path, 'item', strlen('item'))){?>class='active'<?}?>><a href='../../admin/category/list_form'>카테고리 관리</a></li>
-              <!--
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래진행</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래완료</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>거래취소</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>마이페이지</a></li>
-              <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>><a href='../home/index'>게시판</a></li>
-              -->
+              <li <?if(!strncmp($path, 'category', strlen('category'))){?>class='active'<?}?>><a href='../../admin/category/list_form'>카테고리 관리</a></li>
+              <li <?if(!strncmp($path, 'item', strlen('item'))){?>class='active'<?}?>><a href='../../admin/item/list_form'>상품 관리</a></li>
+
               <li <?if(!strncmp($path, '#/', strlen('#/'))){?>class='_active'<?}?>>
                 <?if($member_id != ''){?>
                   <a><span style='color:yellow;'><?=$member_id?></span> 
