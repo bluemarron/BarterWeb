@@ -56,6 +56,8 @@
               <!--Logged in as <a href='#' class='navbar-link'>Username</a>-->
             </p>
             <ul class='nav'>
+
+              <li <?if(!strncmp($path, 'member', strlen('member'))){?>class='active'<?}?>><a href='../../admin/member/list_form'>회원 관리</a></li>
               <li <?if(!strncmp($path, 'category', strlen('category'))){?>class='active'<?}?>><a href='../../admin/category/list_form'>카테고리 관리</a></li>
               <li <?if(!strncmp($path, 'item', strlen('item'))){?>class='active'<?}?>><a href='../../admin/item/list_form'>상품 관리</a></li>
 

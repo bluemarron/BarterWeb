@@ -89,3 +89,4 @@ Route::post('/admin/category/modify', 'AdminCategoryController@modify');
 
 Route::get('/admin/item/list_form', 'AdminItemController@listForm');
 
+Route::get('/admin/member/list_form', 'AdminMemberController@listForm');
