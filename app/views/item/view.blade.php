@@ -140,7 +140,7 @@
 							</tr>	
 							<tr>
 								<td align='center' colspan='2'>
-									<a href='#' class='btn btn-success' style='width:78px;'>관싱 상품</a>
+									<a href='#' class='btn btn-success' style='width:78px;'>관심 상품</a>
 								</td>	
 							</tr>							
 						</table>	
@@ -154,43 +154,80 @@
 		<p><i class='icon-asterisk'></i> 상품설명</p>
 	    <p><?=nl2br($item->description)?></p>
 	</div>   
+	<?if($member_id != '' && $member_id != $item_member_id){?>
+		<?if(sizeof($my_items) > 0) {?>
+			<div class='well'>
+				<p><i class='icon-asterisk'></i> 거래하실 자신의 상품을 [선택]하세요. 중복으로 [선택] 가능합니다.</p>
+			    <p>
+					<table>
+				    	<?for($j = 0; $j < sizeof($my_items); $j++) {?>
+				    		<?if($j % 4 == 0){?><tr><?}?>
+							<td align='center'>
+								<table>
+									<tr>
+										<td align='center' width='180' height='200'>
+											<a href='../item/view?item_id=<?=$my_items[$j]->id?>' target='_blank'>
+											<img src='../<?=$my_items[$j]->upload_path?><?=$my_items[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td align='center'>
+											<a href='../item/view?item_id=<?=$my_items[$j]->id?>' target='_blank'>
+											<?=$my_items[$j]->name?>
+											</a>
+											<br/><?=$my_items[$j]->address?>
+										</td>
+									</tr>
+									<tr>
+										<td align='center' colspan='2'>
+											<a href='#' onclick="requestTrade('<?=$item->member_id?>', '<?=$my_items[$j]->id?>', '<?=$item->id?>');" class='btn btn-primary' style='width:78px;'>선택</a>
+										</td>	
+									</tr>	
+								</table>	
+							</td>
+				    		<?if($j % 4 == 3){?></tr><?}?>
+						<?}?>
+					</table>
+			    </p>
+			</div>   
+		<?}?>	
+	<?} else {?>
+		<?if(sizeof($trade_items) > 0) {?>
+			<div class='well'>
+				<p><i class='icon-asterisk'></i> 아래 상품은 물물교환 대기 중입니다. 위 상품고객은 거래선택하세요.</p>
+			    <p>
+					<table>
+				    	<?for($j = 0; $j < sizeof($trade_items); $j++) {?>
+				    		<?if($j % 4 == 0){?><tr><?}?>
+				    		
+							<td align='center'>
+								<table>
 
-	<?if(sizeof($my_items) > 0) {?>
-		<div class='well'>
-			<p><i class='icon-asterisk'></i> 거래하실 자신의 상품을 [선택]하세요. 중복으로 [선택] 가능합니다.</p>
-		    <p>
-				<table>
-			    	<?for($j = 0; $j < sizeof($my_items); $j++) {?>
-			    		<?if($j % 4 == 0){?><tr><?}?>
-						<td align='center'>
-							<table>
-								<tr>
-									<td align='center' width='180' height='200'>
-										<a href='../item/view?item_id=<?=$my_items[$j]->id?>' target='_blank'>
-										<img src='../<?=$my_items[$j]->upload_path?><?=$my_items[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
-										</a>
-									</td>
-								</tr>
-								<tr>
-									<td align='center'>
-										<a href='../item/view?item_id=<?=$my_items[$j]->id?>' target='_blank'>
-										<?=$my_items[$j]->name?>
-										</a>
-										<br/><?=$my_items[$j]->address?>
-									</td>
-								</tr>
-								<tr>
-									<td align='center' colspan='2'>
-										<a href='#' onclick="requestTrade('<?=$item->member_id?>', '<?=$my_items[$j]->id?>', '<?=$item->id?>');" class='btn btn-primary' style='width:78px;'>선택</a>
-									</td>	
-								</tr>	
-							</table>	
-						</td>
-			    		<?if($j % 4 == 3){?></tr><?}?>
-					<?}?>
-				</table>
-		    </p>
-		</div>   
-	<?}?>	
+									<tr>
+										<td align='center' width='180' height='200'>
+											<a href='../item/view?item_id=<?=$trade_items[$j]->request_item_id?>' target='_blank'>
+											<img src='../<?=$trade_items[$j]->request_item_upload_path?><?=$trade_items[$j]->request_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td align='center'>
+											<a href='../item/view?item_id=<?=$trade_items[$j]->request_item_id?>' target='_blank'>
+											<?=$trade_items[$j]->request_item_name?>
+											</a>
+											<br/><?=$trade_items[$j]->request_item_address?>
+										</td>
+									</tr>
+								</table>	
+							</td>
+							
+				    		<?if($j % 4 == 3){?></tr><?}?>
+						<?}?>
+					</table>
+			    </p>
+			</div>   
+		<?}?>
+	<?}?>
   	</form> 
 @stop      

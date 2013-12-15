@@ -157,6 +157,7 @@ class ItemController extends BaseController {
 
 		$items = DB::select($query);
 		$item = $items[0];
+		$item_member_id = $items[0]->member_id;
 
 		$query  = "SELECT upload_path, physical_image_name	";
 		$query .= "FROM item_images 						";
@@ -165,8 +166,9 @@ class ItemController extends BaseController {
 		$item_images = DB::select($query);
 
 		$my_items = array();
+		$trade_items = array();
 
-		if($item->member_id != $member_id && $member_id != '') {
+		if($item_member_id != $member_id && $member_id != '') {
 			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name ";
 			$query .= " FROM items AS i											";
 			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
@@ -178,8 +180,25 @@ class ItemController extends BaseController {
 			$query .= "LIMIT 100		 									  	";
 
 			$my_items = DB::select($query);
-		}
+		} else {
 
+			$query  = "SELECT t.id, t.status, t.updated_at, 																		";
+			$query .= "	t.request_member_id, t.request_item_id, a.address AS request_item_address, a.name AS request_item_name, 	";
+			$query .= "	e.upload_path AS request_item_upload_path, e.physical_image_name AS request_item_physical_image_name,		";
+			$query .= "	t.target_member_id, t.target_item_id 																		";
+			$query .= "FROM trades AS t																								";
+			$query .= "INNER JOIN items AS a ON (t.request_item_id = a.id)															";
+			$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
+			$query .= "WHERE t.target_item_id = " . $item_id . "																	";
+			$query .= "AND t.status = 'REQUEST'																						";
+			$query .= "AND a.deleted_at IS NULL 																					";
+			$query .= "GROUP BY t.id																								";
+			$query .= "ORDER BY t.id DESC																							";
+			$query .= "LIMIT 100																									";
+
+			$trade_items = DB::select($query);
+		}
+ 
 		$this->layout->path = $path;
 		$this->layout->root_categories = $root_categories;
 		$this->layout->categories = $categories;
@@ -188,6 +207,6 @@ class ItemController extends BaseController {
 		$this->layout->category_code = $category_code;
 
 		$this->layout->content = View::make($path, array('path' => $path, 'root_categories' => $root_categories, 'categories' => $categories, 
-			'item' => $item, 'item_images' => $item_images, 'my_items' => $my_items, 'category_code' => $category_code));
+			'item' => $item, 'item_images' => $item_images, 'item_member_id' => $item_member_id, 'my_items' => $my_items, 'trade_items' => $trade_items, 'category_code' => $category_code));
 	}
 }

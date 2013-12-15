@@ -11,12 +11,12 @@
 |
 */
 
-// Route::get('/', function()
-// {
-// 	return View::make('hello');
-// });
-
-// Users Routes
+/*
+Route::get('/', function()
+{
+	return View::make('hello');
+});
+*/
 
 Route::get('/', function() {
  	return View::make('index');

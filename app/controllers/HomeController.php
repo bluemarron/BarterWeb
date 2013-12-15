@@ -1,10 +1,9 @@
 <?php
 
 class HomeController extends BaseController {
-  
-  private $CODE_LENGTH = 3;
+	private $CODE_LENGTH = 3;
 
-  protected $layout = 'layouts.master';
+  	protected $layout = 'layouts.master';
 
 	public function index() {
 		$path = 'home/index';
@@ -87,4 +86,23 @@ class HomeController extends BaseController {
 		$this->layout->content = View::make($path, array('path' => $path, 'root_categories' => $root_categories, 'categories' => $categories, 
 			'child_categories' => $child_categories, 'items' => $items, 'category_code' => $category_code));
 	} 
+
+	/*
+	|--------------------------------------------------------------------------
+	| Default Home Controller
+	|--------------------------------------------------------------------------
+	|
+	| You may wish to use controllers instead of, or in addition to, Closure
+	| based routes. That's great! Here is an example controller method to
+	| get you started. To route to this controller, just add the route:
+	|
+	|	Route::get('/', 'HomeController@showWelcome');
+	|
+	*/
+
+	public function showWelcome()
+	{
+		return View::make('hello');
+	}
+
 }
