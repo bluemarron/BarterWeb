@@ -46,6 +46,8 @@ Route::post('/category/get_full_label', 'CategoryController@getFullLabel');
 
 Route::post('/trade/create', 'TradeController@create');
 
+Route::post('/trade/accept', 'TradeController@accept');
+
 Route::post('/trade/complete', 'TradeController@complete');
 
 Route::post('/trade/cancel', 'TradeController@cancel');

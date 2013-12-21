@@ -34,19 +34,19 @@ class TradeController extends BaseController {
 		}
 	}
 
-	public function complete() {
+	public function accept() {
 	 	if(Request::ajax()) {
 			$request_member_id = Session::get('member_id');
 			$trade_id = Input::get('trade_id');
 
 			$trade = Trade::find($trade_id);
-			$trade->status = 'COMPLETE';
+			$trade->status = 'ACCEPT';
 			$trade->save();
 
 			$trade_log = new TradeLog;
 			$trade_log->trade_id = $trade->id;
 			$trade_log->member_id = $request_member_id;
-			$trade_log->status = 'COMPLETE';
+			$trade_log->status = "ACCEPT";
 			$trade_log->save();
 
 			$response['status'] = 0;
@@ -75,6 +75,27 @@ class TradeController extends BaseController {
 			return Response::json($response);
 		}
 	}	
+
+	public function complete() {
+	 	if(Request::ajax()) {
+			$request_member_id = Session::get('member_id');
+			$trade_id = Input::get('trade_id');
+
+			$trade = Trade::find($trade_id);
+			$trade->status = 'COMPLETE';
+			$trade->save();
+
+			$trade_log = new TradeLog;
+			$trade_log->trade_id = $trade->id;
+			$trade_log->member_id = $request_member_id;
+			$trade_log->status = 'COMPLETE';
+			$trade_log->save();
+
+			$response['status'] = 0;
+
+			return Response::json($response);
+		}
+	}
 
 	public function onGoingList() {
 		$member_id = Session::get('member_id');

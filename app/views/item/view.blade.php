@@ -13,12 +13,46 @@
 				async: true,
 				success: function(response) {
 					alert('거래를 신청하였습니다.');
+					window.location.reload(true);
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');
 				}
 			});	
 		}
 
+		function acceptTrade(trade_id) { 
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '../trade/accept',
+				data: {'trade_id':trade_id},
+				cache: false,
+				async: true,
+				success: function(response) {
+					alert('거래를 선택하였습니다.');
+					window.location.reload(true);
+				}, failure: function(response) {
+					alert('일시적인 시스템 오류가 발생하였습니다.');
+				}
+			});	
+		}
+
+		function cancelTrade(trade_id) { 
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '../trade/cancel',
+				data: {'trade_id':trade_id},
+				cache: false,
+				async: true,
+				success: function(response) {
+					alert('거래를 취소하였습니다.');
+					window.location.reload(true);
+				}, failure: function(response) {
+					alert('일시적인 시스템 오류가 발생하였습니다.');
+				}
+			});	
+		}
 	</script>
 
 	<style> 
@@ -195,7 +229,13 @@
 	<?} else {?>
 		<?if(sizeof($trade_items) > 0) {?>
 			<div class='well'>
-				<p><i class='icon-asterisk'></i> 아래 상품은 물물교환 대기 중입니다. 위 상품고객은 거래선택하세요.</p>
+				<p><i class='icon-asterisk'></i>
+				<?if($member_id != ''){?>
+					아래 상품은 거래 신청 물품입니다. 선택하신 후 연락하세요.
+				<?} else {?>	
+					아래 상품은 물물교환 대기 중입니다. 위 상품고객은 거래선택하세요.
+				<?}?>	
+				</p>
 			    <p>
 					<table>
 				    	<?for($j = 0; $j < sizeof($trade_items); $j++) {?>
@@ -219,6 +259,18 @@
 											<br/><?=$trade_items[$j]->request_item_address?>
 										</td>
 									</tr>
+
+									<?if($member_id != ''){?>
+										<tr>
+											<td align='center' colspan='2'>
+												<?if($trade_items[$j]->status == 'REQUEST'){?>
+													<a href='#' onclick="acceptTrade('<?=$trade_items[$j]->trade_id?>');" class='btn btn-primary' style='width:78px;'>선택</a>
+												<?} else if($trade_items[$j]->status == 'ACCEPT'){?>
+													<a href='#' onclick="cancelTrade('<?=$trade_items[$j]->trade_id?>');" class='btn btn-danger' style='width:78px;'>취소</a>
+												<?}?>	
+											</td>	
+										</tr>										
+									<?}?>
 								</table>	
 							</td>
 							

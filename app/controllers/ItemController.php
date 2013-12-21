@@ -182,7 +182,7 @@ class ItemController extends BaseController {
 			$my_items = DB::select($query);
 		} else {
 
-			$query  = "SELECT t.id, t.status, t.updated_at, 																		";
+			$query  = "SELECT t.id AS trade_id, t.status, t.updated_at, 															";
 			$query .= "	t.request_member_id, t.request_item_id, a.address AS request_item_address, a.name AS request_item_name, 	";
 			$query .= "	e.upload_path AS request_item_upload_path, e.physical_image_name AS request_item_physical_image_name,		";
 			$query .= "	t.target_member_id, t.target_item_id 																		";
@@ -190,7 +190,7 @@ class ItemController extends BaseController {
 			$query .= "INNER JOIN items AS a ON (t.request_item_id = a.id)															";
 			$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
 			$query .= "WHERE t.target_item_id = " . $item_id . "																	";
-			$query .= "AND t.status = 'REQUEST'																						";
+			$query .= "AND t.status IN ('REQUEST', 'ACCEPT')																		";
 			$query .= "AND a.deleted_at IS NULL 																					";
 			$query .= "GROUP BY t.id																								";
 			$query .= "ORDER BY t.id DESC																							";
