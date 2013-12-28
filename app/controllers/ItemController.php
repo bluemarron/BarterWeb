@@ -198,6 +198,9 @@ class ItemController extends BaseController {
 
 			$trade_items = DB::select($query);
 		}
+
+		$trade = App::make('Trade');
+		$member_trade_count_by_status = $trade->getMemberTradeCountByStatus($member_id);
  
 		$this->layout->path = $path;
 		$this->layout->root_categories = $root_categories;
@@ -206,7 +209,17 @@ class ItemController extends BaseController {
 
 		$this->layout->category_code = $category_code;
 
-		$this->layout->content = View::make($path, array('path' => $path, 'root_categories' => $root_categories, 'categories' => $categories, 
-			'item' => $item, 'item_images' => $item_images, 'item_member_id' => $item_member_id, 'my_items' => $my_items, 'trade_items' => $trade_items, 'category_code' => $category_code));
+		$this->layout->content = View::make($path, 
+			array('path' => $path, 
+				  'root_categories' => $root_categories, 
+				  'categories' => $categories, 
+				  'item' => $item, 
+				  'item_images' => $item_images, 
+				  'item_member_id' => $item_member_id, 
+				  'my_items' => $my_items, 
+				  'trade_items' => $trade_items, 
+				  'category_code' => $category_code,
+				  'member_trade_count_by_status' => $member_trade_count_by_status
+				  ));
 	}
 }

@@ -151,15 +151,15 @@
 							</tr>
 							<tr>
 								<td width='75'><i class='icon-ok'></i> 거래진행</td>
-								<td>: 00개</td>
+								<td>: <?=$member_trade_count_by_status['REQUEST']?>개</td>
 							</tr>
 							<tr>
 								<td width='75'><i class='icon-ok'></i> 거래완료</td>
-								<td>: 00개</td>
+								<td>: <?=$member_trade_count_by_status['COMPLETE']?>개</td>
 							</tr>
 							<tr>
 								<td width='75'><i class='icon-ok'></i> 거래취소</td>
-								<td>: 00개</td>
+								<td>: <?=$member_trade_count_by_status['CANCEL']?>개</td>
 							</tr>
 							<tr>
 								<td width='75'><i class='icon-ok'></i> 미결상품</td>
