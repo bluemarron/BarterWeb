@@ -200,7 +200,7 @@ class ItemController extends BaseController {
 		}
 
 		$trade = App::make('Trade');
-		$member_trade_count_by_status = $trade->getMemberTradeCountByStatus($member_id);
+		$member_trade_count_by_status = $trade->getMemberTradeCountByStatus($item_member_id);
  
 		$this->layout->path = $path;
 		$this->layout->root_categories = $root_categories;
