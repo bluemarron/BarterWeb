@@ -43,7 +43,7 @@ class ItemController extends BaseController {
 			$path = '../member/login_regist_form';
 
 			$this->layout->path = $path;
-			$this->layout->content = View::make($path, array('path' => $path, 'message' => '상품등록을 위해 로그인이 필요합니다.'));
+			$this->layout->content = View::make($path, array('path' => $path, 'message' => '상품관리를 위해 로그인이 필요합니다.'));
 		} else {
 			$path = '../item/manage';
 
