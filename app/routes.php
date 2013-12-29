@@ -36,6 +36,8 @@ Route::post('/member/find_passwd', 'MemberController@findPasswd');
 
 Route::get('/item/regist_form', 'ItemController@registForm');
 
+Route::get('/item/manage', 'ItemController@manage');
+
 Route::get('/item/view', 'ItemController@view');
 
 Route::post('/item/regist', 'ItemController@regist');

@@ -36,6 +36,34 @@ class ItemController extends BaseController {
 		}
 	}
 
+	public function manage() {
+		$member_id = Session::get('member_id');
+
+		if($member_id == '') {
+			$path = '../member/login_regist_form';
+
+			$this->layout->path = $path;
+			$this->layout->content = View::make($path, array('path' => $path, 'message' => '상품등록을 위해 로그인이 필요합니다.'));
+		} else {
+			$path = '../item/manage';
+
+
+			$query  = "SELECT i.id, i.member_id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
+			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
+			$query .= "WHERE i.deleted_at IS NULL								";
+			$query .= "AND i.member_id = '" . $member_id . "' 					";
+			$query .= "GROUP BY i.id											";
+			$query .= "ORDER BY i.id DESC 									  	";
+			$query .= "LIMIT 100		 									  	";
+
+			$items = DB::select($query);
+
+			$this->layout->path = $path;
+			$this->layout->content = View::make($path, array('path' => $path, 'items' => $items, 'message' => ''));
+		}
+	}
+
 	public function regist() {
 		$member_id = Session::get('member_id');
 
@@ -199,16 +227,13 @@ class ItemController extends BaseController {
 			$trade_items = DB::select($query);
 		}
 
-		$trade = App::make('Trade');
-		$member_trade_count_by_status = $trade->getMemberTradeCountByStatus($item_member_id);
+		$_Trade = App::make('Trade');
+		$member_trade_count_by_status = $_Trade->getMemberTradeCountByStatus($item_member_id);
+ 
+		$_Item = App::make('Item');
+		$member_item_count = $_Item->getMemberItemCount($item_member_id);
  
 		$this->layout->path = $path;
-		$this->layout->root_categories = $root_categories;
-		$this->layout->categories = $categories;
-		$this->layout->child_categories = $child_categories;
-
-		$this->layout->category_code = $category_code;
-
 		$this->layout->content = View::make($path, 
 			array('path' => $path, 
 				  'root_categories' => $root_categories, 
@@ -219,7 +244,8 @@ class ItemController extends BaseController {
 				  'my_items' => $my_items, 
 				  'trade_items' => $trade_items, 
 				  'category_code' => $category_code,
-				  'member_trade_count_by_status' => $member_trade_count_by_status
+				  'member_trade_count_by_status' => $member_trade_count_by_status,
+				  'member_item_count' => $member_item_count
 				  ));
 	}
 }

@@ -143,15 +143,15 @@
 							</tr>	
 							<tr>
 								<td width='75'><i class='icon-ok'></i> 등록상품</td>
-								<td>: 00개</td>
+								<td>: <?=$member_item_count?>개</td>
 							</tr>	
 							<tr>
 								<td width='75'><i class='icon-ok'></i> 대기상품</td>
-								<td>: 00개</td>
+								<td>: <?=$member_trade_count_by_status['REQUEST']?>개</td>
 							</tr>
 							<tr>
 								<td width='75'><i class='icon-ok'></i> 거래진행</td>
-								<td>: <?=$member_trade_count_by_status['REQUEST']?>개</td>
+								<td>: <?=$member_trade_count_by_status['ACCEPT']?>개</td>
 							</tr>
 							<tr>
 								<td width='75'><i class='icon-ok'></i> 거래완료</td>
