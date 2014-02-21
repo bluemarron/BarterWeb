@@ -336,9 +336,9 @@
 							</tr>
 							<tr>
 								<td>
-									<input type='text' name='file_description_2' id='file_description_2' class='input-xlarge' placeholder='파일설명' /> 
+									<input type='text' name='file_description_2' id='file_description_2' class='input-medium' placeholder='파일설명' /> 
 									&nbsp;&nbsp;
-			 						<input type='file' name='file_2' id='file_2' style='display:block;' style='width:85px;' />
+			 						<input type='file' name='file_2' id='file_2' style='display:block;' style='width:55px;' />
 								</td>
 							</tr>	
 						</table>	
