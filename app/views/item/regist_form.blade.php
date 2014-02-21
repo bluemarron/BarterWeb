@@ -188,14 +188,6 @@
 			defaultDescription += '명심하세요.';
 
 			$("textarea#description").val(defaultDescription);
-
-			$('input[id=file_1]').change(function() {
-				$('#file_name_1').val($(this).val());
-			});
-
-			$('input[id=file_2]').change(function() {
-				$('#file_name_2').val($(this).val());
-			});
 		});
 
 		function previewImage(input, seq) {
