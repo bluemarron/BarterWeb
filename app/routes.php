@@ -93,4 +93,6 @@ Route::post('/admin/category/modify', 'AdminCategoryController@modify');
 
 Route::get('/admin/item/list_form', 'AdminItemController@listForm');
 
+Route::post('/admin/item/delete', 'AdminItemController@delete');
+
 Route::get('/admin/member/list_form', 'AdminMemberController@listForm');

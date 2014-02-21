@@ -19,4 +19,22 @@ class AdminItemController extends BaseController {
 		$this->layout->path = $path;
 		$this->layout->content = View::make($path, array('path' => $path, 'items' => $items, 'message' => ''));
 	}
+
+	public function delete() {
+		if(Request::ajax()) {
+		
+		 	$item_id = Input::get('item_id');
+	/*
+			$item = Item::find($item_id);
+			$item->deleted_at = time();
+			$item->save();
+			*/
+			$_Item = App::make('Item');
+			$_Item->softDelete($item_id);
+
+			$response['status'] = 0;
+
+			return Response::json($response);
+		}
+	}
 }

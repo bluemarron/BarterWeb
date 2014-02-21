@@ -2,7 +2,25 @@
 
 @section('content')
 	<script>
-			
+		function deleteItem(item_id) { 
+			if(!confirm('선택하신 상품을 삭제하시겠습니까?')) 
+				return;
+
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '../../admin/item/delete',
+				data: {'item_id':item_id},
+				cache: false,
+				async: true,
+				success: function(response) {
+					window.location.reload(true);
+				}, failure: function(response) {
+					alert('일시적인 시스템 오류가 발생하였습니다.');
+				}
+			});	
+		}
+
 	</script>
 	<style> 
 	    <!--
@@ -45,8 +63,14 @@
 				<?for($j = 0; $j < sizeof($items); $j++) {?>
 		    	<tr align='center'>
 					<td align='center'>
-						<p>[수정][삭제]</p>
-						<p>[노출][복사]</p>
+						<p>
+							<a href='#' onclick="alert('준비중입니다.');" class='btn btn-warning' style='width:30px;'>수정</a>
+							<a href='#' onclick="deleteItem('<?=$items[$j]->id?>');" class='btn btn-danger' style='width:30px;'>삭제</a>
+						</p>
+						<p>
+							<a href='#' onclick="alert('준비중입니다.');" class='btn btn-success' style='width:30px;'>노출</a>
+							<a href='#' onclick="alert('준비중입니다.');" class='btn btn-primary' style='width:30px;'>복사</a>
+						</p>						
 					</td>	
 					<td>
 						<?=$items[$j]->member_id?>	

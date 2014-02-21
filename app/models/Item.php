@@ -2,6 +2,7 @@
 
 class Item extends Eloquent {
 	protected $table = 'items';
+ 	protected $softDelete = true;
 
 	public function getMemberItemCount($member_id) {
 		$request_count = 0;
@@ -14,4 +15,9 @@ class Item extends Eloquent {
 		$db_rows = DB::select($query);
 		return $db_rows[0]->count;
 	}
-}
+
+	public function softDelete($id) {
+		$item = Item::find($id);
+		$item->delete();
+	}
+} 
