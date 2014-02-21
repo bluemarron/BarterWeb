@@ -331,24 +331,14 @@
 								<td>
 									<input type='text' name='file_description_1' id='file_description_1' class='input-xlarge' placeholder='파일설명' /> 
 									&nbsp;
-			 						<input type='file' name='file_1' id='file_1' style='display:none;' />
-
-			 						<div class='input-append'>
-										<input type='text' name='file_name_1' id='file_name_1' class='input-medium' />
-										<a class='btn' onclick='$("input[id=file_1]").click();'>파일찾기</a>
-									</div>
+			 						<input type='file' name='file_1' id='file_1' style='display:block;' />
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<input type='text' name='file_description_2' id='file_description_2' class='input-xlarge' placeholder='파일설명' /> 
 									&nbsp;
-			 						<input type='file' name='file_2' id='file_2' style='display:none;' />
-
-			 						<div class='input-append'>
-										<input type='text' name='file_name_2' id='file_name_2' class='input-medium' />
-										<a class='btn' onclick='$("input[id=file_2]").click();'>파일찾기</a>
-									</div>
+			 						<input type='file' name='file_2' id='file_2' style='display:block;' />
 								</td>
 							</tr>	
 						</table>	
