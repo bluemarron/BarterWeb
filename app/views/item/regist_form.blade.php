@@ -155,6 +155,13 @@
 		}
 
 		function regist() {
+			if(regist_form.selected_category_code.value == '') {
+				alert('카테고리를 선택하세요.');
+				regist_form.category_level_1.focus();
+				return;
+			}
+
+
 			if(regist_form.name.value == '') {
 				alert('상품명을 입력하세요.');
 				regist_form.name.focus();
@@ -197,7 +204,7 @@
 
 		        reader.onload = function (e) {
 		            $('#image_preview_' + seq).attr('src', e.target.result);
-					$('#image_preview_' + seq).attr('style', 'opacity:');
+					$('#image_preview_' + seq).attr('style', 'width:80px;opacity:');
 		        }
 
 		        reader.readAsDataURL(input.files[0]);
@@ -296,8 +303,8 @@
 								<tr align='center'>
 									<?for($i = 1; $i <= 8; $i++){?>
 										<td>
-											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='display:none;' onchange='previewImage(this, <?=$i?>);' />
-											<a class='btn btn-info' onclick='$("input[id=image_<?=$i?>]").click();'>등록</a>
+											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:60px;' onchange='previewImage(this, <?=$i?>);' />
+											<!--<a class='btn btn-info' onclick='$("input[id=image_<?=$i?>]").click();'>등록</a>-->
 										</td>
 									<?}?>	
 								</tr>
@@ -305,7 +312,7 @@
 						<p>
 					</li>
  					<li> 
-						<label><i class='icon-ok'></i> 첨부파일</label>
+						<label>첨부파일</label>
 
 						<table>
 							<tr>
@@ -335,7 +342,7 @@
 						</table>	
 					</li>
  					<li> 
-						<label><i class='icon-ok'></i> 검색단어</label>
+						<label>검색단어</label>
 						<input type='text' name='search_keyword' id='search_keyword' class='input-xlarge' placeholder='검색단어 입력' />
 						<span style='padding-left:8px;'>(콤마로 구분하여 입력하세요.)</span>
 					</li>
