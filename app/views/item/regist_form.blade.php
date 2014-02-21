@@ -204,7 +204,7 @@
 
 		        reader.onload = function (e) {
 		            $('#image_preview_' + seq).attr('src', e.target.result);
-					$('#image_preview_' + seq).attr('style', 'width:80px;opacity:');
+					$('#image_preview_' + seq).attr('style', 'width:100px;opacity:');
 		        }
 
 		        reader.readAsDataURL(input.files[0]);
@@ -291,29 +291,29 @@
 						<p>
 							<table>
 								<tr align='center'>
-									<td width='140'><img id='image_preview_1' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
-									<td width='140'><img id='image_preview_2' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
-									<td width='140'><img id='image_preview_3' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
-									<td width='140'><img id='image_preview_4' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='180'><img id='image_preview_1' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='180'><img id='image_preview_2' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='180'><img id='image_preview_3' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='180'><img id='image_preview_4' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
 								</tr>
 								<tr align='center'>
 									<?for($i = 1; $i <= 4; $i++){?>
 										<td>
-											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:100px;' onchange='previewImage(this, <?=$i?>);' />
+											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:160px;' onchange='previewImage(this, <?=$i?>);' />
 											<!--<a class='btn btn-info' onclick='$("input[id=image_<?=$i?>]").click();'>등록</a>-->
 										</td>
 									<?}?>	
 								</tr>
 								<tr align='center'>
-									<td width='140'><img id='image_preview_5' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
-									<td width='140'><img id='image_preview_6' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
-									<td width='140'><img id='image_preview_7' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
-									<td width='140'><img id='image_preview_8' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='180'><img id='image_preview_5' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='180'><img id='image_preview_6' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='180'><img id='image_preview_7' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='180'><img id='image_preview_8' src='../images/camera.png' border='0' align='absmiddle' style='width:100px;opacity:0.4;filter:alpha(opacity=40);' /></td>
 								</tr>
 								<tr align='center'>
 									<?for($i = 5; $i <= 8; $i++){?>
 										<td>
-											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:100px;' onchange='previewImage(this, <?=$i?>);' />
+											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:160px;' onchange='previewImage(this, <?=$i?>);' />
 											<!--<a class='btn btn-info' onclick='$("input[id=image_<?=$i?>]").click();'>등록</a>-->
 										</td>
 									<?}?>	
