@@ -299,7 +299,7 @@
 								<tr align='center'>
 									<?for($i = 1; $i <= 4; $i++){?>
 										<td>
-											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:160px;' onchange='previewImage(this, <?=$i?>);' />
+											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:100px;' onchange='previewImage(this, <?=$i?>);' />
 											<!--<a class='btn btn-info' onclick='$("input[id=image_<?=$i?>]").click();'>등록</a>-->
 										</td>
 									<?}?>	
@@ -313,7 +313,7 @@
 								<tr align='center'>
 									<?for($i = 5; $i <= 8; $i++){?>
 										<td>
-											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:120px;' onchange='previewImage(this, <?=$i?>);' />
+											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:100px;' onchange='previewImage(this, <?=$i?>);' />
 											<!--<a class='btn btn-info' onclick='$("input[id=image_<?=$i?>]").click();'>등록</a>-->
 										</td>
 									<?}?>	
