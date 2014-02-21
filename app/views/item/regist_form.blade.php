@@ -303,7 +303,7 @@
 								<tr align='center'>
 									<?for($i = 1; $i <= 8; $i++){?>
 										<td>
-											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:60px;' onchange='previewImage(this, <?=$i?>);' />
+											<input type='file' name='image_<?=$i?>' id='image_<?=$i?>' style='width:80px;' onchange='previewImage(this, <?=$i?>);' />
 											<!--<a class='btn btn-info' onclick='$("input[id=image_<?=$i?>]").click();'>등록</a>-->
 										</td>
 									<?}?>	
