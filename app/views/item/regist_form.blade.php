@@ -330,14 +330,14 @@
 							<tr>
 								<td>
 									<input type='text' name='file_description_1' id='file_description_1' class='input-xlarge' placeholder='파일설명' /> 
-									&nbsp;
+									&nbsp;&nbsp;
 			 						<input type='file' name='file_1' id='file_1' style='display:block;' />
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<input type='text' name='file_description_2' id='file_description_2' class='input-xlarge' placeholder='파일설명' /> 
-									&nbsp;
+									&nbsp;&nbsp;
 			 						<input type='file' name='file_2' id='file_2' style='display:block;' />
 								</td>
 							</tr>	
