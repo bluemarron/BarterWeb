@@ -155,8 +155,8 @@
 		}
 
 		function regist() {
-			if(regist_form.selected_category_code.value == '') {
-				alert('카테고리를 선택하세요.');
+			if(selectedCategories.keys().length == 0) {
+				alert('카테고리를 선택하신 후 [추가] 버튼을 클릭하세요.');
 				regist_form.category_level_1.focus();
 				return;
 			}
@@ -207,7 +207,9 @@
 	<script id='selected_category_template' class='template' type='text/x-jquery-tmpl'>
 		<li id='selected_category_${code}' style='margin:0;padding:0;'>
 			<input type='hidden' id='selected_category_codes[]' name='selected_category_codes[]' value='${code}' />
-			<i class='icon-ok-sign'></i> ${full_label} <a href='javascript:cancelCategory("${code}");'><img src='../images/delete.png' border='0' align='absmiddle' style='margin-left:4px;margin-bottom:4px;' /></a>
+			<i class='icon-ok-sign'></i> ${full_label} 
+
+			<a href='javascript:cancelCategory("${code}");' class='btn btn-danger' style='width:30px;margin-left:4px;margin-bottom:4px;'>삭제</a>
 		<li>
 	</script>
 
@@ -257,7 +259,7 @@
 								</select>							
 							<?}?>
 						<?}?>
-						<a href='javascript:appendCategory();'><img src='../images/add.png' border='0' align='absmiddle' style='margin-left:4px;margin-bottom:10px;'></a> 
+						<a href='javascript:appendCategory();' class='btn btn-success' style='width:30px;margin-bottom:10px;'>추가</a>
 					</li>
 				</ul>		
 			</fieldset>
