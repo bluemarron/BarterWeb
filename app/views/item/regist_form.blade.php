@@ -194,7 +194,8 @@
 			var ua = window.navigator.userAgent;
 
 			if (ua.indexOf("MSIE") > -1) {
-				alert(input.value);
+				alert("source : " + input.value);
+				alert("indexof: " + source.indexOf("\\fakepath\\"));
 
 ///////
 
@@ -211,17 +212,11 @@
 
 		            	input.select();
 
-       			        alert("1 >>");
-
 		                localImagePath = document.selection.createRange().text.toString();
 
        			        alert("2 >>" + localImagePath);
 
-
 		                input.blur();
-
-
-						alert("3 >>");
 		             	
 		            }
 		        } else {
@@ -232,8 +227,6 @@
 		        var uploadImage = new Image();
 		        uploadImage.src = localImagePath;
 
-		        alert("4 >>" + uploadImage.src);
-
 		        // 이미지 교체
 		        //var targetImage = document.getElementById('image_preview_' + seq);
 		       // targetImage.src = uploadImage.src;
@@ -242,16 +235,12 @@
 
 		        //document.writeln(localImagePath);
 		        //document.writeln(uploadImage.src);
-		        //document.getElementById("image_preview_1").src = uploadImage.src;
-		        document.getElementById("image_preview_1").src = "file:///C:/Documents%20and%20Settings/All%20Users/Documents/My%20Pictures/그림%20샘플/수련.jpg";
-		        
+		        document.getElementById("image_preview_1").src = uploadImage.src;
 		        
 
 		        //$('#image_preview_' + seq).attr('src', uploadImage.src);
 
 				alert("5 >>");
-///////
-
 
 
 
