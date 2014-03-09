@@ -194,6 +194,7 @@
 			var ua = window.navigator.userAgent;
 
 			if (ua.indexOf("MSIE") > -1) {
+				alert(input.value);
 				$('#image_preview_' + seq).attr('src', input.value);
  			} else {
 				if (input.files && input.files[0]) {
