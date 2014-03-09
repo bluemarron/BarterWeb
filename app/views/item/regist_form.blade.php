@@ -241,9 +241,10 @@
 		        //alert("5 >>" + targetImage.src);
 
 		        //document.writeln(localImagePath);
-		        document.writeln(uploadImage.src);
+		        //document.writeln(uploadImage.src);
+		        document.getElementById('image_preview_' + seq).src = uploadImage.src;
 		        
-				$('#image_preview_' + seq).attr('src', uploadImage.src);
+				//$('#image_preview_' + seq).attr('src', uploadImage.src);
 
 				alert("5 >>");
 ///////
