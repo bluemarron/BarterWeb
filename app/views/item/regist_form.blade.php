@@ -242,7 +242,7 @@
 
 		        //document.writeln(localImagePath);
 		        //document.writeln(uploadImage.src);
-		        document.getElementByName("image_preview_1").src = uploadImage.src;
+		        document.getElementById("image_preview_1").src = uploadImage.src;
 		        
 		        //$('#image_preview_' + seq).attr('src', uploadImage.src);
 
