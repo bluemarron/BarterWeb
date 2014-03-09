@@ -191,16 +191,22 @@
 		});
 
 		function previewImage(input, seq) {
-			 if (input.files && input.files[0]) {
-		        var reader = new FileReader();
+			var ua = window.navigator.userAgent;
 
-		        reader.onload = function (e) {
-		            $('#image_preview_' + seq).attr('src', e.target.result);
-					$('#image_preview_' + seq).attr('style', 'width:95px;opacity:');
-		        }
+			if (ua.indexOf("MSIE") > -1) {
+				$('#image_preview_' + seq).attr('src', input.value);
+ 			} else {
+				if (input.files && input.files[0]) {
+			        var reader = new FileReader();
 
-		        reader.readAsDataURL(input.files[0]);
-		    }
+			        reader.onload = function (e) {
+			            $('#image_preview_' + seq).attr('src', e.target.result);
+						$('#image_preview_' + seq).attr('style', 'width:95px;opacity:');
+			        }
+
+			        reader.readAsDataURL(input.files[0]);
+			    }
+			}
 		}
 	</script>
 
