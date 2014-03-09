@@ -3,9 +3,8 @@
   <head>
     <meta charset='utf-8'>
     <title>다사다 물물교환</title>
-    <!-- meta http-equiv="X-UA-Compatible" content="IE=edge" -->
-    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- meta http-equiv="X-UA-Compatible" content="IE=8" -->
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta name='description' content=''>
     <meta name='author' content=''>
@@ -30,11 +29,6 @@
           padding-left: 5px;
           padding-right: 5px;
         }
-      }
-    
-      #newPreview
-      {
-            filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
       }
     </style>
 

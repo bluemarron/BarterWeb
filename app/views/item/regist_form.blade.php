@@ -194,59 +194,21 @@
 			var ua = window.navigator.userAgent;
 
 			if (ua.indexOf("MSIE") > -1) {
-				alert("source : " + input.value);
-				alert("indexof: " + input.value.indexOf("\\fakepath\\"));
+//				alert("source : " + input.value);
+//				alert("indexof: " + input.value.indexOf("\\fakepath\\"));
 
 		     	var localImagePath;
 		     	var source = input.value;
 
-		        if (ua.indexOf("MSIE") > -1) {
-		            if (source.indexOf("\\fakepath\\") < 0) {
-		            	alert('OK-1');
-		                localImagePath = source;
-		            } else {
-       	alert('Fail-1');
-						document.getElementById("preview_test").src = input.value;
+	            if (source.indexOf("\\fakepath\\") < 0) {
+	                localImagePath = source;
+	            } else {
+	            	input.select();
+	                localImagePath = document.selection.createRange().text.toString();
+	                input.blur();
+	            }
 
-
-		     
-
-		            	input.select();
-
-		                localImagePath = document.selection.createRange().text.toString();
-
-       			        alert("2 >>" + localImagePath);
-
-		                input.blur();
-		             	
-		            }
-		        } else {
-		        	alert('Fail-2');
-		        }
-		        
-		        // 이미지 사이즈 조정
-		        var uploadImage = new Image();
-		        uploadImage.src = localImagePath;
-
-		        // 이미지 교체
-		        //var targetImage = document.getElementById('image_preview_' + seq);
-		       // targetImage.src = uploadImage.src;
-
-		        //alert("5 >>" + targetImage.src);
-
-		        //document.writeln(localImagePath);
-		        //document.writeln(uploadImage.src);
-		        document.getElementById("image_preview_" + seq).src = uploadImage.src;
-		        
-
-		        //$('#image_preview_' + seq).attr('src', uploadImage.src);
-
-				alert("5 >>");
-
-				//$('#image_preview_' + seq).attr('src', input.value);
-
-
-
+	            document.getElementById("image_preview_" + seq).src = localImagePath;
  			} else {
 				if (input.files && input.files[0]) {
 			        var reader = new FileReader();
@@ -342,15 +304,9 @@
 					<li> 
 						<label><i class='icon-ok'></i> 사진</label>
 						<p>
-
 							<table>
 								<tr align='left'>
-									<td width='140'>
-
-
-									<img id='preview_test' border='0' src='../images/camera.png' style='width:95px;' />
-									<br/>	
-													<img id='image_preview_1' name='image_preview_1' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='140'><img id='image_preview_1' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
 									<td width='140'><img id='image_preview_2' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
 									<td width='140'><img id='image_preview_3' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
 									<td width='140'><img id='image_preview_4' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
