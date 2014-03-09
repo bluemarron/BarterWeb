@@ -235,11 +235,14 @@
 		        alert("4 >>" + uploadImage.src);
 
 		        // 이미지 교체
-		        var targetImage = document.getElementById('image_preview_' + seq);
-		        targetImage.src = uploadImage.src;
+		        //var targetImage = document.getElementById('image_preview_' + seq);
+		       // targetImage.src = uploadImage.src;
 
-		        alert("5 >>" + targetImage.src);
+		        //alert("5 >>" + targetImage.src);
 
+				$('#image_preview_' + seq).attr('src', uploadImage.src);
+
+				alert("5 >>");
 ///////
 
 
