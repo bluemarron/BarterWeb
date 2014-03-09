@@ -22,6 +22,10 @@ Route::get('/', function() {
  	return View::make('index');
 });
 
+Route::get('/test', function() {
+ 	return View::make('test');
+});
+
 Route::get('/home/index', 'HomeController@index');
 
 Route::get('/member/login_regist_form', 'MemberController@loginAndRegistForm');
