@@ -195,7 +195,7 @@
 
 			if (ua.indexOf("MSIE") > -1) {
 				alert("source : " + input.value);
-				alert("indexof: " + source.indexOf("\\fakepath\\"));
+				alert("indexof: " + input.value.indexOf("\\fakepath\\"));
 
 ///////
 
