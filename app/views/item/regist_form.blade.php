@@ -192,7 +192,8 @@
 
 		function previewImage(input, seq) {
 			var ua = window.navigator.userAgent;
-
+			alert(ua);
+			
 			if (ua.indexOf("MSIE") > -1) {
 //				alert("source : " + input.value);
 //				alert("indexof: " + input.value.indexOf("\\fakepath\\"));
