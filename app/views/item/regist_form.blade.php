@@ -201,8 +201,11 @@
 		     	var source = input.value;
 
 	            if (source.indexOf("\\fakepath\\") < 0) {
+	            	alert("테스트-윈도우-1")
 	                localImagePath = source;
 	            } else {
+	            	alert("테스트-윈도우-2")
+
 	            	input.select();
 	                localImagePath = document.selection.createRange().text.toString();
 	                input.blur();
