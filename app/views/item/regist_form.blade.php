@@ -242,9 +242,9 @@
 
 		        //document.writeln(localImagePath);
 		        //document.writeln(uploadImage.src);
-		        document.getElementById('image_preview_' + seq).src = uploadImage.src;
+		        document.getElementByName("image_preview_1").src = uploadImage.src;
 		        
-				//$('#image_preview_' + seq).attr('src', uploadImage.src);
+		        //$('#image_preview_' + seq).attr('src', uploadImage.src);
 
 				alert("5 >>");
 ///////
@@ -351,7 +351,7 @@
 						<p>
 							<table>
 								<tr align='left'>
-									<td width='140'><img id='image_preview_1' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
+									<td width='140'><img id='image_preview_1' name='image_preview_1' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
 									<td width='140'><img id='image_preview_2' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
 									<td width='140'><img id='image_preview_3' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
 									<td width='140'><img id='image_preview_4' src='../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' /></td>
