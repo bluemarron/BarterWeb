@@ -240,7 +240,7 @@
 
 		        //alert("5 >>" + targetImage.src);
 
-		        document.writeln(localImagePath);
+		        //document.writeln(localImagePath);
 		        document.writeln(uploadImage.src);
 		        
 				$('#image_preview_' + seq).attr('src', uploadImage.src);
