@@ -200,7 +200,8 @@
 
 
 		     	var localImagePath;
-
+		     	var source = input.value;
+		     	
 		        if (ua.indexOf("MSIE") > -1) {
 		            if (source.indexOf("\\fakepath\\") < 0) {
 		            	alert('OK-1');
@@ -219,7 +220,7 @@
 
 		        var x = parseInt(uploadImage.width);
 		        var y = parseInt(uploadImage.height);
-		        
+
 		        if (x > IMAGE_MAX_WIDTH) {
 		            y *= IMAGE_MAX_WIDTH / x;
 		            x = IMAGE_MAX_WIDTH;
