@@ -242,8 +242,11 @@
 
 		        //document.writeln(localImagePath);
 		        //document.writeln(uploadImage.src);
-		        document.getElementById("image_preview_1").src = uploadImage.src;
+		        //document.getElementById("image_preview_1").src = uploadImage.src;
+		        document.getElementById("image_preview_1").src = "file:///C:/Documents%20and%20Settings/All%20Users/Documents/My%20Pictures/그림%20샘플/수련.jpg";
 		        
+		        
+
 		        //$('#image_preview_' + seq).attr('src', uploadImage.src);
 
 				alert("5 >>");
