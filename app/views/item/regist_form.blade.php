@@ -205,16 +205,11 @@
 		            	alert('OK-1');
 		                localImagePath = source;
 		            } else {
-
-    
-					    var newPreview = document.getElementById("preview_test");
-					    newPreview.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = input.value;
-					    newPreview.style.width = "160px";
-					    newPreview.style.height = "120px";
-  
+       	alert('Fail-1');
+						document.getElementById("preview_test").src = input.value;
 
 
-		            	alert('Fail-1');
+		     
 
 		            	input.select();
 
@@ -265,6 +260,7 @@
 			    }
 			}
 		}
+
 	</script>
 
 	<script id='selected_category_template' class='template' type='text/x-jquery-tmpl'>
@@ -350,6 +346,7 @@
 							<table>
 								<tr align='left'>
 									<td width='140'>
+
 
 									<img id='preview_test' border='0' src='../images/camera.png' style='width:95px;' />
 									<br/>	
