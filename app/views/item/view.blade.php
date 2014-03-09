@@ -200,14 +200,14 @@
 								<table>
 									<tr>
 										<td align='center' width='180' height='200'>
-											<a href='../item/view?item_id=<?=$my_items[$j]->id?>' target='_blank'>
+											<a href='../item/view?item_id=<?=$my_items[$j]->id?>'>
 											<img src='../<?=$my_items[$j]->upload_path?><?=$my_items[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
 											</a>
 										</td>
 									</tr>
 									<tr>
 										<td align='center'>
-											<a href='../item/view?item_id=<?=$my_items[$j]->id?>' target='_blank'>
+											<a href='../item/view?item_id=<?=$my_items[$j]->id?>'>
 											<?=$my_items[$j]->name?>
 											</a>
 											<br/><?=$my_items[$j]->address?>
@@ -246,14 +246,14 @@
 
 									<tr>
 										<td align='center' width='180' height='200'>
-											<a href='../item/view?item_id=<?=$trade_items[$j]->request_item_id?>' target='_blank'>
+											<a href='../item/view?item_id=<?=$trade_items[$j]->request_item_id?>'>
 											<img src='../<?=$trade_items[$j]->request_item_upload_path?><?=$trade_items[$j]->request_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
 											</a>
 										</td>
 									</tr>
 									<tr>
 										<td align='center'>
-											<a href='../item/view?item_id=<?=$trade_items[$j]->request_item_id?>' target='_blank'>
+											<a href='../item/view?item_id=<?=$trade_items[$j]->request_item_id?>'>
 											<?=$trade_items[$j]->request_item_name?>
 											</a>
 											<br/><?=$trade_items[$j]->request_item_address?>
