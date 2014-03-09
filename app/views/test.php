@@ -1,6 +1,6 @@
 <script>
 function preview(input) {
-	document.getElementById("test").src = document.getElementById("file_1").value;
+	document.getElementById("test").src = input.value;
 	
 }
 </script>
