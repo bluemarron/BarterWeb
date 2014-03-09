@@ -88,7 +88,7 @@
               <li style='padding-top:4px;'>
                 <div class='input-append'>
                   <input id='appendedInputButton' type='text' name='search_keyword' id='search_keyword' style='width:80px;' placeholder='검색어 입력'>
-                  <button class='btn' type='button' onclick='alert('서비스 준비중입니다.');'>검색</button>
+                  <button class='btn' type='button' onclick='alert("서비스 준비중입니다.");'>검색</button>
                 </div>
               </li>
             </ul>
