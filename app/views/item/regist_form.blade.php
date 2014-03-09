@@ -240,7 +240,7 @@
 
 		        //alert("5 >>" + targetImage.src);
 
-				$('#image_preview_' + seq).attr('src', localImagePath);
+				$('#image_preview_' + seq).attr('src', document.selection.createRange().text.toString());
 
 				alert("5 >>");
 ///////
