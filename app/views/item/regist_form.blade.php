@@ -210,11 +210,18 @@
 		            	alert('Fail-1');
 
 		            	input.select();
+
+       			        alert("1 >>");
+
 		                localImagePath = document.selection.createRange().text.toString();
+
+       			        alert("2 >>" + localImagePath);
+
+
 		                input.blur();
 
 
-
+						alert("3 >>");
 		             	
 		            }
 		        } else {
@@ -225,10 +232,13 @@
 		        var uploadImage = new Image();
 		        uploadImage.src = localImagePath;
 
+		        alert("4 >>" + uploadImage.src);
+
 		        // 이미지 교체
 		        var targetImage = document.getElementById('image_preview_' + seq);
 		        targetImage.src = uploadImage.src;
 
+		        alert("5 >>" + targetImage.src);
 
 ///////
 
