@@ -226,7 +226,7 @@
 		        uploadImage.src = localImagePath;
 
 		        // 이미지 교체
-		        var targetImage = document.getElementById(imageID);
+		        var targetImage = document.getElementById('image_preview_' + seq);
 		        targetImage.src = uploadImage.src;
 
 
