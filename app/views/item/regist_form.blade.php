@@ -195,7 +195,60 @@
 
 			if (ua.indexOf("MSIE") > -1) {
 				alert(input.value);
-				$('#image_preview_' + seq).attr('src', input.value);
+
+///////
+
+
+		     	var localImagePath;
+
+		        if (ua.indexOf("MSIE") > -1) {
+		            if (source.indexOf("\\fakepath\\") < 0) {
+		            	alert('OK-1');
+		                localImagePath = source;
+		            } else {
+		            	alert('Fail-1');
+		             	return;
+		            }
+		        } else {
+		        	alert('Fail-2');
+		        }
+		        
+		        // 이미지 사이즈 조정
+		        var uploadImage = new Image();
+		        uploadImage.src = localImagePath;
+
+		        var x = parseInt(uploadImage.width);
+		        var y = parseInt(uploadImage.height);
+		        
+		        if (x > IMAGE_MAX_WIDTH) {
+		            y *= IMAGE_MAX_WIDTH / x;
+		            x = IMAGE_MAX_WIDTH;
+		        }
+
+		        if ( y > IMAGE_MAX_HEIGHT ) {
+		            x *= IMAGE_MAX_HEIGHT / y;
+		            y = IMAGE_MAX_HEIGHT;
+		        }
+
+		        if( x == 0 || y == 0 ) {
+		            x = IMAGE_MAX_WIDTH;
+		            y = IMAGE_MAX_HEIGHT;
+		        }
+
+		        // 이미지 교체
+		        var targetImage = document.getElementById(imageID);
+		        targetImage.style.display = ( x < 1 || y < 1 ) ? 'none' : '';
+		        targetImage.src = uploadImage.src;
+
+
+///////
+
+
+
+
+
+
+				//$('#image_preview_' + seq).attr('src', input.value);
  			} else {
 				if (input.files && input.files[0]) {
 			        var reader = new FileReader();
