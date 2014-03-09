@@ -1,8 +1,7 @@
 <script>
 function preview(input) {
-	//document.getElementById("test").src = input.value;
-	document.getElementById("test").src = 	"http://img.naver.net/static/www/u/2013/0731/nmms_224940510.gif";
-
+	document.getElementById("test").src = document.getElementById("file_1").value;
+	
 }
 </script>
 <img id="test" src="">
