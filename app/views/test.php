@@ -20,8 +20,7 @@
 
                 var img = document.getElementById(previewId); //이미지가 뿌려질 곳 
 
-                img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"
-                        + src + "', sizingMethod='scale')"; 이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
+                img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + src + "', sizingMethod='scale')"; 
             } catch (e) {
                 if (!document.getElementById("ie_preview_error_" + previewId)) {
                     var info = document.createElement("<p>");
@@ -64,8 +63,7 @@
                     reader.readAsDataURL(file);
                 } else { // safari is not supported FileReader
                     //alert('not supported FileReader');
-                    if (!document.getElementById("sfr_preview_error_"
-                            + previewId)) {
+                    if (!document.getElementById("sfr_preview_error_" + previewId)) {
                         var info = document.createElement("p");
                         info.id = "sfr_preview_error_" + previewId;
                         info.innerHTML = "not supported FileReader";
