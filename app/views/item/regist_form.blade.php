@@ -201,14 +201,21 @@
 
 		     	var localImagePath;
 		     	var source = input.value;
-		     	
+
 		        if (ua.indexOf("MSIE") > -1) {
 		            if (source.indexOf("\\fakepath\\") < 0) {
 		            	alert('OK-1');
 		                localImagePath = source;
 		            } else {
 		            	alert('Fail-1');
-		             	return;
+
+		            	input.select();
+		                localImagePath = document.selection.createRange().text.toString();
+		                input.blur();
+
+
+
+		             	
 		            }
 		        } else {
 		        	alert('Fail-2');
