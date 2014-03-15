@@ -134,7 +134,7 @@
 							</tr>
 							<tr>
 								<td colspan='2'>
-									<h3><font color='red'><?=$item->name?></font></h3>
+									<h3><font color='blue'><?=$item->name?></font></h3>
 								</td>	
 							</tr>
 							<tr>

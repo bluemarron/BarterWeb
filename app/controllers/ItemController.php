@@ -150,7 +150,6 @@ class ItemController extends BaseController {
 		$member_id = Session::get('member_id');
 	 	$item_id = Input::get('item_id');
 
-		$path = '../item/view';
 
 		$query  = "SELECT code, label FROM categories				";
 		$query .= "WHERE LENGTH(code) = " . $this->CODE_LENGTH . "	";
@@ -208,9 +207,66 @@ class ItemController extends BaseController {
 			$query .= "LIMIT 100		 									  	";
 
 			$my_items = DB::select($query);
-		} else {
-
+		} 
+	
+		$_Trade = App::make('Trade');
+		$member_trade_count_by_status = $_Trade->getMemberTradeCountByStatus($item_member_id);
+ 
+		$_Item = App::make('Item');
+		$member_item_count = $_Item->getMemberItemCount($item_member_id);
+ 
+  		if($member_id == $item_member_id) {	// 내 상품 (TO-DO)
 			$query  = "SELECT t.id AS trade_id, t.status, t.updated_at, 															";
+			$query .= "	t.request_member_id, t.request_item_id, a.address AS target_item_address, a.name AS target_item_name, 	";
+			$query .= "	e.upload_path AS target_item_upload_path, e.physical_image_name AS target_item_physical_image_name,		";
+			$query .= "	t.target_member_id, t.target_item_id 																		";
+			$query .= "FROM trades AS t																								";
+			$query .= "INNER JOIN items AS a ON (t.target_item_id = a.id)															";
+			$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
+			$query .= "WHERE t.request_item_id = " . $item_id . "																	";
+			$query .= "AND t.status IN ('REQUEST', 'ACCEPT')																		";
+			$query .= "AND a.deleted_at IS NULL 																					";
+			$query .= "GROUP BY t.id																								";
+			$query .= "ORDER BY t.id DESC																							";
+			$query .= "LIMIT 100																									";
+
+			$trade_by_me_items = DB::select($query);
+
+ 			$query  = "SELECT t.id AS trade_id, t.status, t.updated_at, 															";
+			$query .= "	t.request_member_id, t.request_item_id, a.address AS request_item_address, a.name AS request_item_name, 	";
+			$query .= "	e.upload_path AS request_item_upload_path, e.physical_image_name AS request_item_physical_image_name,		";
+			$query .= "	t.target_member_id, t.target_item_id 																		";
+			$query .= "FROM trades AS t																								";
+			$query .= "INNER JOIN items AS a ON (t.request_item_id = a.id)															";
+			$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
+			$query .= "WHERE t.target_item_id = " . $item_id . "																	";
+			$query .= "AND t.status IN ('REQUEST', 'ACCEPT')																		";
+			$query .= "AND a.deleted_at IS NULL 																					";
+			$query .= "GROUP BY t.id																								";
+			$query .= "ORDER BY t.id DESC																							";
+			$query .= "LIMIT 100																									";
+
+			$trade_by_others_items = DB::select($query);
+
+	 		$path = '../item/view_mine';
+
+			$this->layout->path = $path;
+			$this->layout->content = View::make($path, 
+				array('path' => $path, 
+					  'root_categories' => $root_categories, 
+					  'categories' => $categories, 
+					  'item' => $item, 
+					  'item_images' => $item_images, 
+					  'item_member_id' => $item_member_id, 
+					  'my_items' => $my_items, 
+					  'trade_by_me_items' => $trade_by_me_items, 
+					  'trade_by_others_items' => $trade_by_others_items, 
+					  'category_code' => $category_code,
+					  'member_trade_count_by_status' => $member_trade_count_by_status,
+					  'member_item_count' => $member_item_count
+					  ));				
+		} else {	// 타 상품 또는 로그아웃
+ 			$query  = "SELECT t.id AS trade_id, t.status, t.updated_at, 															";
 			$query .= "	t.request_member_id, t.request_item_id, a.address AS request_item_address, a.name AS request_item_name, 	";
 			$query .= "	e.upload_path AS request_item_upload_path, e.physical_image_name AS request_item_physical_image_name,		";
 			$query .= "	t.target_member_id, t.target_item_id 																		";
@@ -225,27 +281,23 @@ class ItemController extends BaseController {
 			$query .= "LIMIT 100																									";
 
 			$trade_items = DB::select($query);
-		}
 
-		$_Trade = App::make('Trade');
-		$member_trade_count_by_status = $_Trade->getMemberTradeCountByStatus($item_member_id);
- 
-		$_Item = App::make('Item');
-		$member_item_count = $_Item->getMemberItemCount($item_member_id);
- 
-		$this->layout->path = $path;
-		$this->layout->content = View::make($path, 
-			array('path' => $path, 
-				  'root_categories' => $root_categories, 
-				  'categories' => $categories, 
-				  'item' => $item, 
-				  'item_images' => $item_images, 
-				  'item_member_id' => $item_member_id, 
-				  'my_items' => $my_items, 
-				  'trade_items' => $trade_items, 
-				  'category_code' => $category_code,
-				  'member_trade_count_by_status' => $member_trade_count_by_status,
-				  'member_item_count' => $member_item_count
-				  ));
+	 		$path = '../item/view_others';
+
+			$this->layout->path = $path;
+			$this->layout->content = View::make($path, 
+				array('path' => $path, 
+					  'root_categories' => $root_categories, 
+					  'categories' => $categories, 
+					  'item' => $item, 
+					  'item_images' => $item_images, 
+					  'item_member_id' => $item_member_id, 
+					  'my_items' => $my_items, 
+					  'trade_items' => $trade_items, 
+					  'category_code' => $category_code,
+					  'member_trade_count_by_status' => $member_trade_count_by_status,
+					  'member_item_count' => $member_item_count
+					  ));
+		}
 	}
 }

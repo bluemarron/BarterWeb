@@ -192,20 +192,16 @@
 
 		function previewImage(input, seq) {
 			var ua = window.navigator.userAgent;
-			alert(ua);
 			
 			if (ua.indexOf("MSIE") > -1) {
-//				alert("source : " + input.value);
-//				alert("indexof: " + input.value.indexOf("\\fakepath\\"));
-
 		     	var localImagePath;
 		     	var source = input.value;
 
 	            if (source.indexOf("\\fakepath\\") < 0) {
-	            	alert("테스트-윈도우-1")
+	            	//alert("정상작동 익스플로러")
 	                localImagePath = source;
 	            } else {
-	            	alert("테스트-윈도우-2")
+	            	//alert("익스플로러 8/9")
 
 	            	input.select();
 	                localImagePath = document.selection.createRange().text.toString();
