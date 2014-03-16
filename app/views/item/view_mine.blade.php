@@ -118,6 +118,11 @@
 									<br/><?=$trade_by_me_items[$j]->target_item_address?>
 								</td>
 							</tr>	
+							<tr>
+								<td align='center' colspan='2'>
+									<a href='#' onclick="cancelTrade('<?=$trade_by_me_items[$j]->trade_id?>');" class='btn btn-danger' style='width:78px;'>취소</a>
+								</td>	
+							</tr>	
 						</table>	
 					</td>
 		    		<?if($j % 4 == 3){?></tr><?}?>
@@ -203,17 +208,13 @@
 									</td>
 								</tr>
 
-								<?if($member_id != ''){?>
-									<tr>
-										<td align='center' colspan='2'>
-											<?if($trade_by_others_items[$j]->status == 'REQUEST'){?>
-												<a href='#' onclick="acceptTrade('<?=$trade_by_others_items[$j]->trade_id?>');" class='btn btn-primary' style='width:78px;'>선택</a>
-											<?} else if($trade_by_others_items[$j]->status == 'ACCEPT'){?>
-												<a href='#' onclick="cancelTrade('<?=$trade_by_others_items[$j]->trade_id?>');" class='btn btn-danger' style='width:78px;'>취소</a>
-											<?}?>	
-										</td>	
-									</tr>										
-								<?}?>
+								<tr>
+									<td align='center' colspan='2'>
+										<!-- a href='#' onclick="acceptTrade('<?=$trade_by_others_items[$j]->trade_id?>');" class='btn btn-primary' style='width:78px;'>선택</a -->
+										<a href='#' onclick="alert('준비중입니다.');" class='btn btn-primary' style='width:78px;'>선택</a>
+										<a href='#' onclick="cancelTrade('<?=$trade_by_others_items[$j]->trade_id?>');" class='btn btn-danger' style='width:78px;'>취소</a>
+									</td>	
+								</tr>										
 							</table>	
 						</td>
 						
