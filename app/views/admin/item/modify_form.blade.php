@@ -154,7 +154,7 @@
 			}
 		}
 
-		function regist() {
+		function modify() {
 			if(selectedCategories.keys().length == 0) {
 				alert('카테고리를 선택하신 후 [추가] 버튼을 클릭하세요.');
 				modify_form.category_level_1.focus();
@@ -181,10 +181,7 @@
 			<?for($i = 0; $i < sizeof($item_categories); $i++) {?>
 				selectedCategories.put('<?=$item_categories[$i]->code?>', '<?=$item_categories[$i]->full_label?>');
 				displaySelectedCategories();
-			<?}?>	
-
-				
-
+			<?}?>
 		});
 
 		function previewImage(input, seq) {
@@ -233,6 +230,7 @@
 
   	<form name='modify_form' id='modify_form' action='../../admin/item/modify' method='post' enctype='multipart/form-data'>
 	<input type='hidden' id='selected_category_code' name='selected_category_code'>
+	<input type='hidden' id='item_id' name='item_id' value='<?=$item->id?>'>
 
   	<div class='well'>
 	    <p>
@@ -284,7 +282,7 @@
 								<tr align='left'>
 									<?for($i = 1; $i <= 4; $i++) {?>
 										<td width='140'>
-											<?if(sizeof($item_images) >= $i) {?>
+											<?if($item_images[$i-1]->seq == $i) {?>
 												<img id='image_preview_<?=$i?>' src='../../<?=$item_images[$i-1]->upload_path?><?=$item_images[$i-1]->physical_image_name?>' border='0' align='absmiddle' style='width:95px;' />
 											<?}else{?>
 												<img id='image_preview_<?=$i?>' src='../../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' />
@@ -303,7 +301,7 @@
 								<tr align='left'>
 									<?for($i = 5; $i <= 8; $i++) {?>
 										<td width='140'>
-											<?if(sizeof($item_images) >= $i) {?>
+											<?if($item_images[$i-1]->seq == $i) {?>
 												<img id='image_preview_<?=$i?>' src='../../<?=$item_images[$i-1]->upload_path?><?=$item_images[$i-1]->physical_image_name?>' border='0' align='absmiddle' style='width:95px;' />
 											<?}else{?>
 												<img id='image_preview_<?=$i?>' src='../../images/camera.png' border='0' align='absmiddle' style='width:95px;opacity:0.4;filter:alpha(opacity=40);' />
@@ -324,15 +322,16 @@
 					</li>
  					<li> 
 						<label>첨부파일</label>
-
 						<table>
 							<?for($i = 1; $i <= 2; $i++){?>
 							<tr>
 								<td>
-									<?if(sizeof($item_files) >= $i) {?>
+									<?if($item_files[$i-1]->seq == $i) {?>
 										<input type='text' name='file_description_<?=$i?>' id='file_description_1' value='<?=$item_files[$i-1]->description?>' class='input-xlarge' placeholder='파일설명' /> 
 										&nbsp;&nbsp;
 				 						<input type='file' name='file_<?=$i?>' id='file_<?=$i?>' style='display:block;width:237px;' />
+				 						<br>
+				 						<a href='../../<?=$item_images[$i-1]->upload_path?><?=$item_images[$i-1]->physical_image_name?>'><?=$item_files[$i-1]->original_file_name?></a>
 				 					<?}else{?>
 										<input type='text' name='file_description_<?=$i?>' id='file_description_1' class='input-xlarge' placeholder='파일설명' /> 
 										&nbsp;&nbsp;
@@ -367,7 +366,7 @@
   	</div>  
 
   	<div align='center'>
-   		<a href='javascript:regist();' class='btn btn-primary' style='width:78px;'>상품 수정</a>
+   		<a href='javascript:modify();' class='btn btn-primary' style='width:78px;'>상품 수정</a>
 	</div>  
 
   	</form> 

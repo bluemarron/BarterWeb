@@ -96,7 +96,7 @@ return array(
 	|
 	*/
 
-	'cookie' => 'laravel_session',
+	'cookie' => 'laravel_session_4',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -107,7 +107,7 @@ return array(
 	| be regarded as available. Typically, this will be the root path of
 	| your application but you are free to change this when necessary.
 	|
-	*/
+	*/ 
 
 	'path' => '/',
 

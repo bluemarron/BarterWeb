@@ -107,6 +107,7 @@ class ItemController extends BaseController {
 			if($upload_success) {
 				$item_image = new ItemImage;
 				$item_image->item_id = $item->id;
+				$item_image->seq = $i;
 				$item_image->physical_image_name = $physical_image_name;
 				$item_image->original_image_name = $original_image_name;
 				$item_image->upload_path = $upload_image_path;
@@ -134,6 +135,7 @@ class ItemController extends BaseController {
 			if($upload_success) {
 				$item_file = new ItemFile;
 				$item_file->item_id = $item->id;
+				$item_file->seq = $i;
 				$item_file->physical_file_name = $physical_file_name;
 				$item_file->original_file_name = $original_file_name;
 				$item_file->upload_path = $upload_file_path;

@@ -64,9 +64,8 @@
 				<?for($j = 0; $j < sizeof($items); $j++) {?>
 		    	<tr align='center'>
 					<td align='center'>
-						<p>
-							<!--<a href='../../admin/item/modify_form?item_id=<?=$items[$j]->id?>' class='btn btn-warning' style='width:30px;'>수정</a>-->
-							<a href='#' onclick="alert('준비중입니다.');" class='btn btn-warning' style='width:30px;'>수정</a>
+						<p> 
+							<a href='../../admin/item/modify_form?item_id=<?=$items[$j]->id?>' class='btn btn-warning' style='width:30px;'>수정</a>
 							<a href='#' onclick="deleteItem('<?=$items[$j]->id?>');" class='btn btn-danger' style='width:30px;'>삭제</a>
 						</p>
 						<p>
