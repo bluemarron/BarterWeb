@@ -12,7 +12,7 @@
 				cache: false,
 				async: true,
 				success: function(response) {
-					alert('거래가 완료되었습니다.');
+					//alert('거래가 완료되었습니다.');
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');
 				}
@@ -28,7 +28,7 @@
 				cache: false,
 				async: true,
 				success: function(response) {
-					alert('거래가 취소되었습니다.');
+					//alert('거래가 취소되었습니다.');
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');
 				}

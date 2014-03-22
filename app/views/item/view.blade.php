@@ -12,7 +12,6 @@
 				cache: false,
 				async: true,
 				success: function(response) {
-					alert('거래를 신청하였습니다.');
 					window.location.reload(true);
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');
@@ -29,7 +28,6 @@
 				cache: false,
 				async: true,
 				success: function(response) {
-					alert('거래를 선택하였습니다.');
 					window.location.reload(true);
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');
@@ -46,7 +44,6 @@
 				cache: false,
 				async: true,
 				success: function(response) {
-					alert('거래를 취소하였습니다.');
 					window.location.reload(true);
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');
