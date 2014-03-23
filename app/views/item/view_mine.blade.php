@@ -135,7 +135,9 @@
 						<table>
 							<tr>
 								<td>
+									ss
 									<img src='../<?=$item->upload_path?><?=$item->physical_image_name?>' border='0' align='absmiddle' style='width:200px;' />
+									dd
 								</td>
 							</tr>
 						</table>
