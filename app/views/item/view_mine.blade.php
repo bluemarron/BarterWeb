@@ -134,7 +134,7 @@
 					<td align='left' width='220'>
 						<table>
 							<tr>
-								<td>
+								<td width="220">
 									&nbsp;
 									<img src='../<?=$item->upload_path?><?=$item->physical_image_name?>' border='0' align='absmiddle' style='width:200px;' />
 								</td>
