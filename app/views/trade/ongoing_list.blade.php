@@ -83,7 +83,12 @@
 		<?}?>
   	</div>
 	<div class='well'>
-	    <p>
+		<p>
+		<?if(sizeof($trades) == 0) {?>
+			<div align='center'>
+				현재 거래가 진행중인 상품이 없습니다.
+			</div>
+		<?} else {?>
 	    	<table>
 		    	<?for($j = 0; $j < sizeof($trades); $j++) {?>
 		    		<?if($j % 2 == 0){?><tr><?}?>
@@ -166,6 +171,9 @@
 													<a href='../item/view?item_id=<?=$trades[$j]->request_item_id?>&category_code=<?=$category_code?>'>
 													<?=$trades[$j]->request_item_name?>
 													</a>
+
+													<br/><i class='icon-user'></i> <span style='font-weight:bold;color:blue;'><?=$trades[$j]->request_member_id?></span>
+
 													<br/><?=$trades[$j]->request_item_address?>
 												</td>
 											</tr>	
@@ -176,15 +184,25 @@
 							<tr><td height='5' colspan='2'></td></tr>
 							<tr>
 								<td align='center' colspan='2'>
+									<a href='#' onclick="alert('준비중입니다.');" class='btn btn-primary' style='width:78px;'>거래완료</a>
+									<a href='#' onclick="alert('준비중입니다.');" class='btn btn-danger' style='width:78px;'>거래취소</a>
+									<!--									
 									<a href='#' onclick="completeTrade('<?=$trades[$j]->id?>');" class='btn btn-primary' style='width:78px;'>거래완료</a>
 									<a href='#' onclick="cancelTrade('<?=$trades[$j]->id?>');" class='btn btn-danger' style='width:78px;'>거래취소</a>
+									-->
 								</td>
 							</tr>				
 						</table>	
 					</td>
-		    		<?if($j % 2 == 1){?></tr><?}?>
+		    		<?if($j % 2 == 1){?>
+		    			</tr>
+						<tr>
+							<td align='center' colspan='2' height='10'></td>
+						</tr>
+		    		<?}?>
 				<?}?>
 			</table>
+		<?}?>	
 		<p>
   	</div>
 	

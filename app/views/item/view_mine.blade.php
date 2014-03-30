@@ -28,6 +28,7 @@
 				cache: false,
 				async: true,
 				success: function(response) {
+					alert('거래진행 메뉴에서 선택하신 상품을 확인하실 수 있습니다.');
 					window.location.reload(true);
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');
@@ -248,8 +249,7 @@
 
 								<tr>
 									<td align='center' colspan='2'>
-										<!-- a href='#' onclick="acceptTrade('<?=$trade_by_others_items[$j]->trade_id?>');" class='btn btn-primary' style='width:78px;'>선택</a -->
-										<a href='#' onclick="alert('준비중입니다.');" class='btn btn-primary' style='width:78px;'>선택</a>
+										<a href='#' onclick="acceptTrade('<?=$trade_by_others_items[$j]->trade_id?>');" class='btn btn-primary' style='width:78px;'>선택</a>
 										<a href='#' onclick="cancelTrade('<?=$trade_by_others_items[$j]->trade_id?>');" class='btn btn-danger' style='width:78px;'>취소</a>
 									</td>	
 								</tr>										

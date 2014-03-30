@@ -226,7 +226,7 @@ class ItemController extends BaseController {
 			$query .= "INNER JOIN items AS a ON (t.target_item_id = a.id)															";
 			$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
 			$query .= "WHERE t.request_item_id = " . $item_id . "																	";
-			$query .= "AND t.status IN ('REQUEST', 'ACCEPT')																		";
+			$query .= "AND t.status IN ('REQUEST')																					";
 			$query .= "AND a.deleted_at IS NULL 																					";
 			$query .= "GROUP BY t.id																								";
 			$query .= "ORDER BY t.id DESC																							";
@@ -242,7 +242,7 @@ class ItemController extends BaseController {
 			$query .= "INNER JOIN items AS a ON (t.request_item_id = a.id)															";
 			$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
 			$query .= "WHERE t.target_item_id = " . $item_id . "																	";
-			$query .= "AND t.status IN ('REQUEST', 'ACCEPT')																		";
+			$query .= "AND t.status IN ('REQUEST')																					";
 			$query .= "AND a.deleted_at IS NULL 																					";
 			$query .= "GROUP BY t.id																								";
 			$query .= "ORDER BY t.id DESC																							";
@@ -276,7 +276,7 @@ class ItemController extends BaseController {
 			$query .= "INNER JOIN items AS a ON (t.request_item_id = a.id)															";
 			$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
 			$query .= "WHERE t.target_item_id = " . $item_id . "																	";
-			$query .= "AND t.status IN ('REQUEST', 'ACCEPT')																		";
+			$query .= "AND t.status IN ('REQUEST')																		";
 			$query .= "AND a.deleted_at IS NULL 																					";
 			$query .= "GROUP BY t.id																								";
 			$query .= "ORDER BY t.id DESC																							";

@@ -169,7 +169,7 @@ class TradeController extends BaseController {
 				$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
 				$query .= "INNER JOIN item_images AS f ON (b.id = f.item_id)															";
 				$query .= "WHERE (t.request_member_id = '" . $member_id . "' OR t.target_member_id = '" . $member_id . "')				";
-				$query .= "AND t.status = 'REQUEST'																						";
+				$query .= "AND t.status = 'ACCEPT'																						";
 				$query .= "AND (c.category_code LIKE '" . $category_code . "%' OR d.category_code LIKE '" . $category_code . "%')		";
 				$query .= "AND a.deleted_at IS NULL AND b.deleted_at IS NULL															";
 				$query .= "GROUP BY t.id																								";
@@ -189,7 +189,7 @@ class TradeController extends BaseController {
 				$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
 				$query .= "INNER JOIN item_images AS f ON (b.id = f.item_id)															";
 				$query .= "WHERE (t.request_member_id = '" . $member_id . "' OR t.target_member_id = '" . $member_id . "')				";
-				$query .= "AND t.status = 'REQUEST'																						";
+				$query .= "AND t.status = 'ACCEPT'																						";
 				$query .= "AND a.deleted_at IS NULL AND b.deleted_at IS NULL															";
 				$query .= "GROUP BY t.id																								";
 				$query .= "ORDER BY t.id DESC																							";
