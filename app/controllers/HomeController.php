@@ -64,7 +64,7 @@ class HomeController extends BaseController {
 				$query .= "WHERE c.category_code LIKE '" . $category_code . "%'									";
 				$query .= "AND i.deleted_at IS NULL																";
 				$query .= "GROUP BY i.id																		";
-				$query .= "ORDER BY i.id DESC 									  								";
+				$query .= "ORDER BY count(t.id) DESC, i.id DESC					  								";
 				$query .= "LIMIT 100		 									  								";
 			} else {
 				$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
@@ -86,7 +86,7 @@ class HomeController extends BaseController {
 				$query .= "LEFT OUTER JOIN trades AS t ON (i.id = t.target_item_id AND t.status = 'REQUEST') 	";
 				$query .= "WHERE i.deleted_at IS NULL															";
 				$query .= "GROUP BY i.id																		";
-				$query .= "ORDER BY count(t.id) DESC 									  						";
+				$query .= "ORDER BY count(t.id) DESC, i.id DESC							  						";
 				$query .= "LIMIT 100		 									  								";
 			} else {
 	 			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
