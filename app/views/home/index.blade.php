@@ -27,7 +27,7 @@
 	    <p>
 			<i class='icon-plus'></i> 카테고리 : 
 			<?for($j = 0; $j < sizeof($root_categories); $j++) {?>
-				<i class='icon-th-large'></i> <a href='../home/index?category_code=<?=$root_categories[$j]->code?>'><?=$root_categories[$j]->label?></a>
+				<i class='icon-th-large'></i> <a href='../home/index?category_code=<?=$root_categories[$j]->code?>&order_type=<?=$order_type?>'><?=$root_categories[$j]->label?></a>
 			<?}?>
 		<p>
 		<?if(sizeof($categories) > 0) {?>		
@@ -35,7 +35,7 @@
 			<i class='icon-plus'></i> 현재위치 : 
 			<a href='../home/index/'>Home</a>
 			<?for($i = 0; $i < sizeof($categories); $i++) {?>
-				>> <a href='../home/index?category_code=<?=$categories[$i]["code"]?>'><?=$categories[$i]['label']?></a>
+				>> <a href='../home/index?category_code=<?=$categories[$i]["code"]?>&order_type=<?=$order_type?>'><?=$categories[$i]['label']?></a>
 			<?}?>
 		<p>
 		<?}?>
@@ -43,7 +43,7 @@
 	    <p>
 			<?for($i = 0; $i < sizeof($child_categories); $i++) {?>
 				<i class='icon-th'></i>
-				<a href='../home/index?category_code=<?=$child_categories[$i]->code?>'><?=$child_categories[$i]->label?></a></a>
+				<a href='../home/index?category_code=<?=$child_categories[$i]->code?>&order_type=<?=$order_type?>'><?=$child_categories[$i]->label?></a></a>
 			<?}?>
 		<p>
 		<?}?>
@@ -56,8 +56,8 @@
 						<i class='icon-ok'></i> 총 <strong><?=sizeof($items)?></strong>개의 상품이 진열되어 있습니다.
 					</td>
 					<td align='right'>
-						<i class='icon-calendar'></i> <a>등록순</a>
-						<i class='icon-star-empty'></i> <a>인기순</a>
+						<i class='icon-calendar'></i> <a href='../home/index?category_code=<?=$category_code?>&order_type=date' <?if($order_type != 'popularity') {?>style='font-weight:bold;color:red;'<?}?>>등록순</a>
+						<i class='icon-star-empty'></i> <a href='../home/index?category_code=<?=$category_code?>&order_type=popularity' <?if($order_type == 'popularity') {?>style='font-weight:bold;color:red;'<?}?>>인기순</a>
 					</td>
 				</tr>
 			</table>			

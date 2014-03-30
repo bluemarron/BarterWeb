@@ -19,6 +19,8 @@ class HomeController extends BaseController {
 		$items = array();
 
 		$category_code = Input::get('category_code');
+		$order_type = Input::get('order_type');
+
 		$category_full_label = '';
 
 		if($category_code != '') {
@@ -54,24 +56,47 @@ class HomeController extends BaseController {
 				array_push($categories, $category);
 			}
 
-			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
-			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
-			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
-			$query .= "WHERE c.category_code LIKE '" . $category_code . "%'		";
-			$query .= "AND i.deleted_at IS NULL									";
-			$query .= "GROUP BY i.id											";
-			$query .= "ORDER BY i.id DESC 									  	";
-			$query .= "LIMIT 100		 									  	";
+			if($order_type == 'popularity') {
+				$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+				$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 								";
+				$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 									";
+				$query .= "LEFT OUTER JOIN trades AS t ON (i.id = t.target_item_id AND t.status = 'REQUEST') 	";
+				$query .= "WHERE c.category_code LIKE '" . $category_code . "%'									";
+				$query .= "AND i.deleted_at IS NULL																";
+				$query .= "GROUP BY i.id																		";
+				$query .= "ORDER BY i.id DESC 									  								";
+				$query .= "LIMIT 100		 									  								";
+			} else {
+				$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+				$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
+				$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
+				$query .= "WHERE c.category_code LIKE '" . $category_code . "%'		";
+				$query .= "AND i.deleted_at IS NULL									";
+				$query .= "GROUP BY i.id											";
+				$query .= "ORDER BY i.id DESC 									  	";
+				$query .= "LIMIT 100		 									  	";
+			}
 
 			$items = DB::select($query);
 		} else {
-			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
-			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
-			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
-			$query .= "WHERE i.deleted_at IS NULL								";
-			$query .= "GROUP BY i.id											";
-			$query .= "ORDER BY i.id DESC 									  	";
-			$query .= "LIMIT 100		 									  	";
+			if($order_type == 'popularity') {
+				$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+				$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 								";
+				$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 									";
+				$query .= "LEFT OUTER JOIN trades AS t ON (i.id = t.target_item_id AND t.status = 'REQUEST') 	";
+				$query .= "WHERE i.deleted_at IS NULL															";
+				$query .= "GROUP BY i.id																		";
+				$query .= "ORDER BY count(t.id) DESC 									  						";
+				$query .= "LIMIT 100		 									  								";
+			} else {
+	 			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+				$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
+				$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
+				$query .= "WHERE i.deleted_at IS NULL								";
+				$query .= "GROUP BY i.id											";
+				$query .= "ORDER BY i.id DESC 									  	";
+				$query .= "LIMIT 100		 									  	";
+			}
 
 			$items = DB::select($query);
 		}
@@ -81,10 +106,8 @@ class HomeController extends BaseController {
 		$this->layout->categories = $categories;
 		$this->layout->child_categories = $child_categories;
 
-		$this->layout->category_code = $category_code;
-
 		$this->layout->content = View::make($path, array('path' => $path, 'root_categories' => $root_categories, 'categories' => $categories, 
-			'child_categories' => $child_categories, 'items' => $items, 'category_code' => $category_code));
+			'child_categories' => $child_categories, 'items' => $items, 'category_code' => $category_code, 'order_type' => $order_type));
 	} 
 
 	/*
