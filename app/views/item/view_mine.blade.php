@@ -116,43 +116,48 @@
 		<p>
 		<?}?>
 	</div>
-	<div class='well'>
-		<p><i class='icon-asterisk'></i>
-			아래 상품은 내가 신청한 물품입니다. 연락이 올때가지 기다리셔야 됩니다.
-		</p>		
-		<p>
-	    	<table>
-		    	<?for($j = 0; $j < sizeof($trade_by_me_items); $j++) {?>
-		    		<?if($j % 4 == 0){?><tr><?}?>
-					<td align='center'>
-						<table>
-							<tr>
-								<td align='center' width='180' height='200'>
-									<a href='../item/view?item_id=<?=$trade_by_me_items[$j]->target_item_id?>&category_code=<?=$category_code?>'>
-									<img src='../<?=$trade_by_me_items[$j]->target_item_upload_path?><?=$trade_by_me_items[$j]->target_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td align='center'>
-									<a href='../item/view?item_id=<?=$trade_by_me_items[$j]->target_item_id?>&category_code=<?=$category_code?>'>
-									<?=$trade_by_me_items[$j]->target_item_name?>
-									</a>
-									<br/><?=$trade_by_me_items[$j]->target_item_address?>
-								</td>
-							</tr>	
-							<tr>
-								<td align='center' colspan='2'>
-									<a href='#' onclick="cancelTrade('<?=$trade_by_me_items[$j]->trade_id?>');" class='btn btn-danger' style='width:78px;'>취소</a>
-								</td>	
-							</tr>	
-						</table>	
-					</td>
-		    		<?if($j % 4 == 3){?></tr><?}?>
-				<?}?>
-			</table>
-		<p>
-	</div>
+	<?if(sizeof($trade_by_me_items) > 0) {?>
+		<div class='well'>
+			<p>
+		    	<table>
+			    	<?for($j = 0; $j < sizeof($trade_by_me_items); $j++) {?>
+			    		<?if($j % 4 == 0){?><tr><?}?>
+						<td align='center'>
+							<table>
+								<tr>
+									<td align='center' width='180' height='200'>
+										<a href='../item/view?item_id=<?=$trade_by_me_items[$j]->target_item_id?>&category_code=<?=$category_code?>'>
+										<img src='../<?=$trade_by_me_items[$j]->target_item_upload_path?><?=$trade_by_me_items[$j]->target_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
+										</a>
+									</td>
+								</tr>
+								<tr>
+									<td align='center'>
+										<a href='../item/view?item_id=<?=$trade_by_me_items[$j]->target_item_id?>&category_code=<?=$category_code?>'>
+										<?=$trade_by_me_items[$j]->target_item_name?>
+										</a>
+										<br/><?=$trade_by_me_items[$j]->target_item_address?>
+									</td>
+								</tr>	
+								<tr>
+									<td align='center' colspan='2'>
+										<a href='#' onclick="cancelTrade('<?=$trade_by_me_items[$j]->trade_id?>');" class='btn btn-danger' style='width:78px;'>취소</a>
+									</td>	
+								</tr>	
+							</table>	
+						</td>
+			    		<?if($j % 4 == 3){?></tr><?}?>
+					<?}?>
+				</table>
+			</p>
+			<p style='height:5px;'>&nbsp;</p>	
+			<p>
+				<div align='center'>
+					<i class='icon-asterisk'></i> 위 상품은 연락이 올때까지 기다리셔야 합니다.</a>
+				</div>
+			</p>
+		</div>
+	<?}?>
 	<div class='well'>
 	    <p>
 	    	<table width='100%' align='center'>
@@ -212,8 +217,10 @@
 	if(sizeof($trade_by_others_items) > 0) {
 	?>
 		<div class='well'>
-			<p><i class='icon-asterisk'></i>
-				아래 상품은 거래 신청 물품입니다. 선택하신 후 연락하세요.
+			<p>
+				<div align='center'>
+					<i class='icon-asterisk'></i> 아래 상품은 거래 신청 물품입니다. 선택하신 후 꼭 연락하셔야 됩니다.
+				</div>	
 			</p>
 		    <p>
 				<table>
