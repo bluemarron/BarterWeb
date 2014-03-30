@@ -196,7 +196,7 @@
 							</tr>							
 							<tr>
 								<td align='left' colspan='2'>
-									<a href='#' onclick="alert('준비중입니다.');" class='btn btn-danger' style='width:30px;'>삭제</a>
+									<a href='#' onclick="deleteItem('<?=$item->id?>');" class='btn btn-danger' style='width:30px;'>삭제</a>
 									(하단 상품을 모두 취소한 후에만 삭제하실 수 있습니다.)
 								</td>	
 							</tr>							
