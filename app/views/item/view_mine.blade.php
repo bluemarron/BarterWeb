@@ -50,6 +50,32 @@
 				}
 			});	
 		}
+
+		function modifyItem(item_id) { 
+			var size_of_trade_by_me_items = <?=sizeof($trade_by_me_items)?>;
+			var size_of_trade_by_others_items = <?=sizeof($trade_by_others_items)?>;
+
+			if(size_of_trade_by_me_items > 0 || size_of_trade_by_others_items > 0) {
+				alert('상단/하단 상품을 모두 취소한 이후에만 수정하실 수 있습니다.');
+				return;
+			}
+
+			alert('준비중입니다.');
+		}
+
+		function deleteItem(item_id) { 
+			var size_of_trade_by_others_items = <?=sizeof($trade_by_others_items)?>;
+
+			if(size_of_trade_by_others_items > 0) {
+				alert('하단 상품을 모두 취소한 이후에만 삭제하실 수 있습니다.');
+				return;
+			}
+
+			if(!confirm('선택하신 상품을 삭제하시겠습니까?')) 
+			 	return;
+
+			alert('준비중입니다.');
+		}
 	</script>
 
 	<style> 
@@ -164,10 +190,17 @@
 							</tr>	
 							<tr>
 								<td align='left' colspan='2'>
-									<a href='#' onclick="alert('준비중입니다.');" class='btn btn-warning' style='width:30px;'>수정</a>
-									<a href='#' onclick="alert('준비중입니다.');" class='btn btn-danger' style='width:30px;'>삭제</a>
+									<a href='#' onclick="modifyItem('<?=$item->id?>');" class='btn btn-warning' style='width:30px;'>수정</a>
+									(상단/하단 상품을 모두 취소한 후에만 수정하실 수 있습니다.)
 								</td>	
 							</tr>							
+							<tr>
+								<td align='left' colspan='2'>
+									<a href='#' onclick="alert('준비중입니다.');" class='btn btn-danger' style='width:30px;'>삭제</a>
+									(하단 상품을 모두 취소한 후에만 삭제하실 수 있습니다.)
+								</td>	
+							</tr>							
+							
 						</table>	
 					</td>
 				</tr>	
