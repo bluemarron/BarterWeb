@@ -33,7 +33,7 @@
 		<?if(sizeof($categories) > 0) {?>		
 	    <p>
 			<i class='icon-plus'></i> 현재위치 : 
-			<a href='../home/index/'>Home</a>
+			<a href='../home/index'>Home</a>
 			<?for($i = 0; $i < sizeof($categories); $i++) {?>
 				>> <a href='../home/index?category_code=<?=$categories[$i]["code"]?>&order_type=<?=$order_type?>'><?=$categories[$i]['label']?></a>
 			<?}?>
