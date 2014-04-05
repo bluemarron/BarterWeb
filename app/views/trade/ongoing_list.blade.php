@@ -29,7 +29,8 @@
 				cache: false,
 				async: true,
 				success: function(response) {
-					//alert('거래가 취소되었습니다.');
+					alert('거래취소 메뉴에서 선택하신 상품을 확인하실 수 있습니다.');
+					window.location.reload(true);
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');
 				}
@@ -148,10 +149,7 @@
 								<tr>
 									<td align='center' colspan='3'>
 										<a href='#' onclick="completeTrade('<?=$trades[$j]->id?>');" class='btn btn-primary' style='width:78px;'>거래완료</a>
-										<a href='#' onclick="alert('준비중입니다.');" class='btn btn-danger' style='width:78px;'>거래취소</a>
-										<!--									
 										<a href='#' onclick="cancelTrade('<?=$trades[$j]->id?>');" class='btn btn-danger' style='width:78px;'>거래취소</a>
-										-->
 									</td>
 								</tr>
 							<?}?>	
