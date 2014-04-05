@@ -56,90 +56,53 @@
 					<td align='center'> 
 						<table>
 							<tr>
-								<td align='center' colspan='2'>거래취소 #<?=$j+1?></td>
+								<td align='center' colspan='3'>거래취소 #<?=$j+1?></td>
 							</tr>
 							<tr>
-								<?if($member_id == $trades[$j]->request_member_id){?>
-									<td>
-										<table>
-											<tr>
-												<td align='center' width='180' height='200'>
-													<a href='../item/view?item_id=<?=$trades[$j]->request_item_id?>&category_code=<?=$category_code?>'>
-													<img src='../<?=$trades[$j]->request_item_upload_path?><?=$trades[$j]->request_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
-													</a>
-												</td>
-											</tr>
-											<tr>
-												<td align='center'>
-													<a href='../item/view?item_id=<?=$trades[$j]->request_item_id?>&category_code=<?=$category_code?>'>
-													<?=$trades[$j]->request_item_name?>
-													</a>
-													<br/><?=$trades[$j]->request_item_address?>
-												</td>
-											</tr>	
-										</table>
-									</td>
-									<td>
-										<table>
-											<tr>
-												<td align='center' width='180' height='200'>
-													<a href='../item/view?item_id=<?=$trades[$j]->target_item_id?>&category_code=<?=$category_code?>'>
-													<img src='../<?=$trades[$j]->target_item_upload_path?><?=$trades[$j]->target_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
-													</a>
-												</td>
-											</tr>
-											<tr>
-												<td align='center'>
-													<a href='../item/view?item_id=<?=$trades[$j]->target_item_id?>&category_code=<?=$category_code?>'>
-													<?=$trades[$j]->target_item_name?>
-													</a>
-													<br/><?=$trades[$j]->target_item_address?>
-												</td>
-											</tr>	
-										</table>
-									</td>
-								<?} else {?>
-									<td>
-										<table>
-											<tr>
-												<td align='center' width='180' height='200'>
-													<a href='../item/view?item_id=<?=$trades[$j]->target_item_id?>&category_code=<?=$category_code?>'>
-													<img src='../<?=$trades[$j]->target_item_upload_path?><?=$trades[$j]->target_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
-													</a>
-												</td>
-											</tr>
-											<tr>
-												<td align='center'>
-													<a href='../item/view?item_id=<?=$trades[$j]->target_item_id?>&category_code=<?=$category_code?>'>
-													<?=$trades[$j]->target_item_name?>
-													</a>
-													<br/><?=$trades[$j]->target_item_address?>
-												</td>
-											</tr>	
-										</table>
-									</td>								
-									<td>
-										<table>
-											<tr>
-												<td align='center' width='180' height='200'>
-													<a href='../item/view?item_id=<?=$trades[$j]->request_item_id?>&category_code=<?=$category_code?>'>
-													<img src='../<?=$trades[$j]->request_item_upload_path?><?=$trades[$j]->request_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
-													</a>
-												</td>
-											</tr>
-											<tr>
-												<td align='center'>
-													<a href='../item/view?item_id=<?=$trades[$j]->request_item_id?>&category_code=<?=$category_code?>'>
-													<?=$trades[$j]->request_item_name?>
-													</a>
-													<br/><?=$trades[$j]->request_item_address?>
-												</td>
-											</tr>	
-										</table>
-									</td>
-								<?}?>						
+								<td>
+									<table>
+										<tr>
+											<td align='center' width='180' height='200'>
+												<a href='../item/view?item_id=<?=$trades[$j]->request_item_id?>&category_code=<?=$category_code?>'>
+												<img src='../<?=$trades[$j]->request_item_upload_path?><?=$trades[$j]->request_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td align='center'>
+												<a href='../item/view?item_id=<?=$trades[$j]->request_item_id?>&category_code=<?=$category_code?>'>
+												<?=$trades[$j]->request_item_name?>
+												</a>
+												<br/><i class='icon-user'></i> <span style='font-weight:bold;color:blue;'><?=$trades[$j]->request_member_id?></span>
+												<br/><?=$trades[$j]->request_item_address?>
+											</td>
+										</tr>	
+									</table>
+								</td>
+								<td>
+									<img src='../images/right_arrow.png' border='0' align='absmiddle' style='padding-bottom:55px;'>
+								</td>									
+								<td>
+									<table>
+										<tr>
+											<td align='center' width='180' height='200'>
+												<a href='../item/view?item_id=<?=$trades[$j]->target_item_id?>&category_code=<?=$category_code?>'>
+												<img src='../<?=$trades[$j]->target_item_upload_path?><?=$trades[$j]->target_item_physical_image_name?>' border='0' align='absmiddle' style='width:150px;' />									
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td align='center'>
+												<a href='../item/view?item_id=<?=$trades[$j]->target_item_id?>&category_code=<?=$category_code?>'>
+												<?=$trades[$j]->target_item_name?>
+												</a>
+												<br/><i class='icon-user'></i> <span style='font-weight:bold;color:blue;'><?=$trades[$j]->target_member_id?></span>
+												<br/><?=$trades[$j]->target_item_address?>
+											</td>
+										</tr>	
+									</table>
+								</td>		
 							</tr>
-							
 						</table>	
 					</td>
 		    		<?if($j % 2 == 1){?></tr><?}?>
