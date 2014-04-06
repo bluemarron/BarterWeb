@@ -197,7 +197,6 @@ class AdminItemController extends BaseController {
 		return Redirect::to('./admin/item/list_form');
 	}
 
-
 	public function delete() {
 		if(Request::ajax()) {
 		

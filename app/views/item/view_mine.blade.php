@@ -61,21 +61,34 @@
 				return;
 			}
 
-			alert('준비중입니다.');
+			location.href = '../item/modify_form?item_id='+item_id;
 		}
 
 		function deleteItem(item_id) { 
+			var size_of_trade_by_me_items = <?=sizeof($trade_by_me_items)?>;
 			var size_of_trade_by_others_items = <?=sizeof($trade_by_others_items)?>;
 
-			if(size_of_trade_by_others_items > 0) {
-				alert('하단 상품을 모두 취소한 이후에만 삭제하실 수 있습니다.');
+			if(size_of_trade_by_me_items > 0 || size_of_trade_by_others_items > 0) {
+				alert('상단/하단 상품을 모두 취소한 이후에만 삭제하실 수 있습니다.');
 				return;
 			}
 
 			if(!confirm('선택하신 상품을 삭제하시겠습니까?')) 
 			 	return;
 
-			alert('준비중입니다.');
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '../item/delete',
+				data: {'item_id':item_id},
+				cache: false,
+				async: true,
+				success: function(response) {
+					location.href = '../home/index';
+				}, failure: function(response) {
+					alert('일시적인 시스템 오류가 발생하였습니다.');
+				}
+			});	
 		}
 	</script>
 

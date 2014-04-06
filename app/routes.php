@@ -46,6 +46,12 @@ Route::get('/item/view', 'ItemController@view');
 
 Route::post('/item/regist', 'ItemController@regist');
 
+Route::get('/item/modify_form', 'ItemController@modifyForm');
+
+Route::post('/item/modify', 'ItemController@modify');
+
+Route::post('/item/delete', 'ItemController@delete');
+
 Route::post('/category/get_child', 'CategoryController@getChild');
 
 Route::post('/category/get_full_label', 'CategoryController@getFullLabel');
