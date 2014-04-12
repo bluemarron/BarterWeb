@@ -117,10 +117,15 @@
 
 						for(var i = 0; i < response.length; i++)
 							options += '<option value="' + response[i].code + '">' + response[i].label + '</option>';
-						
+
+						// alert(options);
+
 						$('#category_level_' + category_child_level).empty();
-						$('#category_level_' + category_child_level).remove();
+						// $('#category_level_' + category_child_level).remove();
 						$('#category_level_' + category_child_level).html(options);
+
+						alert($('#category_level_' + category_child_level).text());
+						
 						$('#category_level_' + category_child_level).attr("style", "display:inline");
 					}
 				}, failure: function(response) {
