@@ -372,8 +372,4 @@
 	</div>  
 
   	</form> 
-
-  	<script>
-  		renderCategories('', 'Y');
-  	</script>
 @stop      
