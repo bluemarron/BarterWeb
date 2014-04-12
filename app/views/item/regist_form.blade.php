@@ -82,8 +82,8 @@
 
 			var category_child_level = Number(category_level) + 1;
 
-			// for(var i = category_child_level; i <= 20; i++)
-			// 	$('#category_level_' + i).attr("style", "display:none");
+			for(var i = category_child_level; i <= 20; i++)
+				$('#category_level_' + i).attr("style", "display:none");
 
 			if(code == '')
 				return;
