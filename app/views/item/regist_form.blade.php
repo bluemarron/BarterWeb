@@ -123,10 +123,10 @@
 						 $('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
 						// $('#category_level_' + category_child_level).attr("style", "display:inline");
 
-						for(var i = category_child_level; i <= 20; i++)
-							$('#category_level_' + i).attr("style", "display:none");
+						// for(var i = category_child_level; i <= 20; i++)
+						// 	$('#category_level_' + i).attr("style", "display:none");
 
-						 $('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
+						//  $('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
 
 					}
 				}, failure: function(response) {
@@ -134,8 +134,8 @@
 				}
 			});
 
-			for(var i = category_child_level; i <= 20; i++)
-				$('#category_level_' + i).attr("style", "display:none");
+			// for(var i = category_child_level; i <= 20; i++)
+			// 	$('#category_level_' + i).attr("style", "display:none");
 		}
 
 		function appendCategory() {
