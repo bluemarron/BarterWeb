@@ -119,7 +119,7 @@
 							options += '<option value="' + response[i].code + '">' + response[i].label + '</option>';
 						
 						$('#category_level_' + category_child_level).html(options);
-						$('#category_level_' + category_child_level).attr("style", "display:inline");
+						$('#category_level_' + category_child_level).attr("style", "display:block");
 					}
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');					
