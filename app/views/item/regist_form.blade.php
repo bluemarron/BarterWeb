@@ -103,7 +103,7 @@
 						$('#category_level_' + category_child_level).append('<option value="">-- ' + category_child_level + '차 분류 --</option>');
 
 						for(var i = 0; i < response.length; i++) {
-							// alert("response[i].code: " +  response[i].code + ", response[i].label: " + response[i].label);
+							alert("response[i].code: " +  response[i].code + ", response[i].label: " + response[i].label);
 							$('#category_level_' + category_child_level).append('<option value="' + response[i].code + '">' + response[i].label + '</option>');
 						}
 
