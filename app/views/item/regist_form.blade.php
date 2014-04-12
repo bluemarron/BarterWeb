@@ -265,7 +265,7 @@
   	<div class='well'>
 	    <p>
 			<fieldset>
-				<legend><img src='../images/check_ok.png' border='0' align='absmiddle' width='14'> 상품 기본정보</legend> 
+				<legend><img src='../images/check_ok.png' border='0' align='absmiddle' style='width:14px;'> 상품 기본정보</legend> 
 				(원하는 진열 카테고리를 선택하세요. 중복 선택이 가능합니다.)<br><br>
 
 				<ul id='selected_categories'></ul>
