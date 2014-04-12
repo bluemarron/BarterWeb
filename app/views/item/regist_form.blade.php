@@ -82,8 +82,10 @@
 
 			var category_child_level = Number(category_level) + 1;
 
-			for(var i = category_child_level + 1; i <= 20; i++)
+			for(var i = category_child_level + 1; i <= 20; i++) {
+				$('#category_level_' + i).empty();
 				$('#category_level_' + i).attr("style", "display:none");
+			}
 
 			if(code == '')
 				return;
@@ -118,8 +120,10 @@
 
 					 	$('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
 					} else {
-						for(var i = category_child_level; i <= 20; i++)
+						for(var i = category_child_level; i <= 20; i++) {
+							$('#category_level_' + i).empty();
 							$('#category_level_' + i).attr("style", "display:none");
+						}
 					}
 
 				}, failure: function(response) {
