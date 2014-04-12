@@ -82,8 +82,8 @@
 
 			var category_child_level = Number(category_level) + 1;
 
-			for(var i = category_child_level; i <= 20; i++)
-				$('#category_level_' + i).attr("style", "display:none");
+			// for(var i = category_child_level; i <= 20; i++)
+			// 	$('#category_level_' + i).attr("style", "display:none");
 
 			if(code == '')
 				return;
@@ -123,12 +123,19 @@
 						 $('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
 						// $('#category_level_' + category_child_level).attr("style", "display:inline");
 
+						for(var i = category_child_level; i <= 20; i++)
+							$('#category_level_' + i).attr("style", "display:none");
+
+						 $('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
 
 					}
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');					
 				}
 			});
+
+			for(var i = category_child_level; i <= 20; i++)
+				$('#category_level_' + i).attr("style", "display:none");
 		}
 
 		function appendCategory() {
