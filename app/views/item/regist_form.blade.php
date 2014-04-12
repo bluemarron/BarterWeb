@@ -82,10 +82,8 @@
 
 			var category_child_level = Number(category_level) + 1;
 
-			for(var i = category_child_level + 1; i <= 20; i++) {
-				$('#category_level_' + i).empty();
-				$('#category_level_' + i).attr("style", "display:none");
-			}
+			for(var i = category_child_level + 1; i <= 20; i++) 						
+				$('#category_level_' + i).empty().attr("style", "display:none");
 
 			if(code == '')
 				return;
@@ -99,20 +97,6 @@
 				async: true,
 				success: function(response) {
 					if(response.length > 0) {
-						/*
-						$('#category_level_' + category_child_level).empty();
-						$('#category_level_' + category_child_level).append('<option value="">-- ' + category_child_level + '차 분류 --</option>');
-
-						for(var i = 0; i < response.length; i++) {
-							// alert("response[i].code: " +  response[i].code + ", response[i].label: " + response[i].label);
-							$('#category_level_' + category_child_level).append('<option value="' + response[i].code + '">' + response[i].label + '</option>');
-						}
-
-						alert($('#category_level_' + category_child_level));
-
-						$('#category_level_' + category_child_level).attr("style", "display:inline");
-						*/
-
 						var options = '<option value="">-- ' + category_child_level + '차 분류 --</option>';
 
 						for(var i = 0; i < response.length; i++)
@@ -120,19 +104,13 @@
 
 					 	$('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
 					} else {
-						for(var i = category_child_level; i <= 20; i++) {
-							$('#category_level_' + i).empty();
-							$('#category_level_' + i).attr("style", "display:none");
-						}
+						for(var i = category_child_level; i <= 20; i++)
+							$('#category_level_' + i).empty().attr("style", "display:none");
 					}
-
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');					
 				}
 			});
-
-			// for(var i = category_child_level; i <= 20; i++)
-			// 	$('#category_level_' + i).attr("style", "display:none");
 		}
 
 		function appendCategory() {
