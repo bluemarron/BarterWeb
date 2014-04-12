@@ -118,15 +118,14 @@
 						for(var i = 0; i < response.length; i++)
 							options += '<option value="' + response[i].code + '">' + response[i].label + '</option>';
 
-						// alert(options);
+						 alert(options);
 
-						$('#category_level_' + category_child_level).empty();
+						 $('#category_level_' + category_child_level).empty();
 						// $('#category_level_' + category_child_level).remove();
-						$('#category_level_' + category_child_level).html(options);
+						 $('#category_level_' + category_child_level).html(options);
+						 $('#category_level_' + category_child_level).attr("style", "display:inline");
 
-						alert($('#category_level_' + category_child_level).text());
-						
-						$('#category_level_' + category_child_level).attr("style", "display:inline");
+
 					}
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');					
@@ -289,7 +288,7 @@
 				<ul id='selected_categories'></ul>
 
 				<ul>
-					<li>
+					<li id='categories'>
 						<?for($i = 1; $i <= 20; $i++) {?>
 							<?if($i == 1){?>
 								<select id='category_level_<?=$i?>' name='category_level_<?=$i?>' class='span2' style='display:inline;' onchange='renderChildCategories("<?=$i?>");'>
