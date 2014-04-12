@@ -82,14 +82,12 @@
 
 			var category_child_level = Number(category_level) + 1;
 
-			// for(var i = category_child_level; i <= 20; i++)
-			// 	$('#category_level_' + i).attr("style", "display:none");
+			for(var i = category_child_level + 1; i <= 20; i++)
+				$('#category_level_' + i).attr("style", "display:none");
 
 			if(code == '')
 				return;
 			
-			// alert("code: " +  code);
-
 			$.ajax({
 				type: 'POST',
 				dataType: 'json',
@@ -118,18 +116,9 @@
 						for(var i = 0; i < response.length; i++)
 							options += '<option value="' + response[i].code + '">' + response[i].label + '</option>';
 
-						 // alert(options);
-
-						 $('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
-						// $('#category_level_' + category_child_level).attr("style", "display:inline");
-
-						
-
-						//  $('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
-
+					 	$('#category_level_' + category_child_level).attr("style", "display:inline").empty().html(options);
 					} else {
-
-					for(var i = category_child_level; i <= 20; i++)
+						for(var i = category_child_level; i <= 20; i++)
 							$('#category_level_' + i).attr("style", "display:none");
 					}
 
