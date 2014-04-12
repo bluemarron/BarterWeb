@@ -106,6 +106,8 @@
 					} else {
 						for(var i = category_child_level; i <= 20; i++)
 							$('#category_level_' + i).empty().attr("style", "display:none");
+
+						appendCategory();
 					}
 				}, failure: function(response) {
 					alert('일시적인 시스템 오류가 발생하였습니다.');					
@@ -263,7 +265,8 @@
   	<div class='well'>
 	    <p>
 			<fieldset>
-				<legend>상품 카테고리</legend>
+				<legend><img src='../images/check_ok.png' border='0' align='absmiddle' width='14'> 상품 기본정보</legend> 
+				(원하는 진열 카테고리를 선택하세요. 중복 선택이 가능합니다.)<br><br>
 
 				<ul id='selected_categories'></ul>
 
@@ -271,18 +274,18 @@
 					<li id='categories'>
 						<?for($i = 1; $i <= 20; $i++) {?>
 							<?if($i == 1){?>
-								<select id='category_level_<?=$i?>' name='category_level_<?=$i?>' class='span2' style='display:inline;' onchange='renderChildCategories("<?=$i?>");'>
+								<select id='category_level_<?=$i?>' name='category_level_<?=$i?>' class='span2' style='display:inline;' onchange='renderChildCategories("<?=$i?>");' size='6'>
 									<option value=''>-- <?=$i?>차 분류 --</option>
 									<?for($j = 0; $j < sizeof($categories); $j++) {?>
 										<option value='<?=$categories[$j]->code?>'><?=$categories[$j]->label?></option>
 									<?}?>
 								</select>
 							<?} else {?>
-								<select id='category_level_<?=$i?>' name='category_level_<?=$i?>' class='span2' style='display:none;' onchange='renderChildCategories("<?=$i?>");'>
+								<select id='category_level_<?=$i?>' name='category_level_<?=$i?>' class='span2' style='display:none;' onchange='renderChildCategories("<?=$i?>");' size='6'>
 								</select>							
 							<?}?>
 						<?}?>
-						<a href='javascript:appendCategory();' class='btn btn-success' style='width:30px;margin-bottom:10px;'>추가</a>
+						<!--<a href='javascript:appendCategory();' class='btn btn-success' style='width:30px;margin-bottom:10px;'>추가</a>-->
 					</li>
 				</ul>		
 			</fieldset>
