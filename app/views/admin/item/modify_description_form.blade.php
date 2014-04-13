@@ -1,10 +1,13 @@
 @extends('layouts.admin_master')
 
 @section('content')
-    <?
-    echo HTML::style('assets/css/smart_editor2_in.css');
-
-	?>	
+  	<?
+    echo HTML::style('assets/css/jquery.cleditor.css');
+    echo HTML::script('assets/js/jquery.cleditor.js');
+	?>
+	<script type="text/javascript">
+    	$(document).ready(function () { $("#description").cleditor(); });
+  	</script>
 	<script>
 		var message = '<?=$message?>';
 
@@ -12,6 +15,8 @@
 			alert(message);
 
 		function modify() {
+			//alert(modify_form.description.value);
+			alert("테스트중입니다.");
 			// modify_form.submit();
 		}
 	</script>
@@ -36,31 +41,6 @@
 		}
 	    -->
    	</style>
-<body class="smartOutput se2_inputarea">
-	<p>
-		<b><u>에디터 내용:</u></b>
-	</p>
-
-	<div style="width:736px;">
-	<?php
-		// $postMessage = $_POST["ir1"]; 
-		// echo $postMessage;
-	?>
-	</div>
-	
-	<hr>
-	<p>
-		<b><span style="color:#FF0000">주의: </span>sample.php는 샘플 파일로 정상 동작하지 않을 수 있습니다. 이 점 주의바랍니다.</b>
-	</p>
-	
-	<?php echo(htmlspecialchars_decode('&lt;img id="test" width="0" height="0"&gt;'))?>
-	
-<script>
-	if(!document.getElementById("test")) {
-		alert("PHP가 실행되지 않았습니다. 내용을 로컬 파일로 전송한 것이 아니라 서버로 전송했는지 확인 해 주십시오.");
-	}
-</script>
-
 
   	<form name='modify_form' id='modify_form' action='../../admin/item/modify_description' method='post' enctype='multipart/form-data'>
 

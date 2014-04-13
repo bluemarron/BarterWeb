@@ -7,7 +7,7 @@
     <meta name='description' content=''>
     <meta name='author' content=''>
     <?
-		echo HTML::style('assets/css/bootstrap.css');
+    echo HTML::style('assets/css/bootstrap.css');
     echo HTML::style('assets/css/bootstrap-responsive.css');
     echo HTML::style('assets/css/prettify.css');
 
@@ -15,7 +15,7 @@
     echo HTML::script('assets/js/jquery.tmpl.min.js');
     echo HTML::script('assets/js/prettify.js');
     echo HTML::script('assets/js/google_analytics.js');
-		?>
+    ?>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <?
@@ -82,8 +82,8 @@
 
         <!-- body -->
         <div class='span12'>
- 					@yield('content')
-				</div><!--/span-->
+          @yield('content')
+        </div><!--/span-->
 
       </div><!--/row-->
 
@@ -97,18 +97,18 @@
 
     <!-- Placed at the end of the document so the pages load faster -->
     <?
-		echo HTML::script('assets/js/bootstrap-transition.js');
-		echo HTML::script('assets/js/bootstrap-alert.js');
-		echo HTML::script('assets/js/bootstrap-modal.js');
-		echo HTML::script('assets/js/bootstrap-dropdown.js');
-		echo HTML::script('assets/js/bootstrap-scrollspy.js');
-		echo HTML::script('assets/js/bootstrap-tab.js');
-		echo HTML::script('assets/js/bootstrap-tooltip.js');
-		echo HTML::script('assets/js/bootstrap-popover.js');
-		echo HTML::script('assets/js/bootstrap-button.js');
-		echo HTML::script('assets/js/bootstrap-collapse.js');
-		echo HTML::script('assets/js/bootstrap-carousel.js');
-		echo HTML::script('assets/js/bootstrap-typeahead.js');
-		?>
+    echo HTML::script('assets/js/bootstrap-transition.js');
+    echo HTML::script('assets/js/bootstrap-alert.js');
+    echo HTML::script('assets/js/bootstrap-modal.js');
+    echo HTML::script('assets/js/bootstrap-dropdown.js');
+    echo HTML::script('assets/js/bootstrap-scrollspy.js');
+    echo HTML::script('assets/js/bootstrap-tab.js');
+    echo HTML::script('assets/js/bootstrap-tooltip.js');
+    echo HTML::script('assets/js/bootstrap-popover.js');
+    echo HTML::script('assets/js/bootstrap-button.js');
+    echo HTML::script('assets/js/bootstrap-collapse.js');
+    echo HTML::script('assets/js/bootstrap-carousel.js');
+    echo HTML::script('assets/js/bootstrap-typeahead.js');
+    ?>
   </body>
 </html>
