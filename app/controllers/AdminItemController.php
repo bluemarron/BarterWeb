@@ -197,6 +197,22 @@ class AdminItemController extends BaseController {
 		return Redirect::to('./admin/item/list_form');
 	}
 
+	public function modifyDescriptionForm() {
+		$path = '../admin/item/modify_description_form';
+
+		$query = "SELECT id, default_item_description FROM managements	";
+		$managements = DB::select($query);
+		$management = $managements[0];
+
+		$this->layout->path = $path;
+		$this->layout->management = $management;
+
+		$this->layout->content = View::make($path, 
+			array('path' => $path, 
+				'management' => $management, 
+				'message' => ''));
+	}
+
 	public function delete() {
 		if(Request::ajax()) {
 		

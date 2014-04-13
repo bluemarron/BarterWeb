@@ -105,6 +105,8 @@ Route::get('/admin/item/list_form', 'AdminItemController@listForm');
 
 Route::get('/admin/item/modify_form', 'AdminItemController@modifyForm');
 
+Route::get('/admin/item/modify_description_form', 'AdminItemController@modifyDescriptionForm');
+
 Route::post('/admin/item/modify', 'AdminItemController@modify');
 
 Route::post('/admin/item/delete', 'AdminItemController@delete');
