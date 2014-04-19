@@ -1,6 +1,13 @@
 @extends('layouts.admin_master')
 
 @section('content')
+  	<?
+    echo HTML::style('assets/css/jquery.cleditor.css');
+    echo HTML::script('assets/js/jquery.cleditor.js');
+	?>
+	<script type="text/javascript">
+    	$(document).ready(function () { $("#description").cleditor(); });
+  	</script>
 	<script>
 		var message = '<?=$message?>';
 

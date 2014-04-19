@@ -29,10 +29,15 @@ class ItemController extends BaseController {
 
 			$categories = DB::select($query);
 
+			$query = "SELECT id, default_item_description FROM managements	";
+			$managements = DB::select($query);
+			$management = $managements[0];
+
 			$this->layout->path = $path;
 			$this->layout->categories = $categories;
+			$this->layout->management = $management;
 
-			$this->layout->content = View::make($path, array('path' => $path, 'categories' => $categories, 'message' => ''));
+			$this->layout->content = View::make($path, array('path' => $path, 'categories' => $categories, 'management' => $management, 'message' => ''));
 		}
 	}
 

@@ -1,6 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
+  	<?
+    echo HTML::style('assets/css/jquery.cleditor.css');
+    echo HTML::script('assets/js/jquery.cleditor.js');
+	?>
+	<script type="text/javascript">
+    	$(document).ready(function () { $("#description").cleditor(); });
+  	</script>
 	<script>
 		var message = '<?=$message?>';
 
@@ -182,16 +189,16 @@
 		}
 
 		$(document).ready(function() {
-			var defaultDescription = '* 상품상세설명 : 예) 동작 정상입니다. 깔끔합니다.' + '\r\n';
-			defaultDescription += '* 원하는상품은 : 예) 아세아 관리기 또는 경운기입니다.' + '\r\n';
-			defaultDescription += '* 생 산 년 도 : 예) 2000년 6월' + '\r\n';
-			defaultDescription += '* 배 송 방 법 : 예) 착불배송/선불배송/오셔서 확인 후 거래 조건입니다.' + '\r\n\r\n';
+			// var defaultDescription = '* 상품상세설명 : 예) 동작 정상입니다. 깔끔합니다.' + '\r\n';
+			// defaultDescription += '* 원하는상품은 : 예) 아세아 관리기 또는 경운기입니다.' + '\r\n';
+			// defaultDescription += '* 생 산 년 도 : 예) 2000년 6월' + '\r\n';
+			// defaultDescription += '* 배 송 방 법 : 예) 착불배송/선불배송/오셔서 확인 후 거래 조건입니다.' + '\r\n\r\n';
 
-			defaultDescription += '>> 위 내용은 예를 들어 설명한 것이며 필요 없을 시 삭제하셔도 됩니다.' + '\r\n';
-			defaultDescription += '또한 개인 상세주소나 개인정보를 과다노출할 경우 범죄의 표적이 될 수 있으니 거래성사 후 알려주는 것이 안전합니다.' + '\r\n';
-			defaultDescription += '명심하세요.';
+			// defaultDescription += '>> 위 내용은 예를 들어 설명한 것이며 필요 없을 시 삭제하셔도 됩니다.' + '\r\n';
+			// defaultDescription += '또한 개인 상세주소나 개인정보를 과다노출할 경우 범죄의 표적이 될 수 있으니 거래성사 후 알려주는 것이 안전합니다.' + '\r\n';
+			// defaultDescription += '명심하세요.';
 
-			$("textarea#description").val(defaultDescription);
+			// $("textarea#description").val(defaultDescription);
 		});
 
 		function previewImage(input, seq) {
@@ -378,7 +385,7 @@
 				<legend>상품 상세정보</legend>
 				<ul>
 					<li> 
-					    <textarea rows='12' id='description' name='description' class='span12' placeholder='설명을 입력하세요.'></textarea>
+					    <textarea rows='12' id='description' name='description' class='span12' placeholder='설명을 입력하세요.'><?=$management->default_item_description?></textarea>
 						<span style='padding-left:8px;'></span>
 					</li>
 				<ul>

@@ -183,7 +183,7 @@
 	
 	<div class='well'>
 		<p><i class='icon-asterisk'></i> 상품설명</p>
-	    <p><?=nl2br($item->description)?></p>
+	    <p><?=$item->description?></p>
 	</div>   
 	<?if($member_id != '' && $member_id != $item_member_id){?>
 		<?if(sizeof($my_items) > 0) {?>

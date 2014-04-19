@@ -213,6 +213,17 @@ class AdminItemController extends BaseController {
 				'message' => ''));
 	}
 
+	public function modifyDescription() {
+		$management_id = Input::get('management_id');
+		$default_item_description = Input::get('default_item_description');
+ 		
+		$management = Management::find($management_id);
+		$management->default_item_description = $default_item_description;
+		$management->save();
+				
+		return Redirect::to('./admin/item/modify_description_form');
+	}
+
 	public function delete() {
 		if(Request::ajax()) {
 		

@@ -218,11 +218,15 @@
 									<a href='#' onclick="deleteItem('<?=$item->id?>');" class='btn btn-danger' style='width:30px;'>삭제</a>
 									(하단 상품을 모두 취소한 후에만 삭제하실 수 있습니다.)
 								</td>	
-							</tr>							
-							
+							</tr>		
 						</table>	
 					</td>
 				</tr>	
+				<!-- tr>
+					<td colspan='2' style='padding:10px;'>
+						<?=$item->description?>
+					</td>
+				</tr -->	
 			</table>
 		<p>
   	</div>
