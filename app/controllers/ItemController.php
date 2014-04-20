@@ -2,7 +2,7 @@
 
 class ItemController extends BaseController {
   	protected $layout = 'layouts.master';
-	
+
 	private $CODE_LENGTH = 3;
 
 	private $UPLOAD_IMAGE_COUNT = 8;
@@ -13,7 +13,7 @@ class ItemController extends BaseController {
 
 	public function registForm() {
 		$member_id = Session::get('member_id');
-
+ 
 		if($member_id == '') {
 			$path = '../member/login_regist_form';
 
@@ -343,7 +343,6 @@ class ItemController extends BaseController {
 		$member_id = Session::get('member_id');
 	 	$item_id = Input::get('item_id');
 
-
 		$query  = "SELECT code, label FROM categories				";
 		$query .= "WHERE LENGTH(code) = " . $this->CODE_LENGTH . "	";
 		$query .= "AND deleted_at IS NULL							";
@@ -493,4 +492,5 @@ class ItemController extends BaseController {
 					  ));
 		}
 	}
+
 }

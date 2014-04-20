@@ -20,6 +20,6 @@ class BaseController extends Controller {
 			View::share('is_admin', $is_admin);
 
 			$this->layout = View::make($this->layout);
-		}
+		} 
 	}
 }

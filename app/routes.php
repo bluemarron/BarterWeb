@@ -44,6 +44,8 @@ Route::get('/item/manage', 'ItemController@manage');
 
 Route::get('/item/view', 'ItemController@view');
 
+Route::get('/item_popup/zoom_in_item_image', 'ItemPopupController@zoomInItemImage');
+
 Route::post('/item/regist', 'ItemController@regist');
 
 Route::get('/item/modify_form', 'ItemController@modifyForm');

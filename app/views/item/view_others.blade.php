@@ -50,8 +50,11 @@
 				}
 			});	
 		}
-	</script>
 
+      	function zoomInItemImage(item_id, item_image_seq) {
+           window.open('../item_popup/zoom_in_item_image?item_id='+item_id+'&item_image_seq='+item_image_seq, 'null', 'width=750,height=640,toolbar=no,scrollbars=no,location=no,resizable=yes');
+      	} 
+	</script>
 	<style> 
 	    <!--
 		fieldset ul, fieldset li{
@@ -98,9 +101,15 @@
 						<table>
 							<tr>
 								<td>
-									<img src='../<?=$item->upload_path?><?=$item->physical_image_name?>' border='0' align='absmiddle' style='width:350px;' />
+									<a href='#' onclick='zoomInItemImage("<?=$item->id?>", 1);'><img src='../<?=$item->upload_path?><?=$item->physical_image_name?>' border='0' align='absmiddle' style='width:350px;' /></a>
 								</td>
 							</tr>
+							<tr><td height='5'></td></tr>
+							<tr>
+								<td height='5' align='center'>
+									<a href='#' onclick='zoomInItemImage("<?=$item->id?>", 1);'><i class='icon-zoom-in'></i> 확대보기</a>
+								</td>
+							</tr>						
 							<tr><td height='5'></td></tr>
 							<tr>
 								<td>			

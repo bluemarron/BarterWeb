@@ -103,6 +103,12 @@
 							</tr>
 							<tr><td height='5'></td></tr>
 							<tr>
+								<td height='5'>
+									<i class='icon-zoom-in'></i>aaa
+								</td>
+							</tr>						
+							<tr><td height='5'></td></tr>
+							<tr>
 								<td>			
 							    	<table align='center' cellspacing='2'>
 								    	<?for($j = 0; $j < 8; $j++) {?>
