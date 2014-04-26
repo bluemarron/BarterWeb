@@ -51,9 +51,25 @@
 			});	
 		}
 
-      	function zoomInItemImage(item_id, item_image_seq) {
+		var item_image_seq = 1;
+
+      	function zoomInItemImage(item_id) {
            window.open('../item_popup/zoom_in_item_image?item_id='+item_id+'&item_image_seq='+item_image_seq, 'null', 'width=750,height=640,toolbar=no,scrollbars=no,location=no,resizable=yes');
       	} 
+
+      	function changeMiddleImage(seq) {
+      		item_image_seq = seq;
+
+      		for(var i = 1; i <= 8; i++) {
+      			if($('#middle_image_' + i).length == 0)
+      				continue;
+
+      			if(seq == i)
+   					$('#middle_image_' + i).attr('style', 'width:350px;display:block;');
+   				else
+   					$('#middle_image_' + i).attr('style', 'width:350px;display:none;');
+      		}
+      	}
 	</script>
 	<style> 
 	    <!--
@@ -101,13 +117,17 @@
 						<table>
 							<tr>
 								<td>
-									<a href='#' onclick='zoomInItemImage("<?=$item->id?>", 1);'><img src='../<?=$item->upload_path?><?=$item->physical_image_name?>' border='0' align='absmiddle' style='width:350px;' /></a>
+									<?for($j = 0; $j < 8; $j++) {?>
+										<?if(sizeof($item_images) > $j) {?>
+											<a href='#' onclick='zoomInItemImage("<?=$item->id?>");'><img id='middle_image_<?=$j+1?>' src='../<?=$item_images[$j]->upload_path?><?=$item_images[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:350px;<?if($j != 0){?>display:none;<?}?>' /></a>
+										<?}?>	
+									<?}?>
 								</td>
 							</tr>
 							<tr><td height='5'></td></tr>
 							<tr>
 								<td height='5' align='center'>
-									<a href='#' onclick='zoomInItemImage("<?=$item->id?>", 1);'><i class='icon-zoom-in'></i> 확대보기</a>
+									<a href='#' onclick='zoomInItemImage("<?=$item->id?>");'><i class='icon-zoom-in'></i> 확대보기</a>
 								</td>
 							</tr>						
 							<tr><td height='5'></td></tr>
@@ -118,7 +138,7 @@
 								    		<?if($j % 4 == 0){?><tr><?}?>
 											<td align='center' width='85'>
 												<?if(sizeof($item_images) > $j) {?>
-													<img src='../<?=$item_images[$j]->upload_path?><?=$item_images[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:80px;' />	
+													<a href='#'><img src='../<?=$item_images[$j]->upload_path?><?=$item_images[$j]->physical_image_name?>' border='0' align='absmiddle' style='width:80px;' onclick='changeMiddleImage("<?=$j+1?>");' /></a>	
 												<?}else{?>
 													<img src='../images/camera.png' border='0' align='absmiddle' style='width:80px;opacity:0.2;filter:alpha(opacity=40);' />
 												<?}?>	

@@ -12,6 +12,7 @@ class ItemPopupController extends BaseController {
 
 	public function zoomInItemImage() {
 	 	$item_id = Input::get('item_id');
+	 	$item_image_seq = Input::get('item_image_seq');
 
 		$query  = "SELECT i.id, i.member_id, i.address, i.name, i.description, m.upload_path, m.physical_image_name, i.created_at ";
 		$query .= "FROM items AS i											";
@@ -35,7 +36,8 @@ class ItemPopupController extends BaseController {
 		$this->layout->content = View::make($path, 
 			array('path' => $path, 
 				  'item' => $item, 
-				  'item_images' => $item_images
+				  'item_images' => $item_images,
+				  'item_image_seq' => $item_image_seq
 			));
 	}
 }
