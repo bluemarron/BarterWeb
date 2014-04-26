@@ -41,10 +41,10 @@
 
 	<div class='well'>
 	    <p>
-	    	<table align='center'>
+	    	<table width='100%' align='center'>
 	    		<tr valign='top'>
 	    			<td align='center' width='70'>
-						<table align='center' cellspacing='2'>
+						<table align='center' cellspacing='2' width='70'>
 					    	<?for($j = 0; $j < 8; $j++) {?>
 					    		<tr>
 									<td align='center' width='65'>
@@ -60,10 +60,10 @@
 	    			</td>
 	    			<td width='10'></td>
 					<td align='center' valign='middle'>
-						<table>
+						<table width='100%'>
 							<?for($j = 0; $j < 8; $j++) {?>
 					    		<tr>
-									<td align='center'>
+									<td align='center' width='100%'>
 										<?if(sizeof($item_images) > $j) {?>
 											<img id='large_image_<?=$j+1?>' src='../<?=$item_images[$j]->upload_path?><?=$item_images[$j]->physical_image_name?>' border='0' align='absmiddle' style='<?if($j + 1 != $item_image_seq){?>display:none;<?}?>' />	
 										<?}?>	
