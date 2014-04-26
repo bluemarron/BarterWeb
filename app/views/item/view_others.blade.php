@@ -54,7 +54,7 @@
 		var item_image_seq = 1;
 
       	function zoomInItemImage(item_id) {
-           window.open('../item_popup/zoom_in_item_image?item_id='+item_id+'&item_image_seq='+item_image_seq, 'null', 'width=750,height=640,toolbar=no,scrollbars=no,location=no,resizable=yes');
+           window.open('../item_popup/zoom_in_item_image?item_id='+item_id+'&item_image_seq='+item_image_seq, 'null', 'width=750,height=640,toolbar=no,scrollbars=auto,location=no,resizable=yes');
       	} 
 
       	function changeMiddleImage(seq) {
