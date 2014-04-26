@@ -41,7 +41,7 @@
 
 	<div class='well'>
 	    <p>
-	    	<table width='100%' align='center'>
+	    	<table align='center'>
 	    		<tr valign='top'>
 	    			<td align='center' width='70'>
 						<table align='center' cellspacing='2'>
@@ -71,10 +71,8 @@
 					    		</tr>
 							<?}?>
 						</table>
-
-
 					</td>
-					</tr>	
+				</tr>	
 			</table>
 		<p>
   	</div>
