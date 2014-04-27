@@ -70,6 +70,19 @@
    					$('#middle_image_' + i).attr('style', 'width:350px;display:none;');
       		}
       	}
+
+      	function moveItemViewPage(arrow, item_id) {
+      		if(item_id == -1) {
+      			if(arrow == 'prev')
+      				alert('이전 상품이 존재하지 않습니다.');
+      			else if(arrow == 'next')
+      				alert('다음 상품이 존재하지 않습니다.');
+
+      			return;
+      		}
+
+      		location.href = '../item/view?item_id=' + item_id + '&category_code=<?=$category_code?>';
+      	}
 	</script>
 	<style> 
 	    <!--
@@ -146,6 +159,14 @@
 								    		<?if($j % 4 == 3){?></tr><?}?>
 										<?}?>
 									</table>
+								</td>
+							</tr>
+							<tr><td height='10'></td></tr>
+							<tr>
+								<td align='center' >
+									<a href='#' onclick='moveItemViewPage("prev", "<?=$prev_item_id?>");'><i class='icon-chevron-left'></i></a><a href='#' onclick='moveItemViewPage("prev", "<?=$prev_item_id?>");'>이전</a>
+									&nbsp;	
+									<a href='#' onclick='moveItemViewPage("next", "<?=$next_item_id?>");'>다음</a><a href='#' onclick='moveItemViewPage("next", "<?=$next_item_id?>");'><i class='icon-chevron-right'></i></a>
 								</td>
 							</tr>
 						</table>

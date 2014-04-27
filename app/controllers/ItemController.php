@@ -466,13 +466,57 @@ class ItemController extends BaseController {
 			$query .= "INNER JOIN items AS a ON (t.request_item_id = a.id)															";
 			$query .= "INNER JOIN item_images AS e ON (a.id = e.item_id)															";
 			$query .= "WHERE t.target_item_id = " . $item_id . "																	";
-			$query .= "AND t.status IN ('REQUEST')																		";
+			$query .= "AND t.status IN ('REQUEST')																					";
 			$query .= "AND a.deleted_at IS NULL 																					";
 			$query .= "GROUP BY t.id																								";
 			$query .= "ORDER BY t.id DESC																							";
 			$query .= "LIMIT 100																									";
 
 			$trade_items = DB::select($query);
+
+			// get next items's id
+			$query  = "SELECT i.id  FROM items AS i															";
+			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 								";
+			$query .= "INNER JOIN item_images AS e ON (i.id = e.item_id)									";
+			$query .= "WHERE 1 = 1																			";
+
+			if($category_code != '') {
+				$query .= "AND c.category_code LIKE '" . $category_code . "%'								";
+			}	
+
+			$query .= "AND i.deleted_at IS NULL																";
+			$query .= "AND i.id < " . $item_id . "															";
+			$query .= "ORDER BY i.id DESC					  												";
+			$query .= "LIMIT 1		 									  									";
+			
+			$next_items = DB::select($query);
+
+			if(sizeof($next_items) > 0)
+				$next_item_id = $next_items[0]->id;
+			else
+				$next_item_id = -1;
+
+			// get previous items's id
+			$query  = "SELECT i.id  FROM items AS i															";
+			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 								";
+			$query .= "INNER JOIN item_images AS e ON (i.id = e.item_id)									";
+			$query .= "WHERE 1 = 1																			";
+
+			if($category_code != '') {
+				$query .= "AND c.category_code LIKE '" . $category_code . "%'								";
+			}	
+
+			$query .= "AND i.deleted_at IS NULL																";
+			$query .= "AND i.id > " . $item_id . "															";
+			$query .= "ORDER BY i.id ASC					  												";
+			$query .= "LIMIT 1		 									  									";
+			
+			$prev_items = DB::select($query);
+
+			if(sizeof($prev_items) > 0)
+				$prev_item_id = $prev_items[0]->id;
+			else
+				$prev_item_id = -1;
 
 	 		$path = '../item/view_others';
 
@@ -488,7 +532,9 @@ class ItemController extends BaseController {
 					  'trade_items' => $trade_items, 
 					  'category_code' => $category_code,
 					  'member_trade_count_by_status' => $member_trade_count_by_status,
-					  'member_item_count' => $member_item_count
+					  'member_item_count' => $member_item_count,
+					  'next_item_id' => $next_item_id,
+					  'prev_item_id' => $prev_item_id
 					  ));
 		}
 	}
