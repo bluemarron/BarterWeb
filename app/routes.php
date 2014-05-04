@@ -52,6 +52,12 @@ Route::get('/item/modify_form', 'ItemController@modifyForm');
 
 Route::post('/item/modify', 'ItemController@modify');
 
+Route::post('/item/display', 'ItemController@display');
+
+Route::post('/item/hide', 'ItemController@hide');
+
+Route::post('/item/copy', 'ItemController@copy');
+
 Route::post('/item/delete', 'ItemController@delete');
 
 Route::post('/category/get_child', 'CategoryController@getChild');

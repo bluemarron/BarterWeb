@@ -210,10 +210,32 @@ class ItemController extends BaseController {
 		return Redirect::to('./item/view?item_id='.$item_id);
 	}
 
+	public function display() {
+		$item_id = Input::get('item_id');
+
+		$item = Item::find($item_id);
+		$item->display_yn = 'Y';
+		$item->save();
+		
+		$response['status'] = 0;
+		return Response::json($response);
+	}
+
+	public function hide() {
+		$item_id = Input::get('item_id');
+
+		$item = Item::find($item_id);
+		$item->display_yn = 'N';
+		$item->save();
+		
+		$response['status'] = 0;
+		return Response::json($response);
+	}
+
 	public function delete() {
 		if(Request::ajax()) {
 		 	$item_id = Input::get('item_id');
-	/*
+			/*
 			$item = Item::find($item_id);
 			$item->deleted_at = time();
 			$item->save();
@@ -222,7 +244,6 @@ class ItemController extends BaseController {
 			$_Item->softDelete($item_id);
 
 			$response['status'] = 0;
-
 			return Response::json($response);
 		}
 	}
@@ -238,8 +259,7 @@ class ItemController extends BaseController {
 		} else {
 			$path = '../item/manage';
 
-
-			$query  = "SELECT i.id, i.member_id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+			$query  = "SELECT i.id, i.member_id, i.address, i.name, i.display_yn, m.upload_path, m.physical_image_name FROM items AS i	";
 			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
 			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 			$query .= "WHERE i.deleted_at IS NULL								";
@@ -337,6 +357,87 @@ class ItemController extends BaseController {
 		}
 
 		return Redirect::to('/');
+	}
+
+	public function copy() {
+		$item_id = Input::get('item_id');
+		
+		$org_item = Item::find($item_id);
+		
+		$item = new Item;
+		$item->member_id = $org_item->member_id;
+		$item->name = $org_item->name;
+		$item->address = $org_item->address;
+		$item->search_keyword = $org_item->search_keyword;
+		$item->description = $org_item->description;
+		$item->save();
+
+ 		$item_categories = ItemCategory::where('item_id', '=', $item_id)->get();
+
+		for($i = 0; $i < sizeof($item_categories); $i++) {
+			$item_category = new ItemCategory;
+			$item_category->item_id = $item->id;
+			$item_category->category_code = $item_categories[$i]->category_code;
+			$item_category->save();
+		}
+
+		$upload_image_path = $this->UPLOAD_IMAGE_DEFAULT_PATH . date("Ym",time()) . "/";
+
+		if(File::exists($upload_image_path) == false)
+			File::makeDirectory($upload_image_path);
+
+		$item_images = ItemImage::where('item_id', '=', $item_id)->get();
+
+		for($i = 0; $i < sizeof($item_images); $i++) {
+			$physical_image_name = str_replace('image_' . $item_id . '_', 'image_' . $item->id . '_', $item_images[$i]->physical_image_name);
+			
+			$org_path = $item_images[$i]->upload_path . $item_images[$i]->physical_image_name;
+			$new_path = $upload_image_path . $physical_image_name;
+			
+			$upload_success = File::copy($org_path, $new_path);
+			
+			if($upload_success) {
+				$item_image = new ItemImage;
+				$item_image->item_id = $item->id;
+				$item_image->seq = $item_images[$i]->seq;
+				$item_image->physical_image_name = $physical_image_name;
+				$item_image->original_image_name = $item_images[$i]->original_image_name;
+				$item_image->upload_path = $upload_image_path;
+
+				$item_image->save();	
+			}		
+		}
+
+		$upload_file_path = $this->UPLOAD_FILE_DEFAULT_PATH . date("Ym",time()) . "/";
+
+		if(File::exists($upload_file_path) == false)
+			File::makeDirectory($upload_file_path);
+
+		$item_files = ItemFile::where('item_id', '=', $item_id)->get();
+
+		for($i = 0; $i < sizeof($item_files); $i++) {
+			$physical_file_name = str_replace('file_' . $item_id . '_', 'file_' . $item->id . '_', $item_files[$i]->physical_file_name);
+			
+			$org_path = $item_files[$i]->upload_path . $item_files[$i]->physical_file_name;
+			$new_path = $upload_file_path . $physical_file_name;
+			
+			$upload_success = File::copy($org_path, $new_path);
+			
+			if($upload_success) {
+				$item_file = new ItemFile;
+				$item_file->item_id = $item->id;
+				$item_file->seq = $item_files[$i]->seq;
+				$item_file->physical_file_name = $physical_file_name;
+				$item_file->original_file_name = $item_files[$i]->original_file_name;
+				$item_file->upload_path = $upload_file_path;
+
+				$item_file->save();	
+			}		
+		}
+
+		$response['status'] = 0;
+
+		return Response::json($response);
 	}
 
 	public function view() {
