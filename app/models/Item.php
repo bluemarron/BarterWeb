@@ -16,6 +16,21 @@ class Item extends Eloquent {
 		return $db_rows[0]->count;
 	}
 
+	public function copy($id) {
+		$org_item = Item::find($id);
+		
+		$item = new Item;
+		$item->member_id = $org_item->member_id;
+		$item->name = '[복사]' . $org_item->name;
+		$item->address = $org_item->address;
+		$item->search_keyword = $org_item->search_keyword;
+		$item->description = $org_item->description;
+		$item->display_yn = 'N';
+		$item->save();
+
+		return $item->id;
+	}
+
 	public function softDelete($id) {
 		$item = Item::find($id);
 		$item->delete();

@@ -63,6 +63,7 @@ class HomeController extends BaseController {
 				$query .= "LEFT OUTER JOIN trades AS t ON (i.id = t.target_item_id AND t.status = 'REQUEST') 	";
 				$query .= "WHERE c.category_code LIKE '" . $category_code . "%'									";
 				$query .= "AND i.deleted_at IS NULL																";
+				$query .= "AND i.display_yn = 'Y' 																";
 				$query .= "GROUP BY i.id																		";
 				$query .= "ORDER BY count(t.id) DESC, i.id DESC					  								";
 				$query .= "LIMIT 100		 									  								";
@@ -72,6 +73,7 @@ class HomeController extends BaseController {
 				$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 				$query .= "WHERE c.category_code LIKE '" . $category_code . "%'		";
 				$query .= "AND i.deleted_at IS NULL									";
+				$query .= "AND i.display_yn = 'Y' 									";
 				$query .= "GROUP BY i.id											";
 				$query .= "ORDER BY i.id DESC 									  	";
 				$query .= "LIMIT 100		 									  	";
@@ -85,6 +87,7 @@ class HomeController extends BaseController {
 				$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 									";
 				$query .= "LEFT OUTER JOIN trades AS t ON (i.id = t.target_item_id AND t.status = 'REQUEST') 	";
 				$query .= "WHERE i.deleted_at IS NULL															";
+				$query .= "AND i.display_yn = 'Y' 																";
 				$query .= "GROUP BY i.id																		";
 				$query .= "ORDER BY count(t.id) DESC, i.id DESC							  						";
 				$query .= "LIMIT 100		 									  								";
@@ -93,6 +96,7 @@ class HomeController extends BaseController {
 				$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
 				$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 				$query .= "WHERE i.deleted_at IS NULL								";
+ 				$query .= "AND i.display_yn = 'Y' 									";
 				$query .= "GROUP BY i.id											";
 				$query .= "ORDER BY i.id DESC 									  	";
 				$query .= "LIMIT 100		 									  	";

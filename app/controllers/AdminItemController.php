@@ -14,7 +14,7 @@ class AdminItemController extends BaseController {
 	public function listForm() {
 		$path = '../admin/item/list_form';
 
-		$query  = "SELECT i.id, i.member_id, i.address, i.name, m.upload_path, m.physical_image_name FROM items AS i	";
+		$query  = "SELECT i.id, i.member_id, i.address, i.name, i.display_yn, m.upload_path, m.physical_image_name FROM items AS i	";
 		$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
 		$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
 		$query .= "WHERE i.deleted_at IS NULL								";
@@ -222,6 +222,48 @@ class AdminItemController extends BaseController {
 		$management->save();
 				
 		return Redirect::to('./admin/item/modify_description_form');
+	}
+	
+	public function display() {
+		$item_id = Input::get('item_id');
+
+		$item = Item::find($item_id);
+		$item->display_yn = 'Y';
+		$item->save();
+		
+		$response['status'] = 0;
+		return Response::json($response);
+	}
+
+	public function hide() {
+		$item_id = Input::get('item_id');
+
+		$item = Item::find($item_id);
+		$item->display_yn = 'N';
+		$item->save();
+		
+		$response['status'] = 0;
+		return Response::json($response);
+	}
+
+	public function copy() {
+		$item_id = Input::get('item_id');
+		
+		$_Item = App::make('Item');
+		$new_item_id = $_Item->copy($item_id);
+
+		$_ItemCategory = App::make('ItemCategory');
+		$_ItemCategory->copy($item_id, $new_item_id);
+
+		$_ItemImage = App::make('ItemImage');
+		$_ItemImage->copy($item_id, $new_item_id);
+		
+		$_ItemFile = App::make('ItemFile');
+		$_ItemFile->copy($item_id, $new_item_id);
+
+		$response['status'] = 0;
+
+		return Response::json($response);
 	}
 
 	public function delete() {

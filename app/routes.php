@@ -119,6 +119,12 @@ Route::post('/admin/item/modify', 'AdminItemController@modify');
 
 Route::post('/admin/item/modify_description', 'AdminItemController@modifyDescription');
 
+Route::post('/admin/item/display', 'AdminItemController@display');
+
+Route::post('/admin/item/hide', 'AdminItemController@hide');
+
+Route::post('/admin/item/copy', 'AdminItemController@copy');
+
 Route::post('/admin/item/delete', 'AdminItemController@delete');
 
 Route::get('/admin/member/list_form', 'AdminMemberController@listForm');

@@ -242,7 +242,7 @@
   	<form name='modify_form' id='modify_form' action='../item/modify' method='post' enctype='multipart/form-data'>
 	<input type='hidden' id='selected_category_code' name='selected_category_code'>
 	<input type='hidden' id='item_id' name='item_id' value='<?=$item->id?>'>
-
+	<input type='hidden' id='redirect_url' name='redirect_url' value='./item/manage'>
   	<div class='well'>
 	    <p>
 			<fieldset>
