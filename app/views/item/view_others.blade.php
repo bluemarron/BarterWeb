@@ -212,10 +212,10 @@
 								<td width='75'><i class='icon-ok'></i> 미결상품</td>
 								<td>: 00개</td>
 							</tr>
-							<tr>
+<!-- 							<tr>
 								<td width='75'><i class='icon-ok'></i> 담보금액</td>
 								<td>: 50,000원</td>
-							</tr>
+							</tr> -->
 							<tr>
 								<td height='20' colspan='2'></td>	
 							</tr>	

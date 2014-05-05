@@ -197,7 +197,7 @@
 		<p>
   	</div>
   	
-  	<div class='well'>			
+  	<!-- <div class='well'>			
 	    <p>
 			<fieldset>
 				<legend>담보금 관리</legend> 
@@ -260,6 +260,6 @@
 				<ul>
 			</fieldset>
 		<p>
-  	</div>
+  	</div> -->
 
 @stop      
