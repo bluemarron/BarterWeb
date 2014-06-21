@@ -433,14 +433,16 @@ class ItemController extends BaseController {
 
 		if($item_member_id != $member_id && $member_id != '') {
 			$query  = "SELECT i.id, i.address, i.name, m.upload_path, m.physical_image_name ";
-			$query .= " FROM items AS i											";
-			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 	";
-			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 		";
-			$query .= "WHERE i.member_id = '" . $member_id . "' 				";
-			$query .= "  AND i.deleted_at IS NULL								";
-			$query .= "GROUP BY i.id											";
-			$query .= "ORDER BY i.id DESC 									  	";
-			$query .= "LIMIT 100		 									  	";
+			$query .= " FROM items AS i												";
+			$query .= "INNER JOIN item_categories AS c ON (i.id = c.item_id) 		";
+			$query .= "INNER JOIN item_images AS m ON (i.id = m.item_id) 			";
+			$query .= "LEFT OUTER JOIN trades AS t ON (" . $item_id . " = t.request_item_id AND i.id = t.target_item_id AND t.status IN ('REQUEST', 'ACCEPT', 'COMPLETE')) ";
+			$query .= "WHERE i.member_id = '" . $member_id . "' 					";
+			$query .= "  AND i.deleted_at IS NULL									";
+			$query .= "  AND t.id IS NULL 											";
+			$query .= "GROUP BY i.id												";
+			$query .= "ORDER BY i.id DESC 										  	";
+			$query .= "LIMIT 100		 										  	";
 
 			$my_items = DB::select($query);
 		} 
