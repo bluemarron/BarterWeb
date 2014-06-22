@@ -88,7 +88,7 @@
 		<p>
 		<?if(sizeof($trades) == 0) {?>
 			<div align='center'>
-				현재 거래가 진행중인 상품이 없습니다.
+				현재 거래가 신청중인 상품이 없습니다.
 			</div>
 		<?} else {?>
 	    	<table>
