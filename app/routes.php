@@ -72,6 +72,8 @@ Route::post('/trade/complete', 'TradeController@complete');
 
 Route::post('/trade/cancel', 'TradeController@cancel');
 
+Route::get('/trade/request_list', 'TradeController@requestList');
+
 Route::get('/trade/ongoing_list', 'TradeController@onGoingList');
 
 Route::get('/trade/completion_list', 'TradeController@completionList');
