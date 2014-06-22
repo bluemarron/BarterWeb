@@ -148,7 +148,9 @@
 								<tr><td height='5' colspan='3'></td></tr>
 								<tr>
 									<td align='center' colspan='3'>
-										<a href='#' onclick="acceptTrade('<?=$trades[$j]->id?>');" class='btn btn-primary' style='width:78px;'>거래선택</a>
+										<?if($member_id == $trades[$j]->target_member_id){?>
+											<a href='#' onclick="acceptTrade('<?=$trades[$j]->id?>');" class='btn btn-primary' style='width:78px;'>거래선택</a>
+										<?}?>	
 										<a href='#' onclick="cancelTrade('<?=$trades[$j]->id?>');" class='btn btn-danger' style='width:78px;'>거래취소</a>
 									</td>
 								</tr>
