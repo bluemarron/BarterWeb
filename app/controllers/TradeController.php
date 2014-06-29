@@ -48,7 +48,27 @@ class TradeController extends BaseController {
 			$trade_log->member_id = $request_member_id;
 			$trade_log->status = "ACCEPT";
 			$trade_log->save();
+			
+			$query  = "SELECT t.id 													";
+			$query .= "FROM trades AS t												";
+			$query .= "WHERE t.target_item_id = " . $trade->target_item_id .   	" 	";
+			$query .= "AND t.id <> " . $trade_id . 							 	"	";
+			$query .= "AND t.status = 'REQUEST'										";
 
+			$cancel_target_trades = DB::select($query);
+		
+			for($i = 0; $i < count($cancel_target_trades); $i++) {
+				$trade = Trade::find($cancel_target_trades[$i]->id);
+				$trade->status = 'CANCEL';
+				$trade->save();
+
+				$trade_log = new TradeLog;
+				$trade_log->trade_id = $cancel_target_trades[$i]->id;
+				$trade_log->member_id = $request_member_id;
+				$trade_log->status = "CANCEL";
+				$trade_log->save();
+			}
+		
 			$response['status'] = 0;
 
 			return Response::json($response);
