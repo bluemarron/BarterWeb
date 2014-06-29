@@ -51,8 +51,9 @@ class TradeController extends BaseController {
 			
 			$query  = "SELECT t.id 													";
 			$query .= "FROM trades AS t												";
-			$query .= "WHERE t.target_item_id = " . $trade->target_item_id .   	" 	";
-			$query .= "AND t.id <> " . $trade_id . 							 	"	";
+			$query .= "WHERE (t.target_item_id = " . $trade->target_item_id .  " OR ";
+			$query .= " 	  t.request_item_id = " . $trade->target_item_id . ")	";
+			$query .= "AND t.id <> " . $trade_id . 							 	  "	";
 			$query .= "AND t.status = 'REQUEST'										";
 
 			$cancel_target_trades = DB::select($query);
